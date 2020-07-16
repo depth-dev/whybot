@@ -279,7 +279,6 @@ client.on('message', function(message) {
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
             .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
             .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
-            .addField('**y!kill**', 'Shut down the bot.', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
