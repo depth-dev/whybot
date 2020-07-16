@@ -120,7 +120,7 @@ client.on('message', function(message) {
 
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
-        if(!msg.member.hasPermission('ADMINISTRATOR')) {
+        if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
         } else {
             const args = msg.content.split(' ').slice(1)
@@ -275,11 +275,13 @@ client.on('message', function(message) {
             .setColor('0dff00')
             .setTitle('YOU4000 Moderation Help')
             .setDescription('For administrators and stuff.')
-            .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
+            .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
+            .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)')
             .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
-            .addField('**y!purge**', 'Purge a number of messages.', true)
             .addField('**y!kill**', 'Shut down the bot.', true)
-            .addField('**y!poll**', 'Create a poll! Use the syntax! (This command can only be used by people with the "Manage Messages" permission.)', true)
+            .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
+            .addField('**y!purge**', 'Purge a number of messages.')
+            .addField('**y!poll**', 'Create a poll! Use the syntax!', true)
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:modEmbedHelp})
         }
