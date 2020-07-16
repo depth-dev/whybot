@@ -1,0 +1,11 @@
+{
+    "name": "you4000",
+    "version": "1.0.0",
+    "description": "MEEBETTER",
+    "main": "you4000.js",
+    "author": "misterdepth",
+    "dependencies": {
+        "discord.io": "^2.5.3",
+        "winston": "^3.3.3"
+    }
+}
