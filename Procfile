@@ -1,1 +1,1 @@
-Worker: node c:\Users\email\Documents\GitHub\you4000\you4000.js
+Worker: node index.js
