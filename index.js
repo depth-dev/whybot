@@ -260,11 +260,11 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!kill') {
-      if(!message.member.hasPermission('ADMINISTRATOR')) {
-        message.channel.send({embed:noPermsEmbed})
-      } else {
-      client.destroy()
-      }
+        if(message.member.id != "315173627232518147") {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            client.destroy()
+        }
     }
   })
 client.on('message', function(message) {
