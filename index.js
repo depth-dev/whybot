@@ -778,5 +778,10 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!hjhhr') {
+        message.channel.send('Successfully Updated!')
+    }
+})
 
 client.login(process.env.token)
