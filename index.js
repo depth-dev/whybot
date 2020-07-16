@@ -45,9 +45,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('YOU4000 Changelog')
          .setDescription('Check out all of the new features in YOU4000 updates.')
-         .addField('Changelog:', `0.3.3
-    - Fixed yet broke Ban and Kick commands.
-    - Improved statuses.`)
+         .addField('Changelog:', `0.4.2
+    - Got a server to host YOU4000 most of the time.
+    - Updated some of the moderation commands!
+    - Fixed some bugs :)`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -268,7 +269,7 @@ client.on('message', function(message) {
   })
 client.on('message', function(message) {
     if(message.content == 'y!modhelp') {
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed}) 
         } else {
             const modEmbedHelp = new Discord.MessageEmbed()
@@ -276,11 +277,13 @@ client.on('message', function(message) {
             .setTitle('YOU4000 Moderation Help')
             .setDescription('For administrators and stuff.')
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
-            .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)')
+            .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
             .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
             .addField('**y!kill**', 'Shut down the bot.', true)
+            .addField('\u200b', '\u200b', true)
+            .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
-            .addField('**y!purge**', 'Purge a number of messages.')
+            .addField('**y!purge**', 'Purge a number of messages.', true)
             .addField('**y!poll**', 'Create a poll! Use the syntax!', true)
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:modEmbedHelp})
