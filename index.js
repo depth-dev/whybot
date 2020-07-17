@@ -46,9 +46,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.5.2
+         .addField('Changelog:', `0.5.3
     - Changed the name for the final time to WhyBot
-    - Added y!staff`)
+    - Made some if commands to swith commands!`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -138,57 +138,29 @@ client.on('message', async (msg) =>{
 })
 client.on('message', function(message) {
     if(message.content == 'y!quote') {
-        let randomQuote = Math.floor(Math.random()*15+1)
-        if(randomQuote == 1) {
-            message.channel.send('The food network is just a place where people get fat for money.')
-        }
-        if(randomQuote == 2) {
-            message.channel.send('What makes building houses so entertaining? ')
-        }
-        if(randomQuote == 3) {
-            message.channel.send('This bot was developed in short notice. Is is even that good?')
-        }
-        if(randomQuote == 4) {
-            message.channel.send('I do all my gaming on a 2015 MacBook Air.')
-        }
-        if(randomQuote == 5) {
-            message.channel.send('Does technoblade ever die?')
-        }
-        if(randomQuote == 6) {
-            message.channel.send('Quarantine is fun')
-        }
-        if(randomQuote == 7) {
-            message.channel.send('Is life even that good? Jk it is')
-        }
-        if(randomQuote == 8) {
-            message.channel.send('If you are seeing this, this means the system rolled an 8.')
-        }
-        if(randomQuote == 9) {
-            message.channel.send('What')
-        }
-        if(randomQuote == 10) {
-            message.channel.send('fsjfllllllllljjjjjjj')
-        }
-        if(randomQuote == 11) {
-            message.channel.send('If you\'re mentally struggling with something, that must suck')
-        }
-        if(randomQuote == 12) {
-            message.channel.send('REJEEEEEEEE')
-        }
-        if(randomQuote == 13) {
-            message.channel.send('Giga Puddin!')
-        }
-        if(randomQuote == 14) {
-            message.channel.send('Who\'s MEE6? Copy cat')
-        }
-        if(randomQuote == 15) {
-            message.channel.send('gg')
-        }
+        let randomQuote = Math.floor(Math.random()*5+1)
+        switch(randomQuote) {
+            case 1:
+                message.channel.send('What was the point of a channel about building houses?')
+                break
+            case 2:
+                message.channel.send('This bot had to go through 2 different name changes! I am very bad at making deciscions.')
+                break
+            case 3:
+                message.channel.send('Originally, this was an if/then set of statements, but I made it a switch/case!')
+                break
+            case 4:
+                message.channel.send('Giga pudding! What the hell is that ad?')
+                break
+            case 5:
+                message.channel.send('I\'m struggling to make all these quotes.')
+                break
+            }
     }
 })
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
-        message.channel.send('This command is currently down. Check back in later!')
+        message.channel.send('This command is currently down. If you would like to submit a meme, DM misterdepth (must be SFW)!')
     }
 })
 client.on('message', function(message) {
@@ -374,65 +346,67 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!question') {
         let randomQuiz = Math.floor(Math.random()*10+1)
-        if(randomQuiz == 1) {
-            message.channel.send('**Question:** Apples or Oranges?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 2) {
-            message.channel.send('**Question:** CoronaBot or WhyBot?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 3) {
-            message.channel.send('**Question:** YouTube or Twitch?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 4) {
-            message.channel.send('**Question:** Inside or Outside?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 5) {
-            message.channel.send('**Question:** AC or Mechanical Fans?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 6) {
-            message.channel.send('**Question:** Singing or Dancing?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 7) {
-            message.channel.send('**Question:** Tacos or Hamburgers?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 8) {
-            message.channel.send('**Question:** Teleportation or Flying?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 9) {
-            message.channel.send('**Question:** Strawberries or Bananas?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
-        }
-        if(randomQuiz == 10) {
-            message.channel.send('**Question:** Salted Crackers or Unsalted Crackers?').then(msg => {
-                msg.react("🇦")
-                msg.react("🇧")
-            })
+        switch(randomQuiz) {
+            case 1:
+                message.channel.send('**Question:** Apples or Oranges?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 2:
+                message.channel.send('**Question:** CoronaBot or WhyBot?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 3:
+                message.channel.send('**Question:** YouTube or Twitch?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 4:
+                message.channel.send('**Question:** Inside or Outside?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break 
+            case 5:
+                message.channel.send('**Question:** AC or Mechanical Fans?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break 
+            case 6:
+                message.channel.send('**Question:** Singing or Dancing?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break 
+            case 7:
+                message.channel.send('**Question:** Tacos or Hamburgers?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break 
+            case 8:
+                message.channel.send('**Question:** Teleportation or Flying?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 9:
+                message.channel.send('**Question:** Strawberries or Bananas?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 10:
+                message.channel.send('**Question:** Salted Crackers or Unsalted Crackers?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
         }
     }
 })
@@ -502,25 +476,27 @@ Sent By: ${newMessage.author}`)
 client.on('message', function(message) {
     if(message.content == 'y!roses') {
         let randomRoses = Math.floor(Math.random()*5+1)
-        if(randomRoses == 1) {
-            message.channel.send(`Roses are red, fluttering like a bee...
-Logal Paul Says:
-Is that a body?`)
-        }
-        if(randomRoses == 2) {
-            message.channel.send('Roses are red, quiet as a mouse, your door is unlocked...')
-            setTimeout(function() {message.channel.send('I        a   m        i   n   s   i   d   e        y   o   u   r        h   o   u   s   e.')}, 3000)
-        }
-        if(randomRoses == 3) {
-            message.channel.send('Roses are gray, violets are gray.')
-            setTimeout(function() {message.channel.send('wait am i gay')}, 3000)
-        }
-        if(randomRoses == 4) {
-            message.channel.send('Roses are red, so is your blood, haha bottle of rubbing alcohol go chug chug chug')
-        }
-        if(randomRoses == 5) {
-            message.channel.send('Roses are red, I\'m running out of ideas...')
-            setTimeout(function() {message.channel.send('no actually')}, 3000)
+        switch(randomRoses) {
+            case 1:
+                message.channel.send(`Roses are red, fluttering like a bee...
+                Logal Paul Says:
+                Is that a body?`)
+                break
+            case 2:
+                message.channel.send('Roses are red, quiet as a mouse, your door is unlocked...')
+                setTimeout(function() {message.channel.send('I        a   m        i   n   s   i   d   e        y   o   u   r        h   o   u   s   e.')}, 3000)
+                break
+            case 3:
+                message.channel.send('Roses are gray, violets are gray.')
+                setTimeout(function() {message.channel.send('wait am i gay')}, 3000)
+                break
+            case 4:
+                message.channel.send('Roses are red, so is your blood, haha bottle of rubbing alcohol go chug chug chug')
+                break
+            case 5:
+                message.channel.send('Roses are red, I\'m running out of ideas...')
+                setTimeout(function() {message.channel.send('no actually')}, 3000)
+                break
         }
     }
 })
