@@ -787,7 +787,7 @@ client.on('message', function(message) {
         const enemy = message.mentions.members.first()
         if(!enemy) {
             message.reply('Who do you want to fight?')
-        } else if(enemy.bot) {
+        } else if(enemy.user.bot) {
             message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! ' + enemy.username + 'WINS!')
         } else {
             message.reply('Test')
