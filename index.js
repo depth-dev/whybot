@@ -35,6 +35,7 @@ client.on('message', function(message) {
          .addField('**y!hint**', 'Get a hint at the event!', true)
          .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
+         .addField('**y!fight**', 'Fight another user in Battle!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -770,13 +771,14 @@ More to come! This bot is still in development!`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!fight')) {
-        const enemy = message.mentions.members.first()
-        if(!enemy) {
+        const enemy1 = message.mentions.members.first()
+        if(!enemy1) {
             message.reply('Who do you want to fight?')
         } else if(enemy.user.bot) {
             message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! THE ROBOT WINS!')
         } else {
             let fightChance = Math.floor(Math.random()*5+1)
+            const enemy = message.mentions.members.first()
             if(fightChance == 1) {
                 message.channel.send('Slam! ' + message.author.username + ' throws ' + enemy.username + ' against the wall! ' + message.author.username + ' wins!')
             }
