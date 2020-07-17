@@ -35,7 +35,6 @@ client.on('message', function(message) {
          .addField('**y!hint**', 'Get a hint at the event!', true)
          .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
-         .addField('**y!fight**', 'Fight another user in Battle!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -45,10 +44,9 @@ client.on('message', function(message) {
         const changelogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
-         .setDescription('Check out all of the new features in YOU4000 updates.')
+         .setDescription('Check out all of the new features in WhyBot updates.')
          .addField('Changelog:', `0.5.1
     - Changed the name for the final time to WhyBot
-    - Added y!fight
     - Fixed bugs.`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -769,33 +767,6 @@ More to come! This bot is still in development!`)
         message.channel.send({embed:BotLogEmbed})
     }
 })
-client.on('message', function(message) {
-    if(message.content.startsWith('y!fight')) {
-        const enemy1 = message.mentions.members.first()
-        if(!enemy1) {
-            message.reply('Who do you want to fight?')
-        } else if(enemy.user.bot) {
-            message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! THE ROBOT WINS!')
-        } else {
-            let fightChance = Math.floor(Math.random()*5+1)
-            const enemy = message.mentions.members.first()
-            if(fightChance == 1) {
-                message.channel.send('Slam! ' + message.author.username + ' throws ' + enemy.username + ' against the wall! ' + message.author.username + ' wins!')
-            }
-            if(fightChance == 2) {
-                message.channel.send('After ten long minutes, ' + message.author.username + ' finally gives in. ' + enemy.username + ' wins!')
-            }
-            if(fightChance == 3) {
-                message.channel.send('Whabam! After pulling off some sweet kung-fu moves, ' + message.author.username + ' wins the battle!')
-            }
-            if(fightChance == 4) {
-                message.channel.send('Using the power of actual maigc, ' + enemy.username + + ' wins!')
-            }
-            if(fightChance == 5) {
-                message.channel.send(message.author.username + ' pulls out a mega laser pointer and distracts ' + enemy.username + ' for long enough to win the battle!')
-            }
-        }
-    }
-})
+
 
 client.login(process.env.token)
