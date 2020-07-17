@@ -763,5 +763,15 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!close') {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            message.channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
+            message.channel.send('Channel is now closed!')
+        }
+    }
+})
 
 client.login(process.env.token)
