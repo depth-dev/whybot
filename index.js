@@ -18,8 +18,8 @@ client.on('message', function(message) {
     if(message.content == 'y!help') {
         const youelpEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
-         .setTitle('YOU4000 Commands and Help Menu')
-         .setDescription('YOU4000 is a bot used for moderation and other events.')
+         .setTitle('WhyBot Commands and Help Menu')
+         .setDescription('WhyBot is a bot used for moderation and other events.')
          .addField('**y!quote**', 'Get a  quote from the dev.', true)
          .addField('**y!meme**', 'Memes.', true)
          .addField('**y!feedback**', 'Give us feedback!', true)
@@ -28,8 +28,8 @@ client.on('message', function(message) {
          .addField('**y!info**', 'Check out some information on the bot.', true)
          .addField('**y!remind**', 'Remind someone they exist.', true)
          .addField('**y!question**', 'Be asked a question by the bot.', true)
-         .addField('**y!changelog**', 'Check out the changelog for YOU4000.', true)
-         .addField('**y!invite**', 'Get the invite link for YOU4000.', true)
+         .addField('**y!changelog**', 'Check out the changelog for WhyBot.', true)
+         .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
          .addField('**y!roses**', 'Get a roses are red poem.', true)
          .addField('**y!userinfo**', 'Get a user\'s information. More coming soon.', true)
          .addField('**y!hint**', 'Get a hint at the event!', true)
@@ -43,12 +43,12 @@ client.on('message', function(message) {
     if(message.content == 'y!changelog') {
         const changelogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
-         .setTitle('YOU4000 Changelog')
+         .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in YOU4000 updates.')
-         .addField('Changelog:', `0.4.2
-    - Got a server to host YOU4000 most of the time.
-    - Updated some of the moderation commands!
-    - Fixed some bugs :)`)
+         .addField('Changelog:', `0.5.1
+    - Changed the name for the final time to WhyBot
+    - Added y!fight
+    - Fixed bugs.`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -57,10 +57,10 @@ client.on('message', function(message) {
     if(message.content == 'y!info') {
         const infoEmbed = new Discord.MessageEmbed()
         .setColor('0dff00')
-        .setTitle('YOU4000 Information')
+        .setTitle('WhyBot Information')
         .setDescription('Here is the information about this bot!')
-        .addField('What is YOU4000?', 'YOU4000 is a general reason bot that is mainly used for things on one server.')
-        .addField('Is YOU4000 public?', 'At the moment, it is closed to only a few servers, however it may be released one day!')
+        .addField('What is WhyBot?', 'WhyBot is a general reason bot that is mainly used for things on one server.')
+        .addField('Is WhyBot public?', 'At the moment, it is closed to only a few servers, however it may be released one day!')
         .addField('What are all of the commands?', 'Use y!help to check out all of the commands!')
         .addField('What is the current prefix?', 'It is \'y!\'')
         .addField('What was added?', 'Use y!changelog to find that out!')
@@ -221,7 +221,7 @@ There will be a time when the dueling will start, and from there on you can requ
             if(args[0] == 'list') {
                 const eventList = new Discord.MessageEmbed()
                 .setColor('0dff00')
-                .setTitle('List of YOU4000 Events:')
+                .setTitle('List of WhyBot Events:')
                 .setDescription('Here are all of the current listed events!')
                 .addField('Misterdiscord Duel v2:', 'an event for misterdepth\'s discord.')
                 .addField('IdleMinerChampionships', 'Try to get the highest rebirths in a certain amount of time!')
@@ -274,7 +274,7 @@ client.on('message', function(message) {
         } else {
             const modEmbedHelp = new Discord.MessageEmbed()
             .setColor('0dff00')
-            .setTitle('YOU4000 Moderation Help')
+            .setTitle('WhyBot Moderation Help')
             .setDescription('For administrators and stuff.')
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
             .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
@@ -381,7 +381,7 @@ client.on('message', function(message) {
             })
         }
         if(randomQuiz == 2) {
-            message.channel.send('**Question:** CoronaBot or YOU4000?').then(msg => {
+            message.channel.send('**Question:** CoronaBot or WhyBot?').then(msg => {
                 msg.react("🇦")
                 msg.react("🇧")
             })
@@ -445,7 +445,7 @@ client.on('message', function(message) {
     if(message.content == 'y!invite') {
         const inviteEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
-         .setTitle('YOU4000 Invite Link')
+         .setTitle('WhyBot Invite Link')
          .setDescription('Warning: Potentional errors could occur due to the fact that this bot is designed for only a few serevers.')
          .addField('Invite Link:', 'Currently this bot is in closed development. Come back later!')
          .setFooter('API developed by misterdepth')
@@ -769,28 +769,29 @@ More to come! This bot is still in development!`)
     }
 })
 client.on('message', function(message) {
-    if(message.content.startsWith('y!communist')) {
-        const communistScum = message.mentions.members.first()
-        if(message.member.id != "315173627232518147") {
-            message.channel.send('YOU CANT COMMUNISM OTHERS NERDDDD')
-        } else {
-        communistScum.send('COMMUNIST SCUM!')
-        communistScum.send('COMMUNIST SCUM!')
-        communistScum.send('COMMUNIST SCUM!')
-        communistScum.send('COMMUNIST SCUM!')
-        message.channel.send(communistScum.user.tag + ' IS A COMMUNIST! CLOWN ON THEM!!!!')
-        }
-    }
-})
-client.on('message', function(message) {
     if(message.content.startsWith('y!fight')) {
         const enemy = message.mentions.members.first()
         if(!enemy) {
             message.reply('Who do you want to fight?')
         } else if(enemy.user.bot) {
-            message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! ' + enemy.username + 'WINS!')
+            message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! THE ROBOT WINS!')
         } else {
-            message.reply('Test')
+            let fightChance = Math.floor(Math.random()*5+1)
+            if(fightChance == 1) {
+                message.channel.send('Slam! ' + message.author.username + ' throws ' + enemy.username + ' against the wall! ' + message.author.username + ' wins!')
+            }
+            if(fightChance == 2) {
+                message.channel.send('After ten long minutes, ' + message.author.username + ' finally gives in. ' + enemy.username + ' wins!')
+            }
+            if(fightChance == 3) {
+                message.channel.send('Whabam! After pulling off some sweet kung-fu moves, ' + message.author.username + ' wins the battle!')
+            }
+            if(fightChance == 4) {
+                message.channel.send('Using the power of actual maigc, ' + enemy.username + + ' wins!')
+            }
+            if(fightChance == 5) {
+                message.channel.send(message.author.username + ' pulls out a mega laser pointer and distracts ' + enemy.username + ' for long enough to win the battle!')
+            }
         }
     }
 })

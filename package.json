@@ -1,8 +1,8 @@
 {
-    "name": "you4000",
+    "name": "whybot",
     "version": "1.0.0",
     "description": "MEEBETTER",
-    "main": "you4000.js",
+    "main": "index.js",
     "author": "misterdepth",
     "dependencies": {
         "discord.io": "^2.5.3",
