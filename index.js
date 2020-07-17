@@ -783,8 +783,15 @@ client.on('message', function(message) {
     }
 })
 client.on('message', function(message) {
-    if(message.content == 'y!hjhhr') {
-        message.channel.send('Successfully Updated!')
+    if(message.content.startsWith('y!fight')) {
+        const enemy = message.mentions.members.first()
+        if(!enemy) {
+            message.reply('Who do you want to fight?')
+        } else if(enemy.bot) {
+            message.channel.send(message.author.username + ' enters the fight, however the robot\'s powerful beams take them down! ' + enemy.username + 'WINS!')
+        } else {
+            message.reply('Test')
+        }
     }
 })
 
