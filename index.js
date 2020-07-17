@@ -764,12 +764,32 @@ client.on('message', function(message) {
     }
 })
 client.on('message', function(message) {
-    if(message.content == 'y!close') {
+    if(message.content == 'y!closeig') {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-            message.channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
-            message.channel.send('Channel is now closed!')
+            if(message.guild.id != misterDisc) {
+                return
+            } else {
+            const channel = client.channels.cache.get('730236218125582459');  
+            channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
+            channel.send('Channel is now closed!')
+            }
+        }
+    }
+})
+client.on('message', function(message) {
+    if(message.content == 'y!openig') {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            if(message.guild.id != misterDisc) {
+                return
+            } else {
+            const channel = client.channels.cache.get('730236218125582459');  
+            channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: true });
+            channel.send('Channel is now closed!')
+            }
         }
     }
 })
