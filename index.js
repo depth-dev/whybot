@@ -35,6 +35,7 @@ client.on('message', function(message) {
          .addField('**y!hint**', 'Get a hint at the event!', true)
          .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
+         .addField('**y!staff**', 'See the staff on your server!')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -45,9 +46,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.5.1
+         .addField('Changelog:', `0.5.2
     - Changed the name for the final time to WhyBot
-    - Fixed bugs.`)
+    - Added y!staff`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -767,6 +768,24 @@ More to come! This bot is still in development!`)
         message.channel.send({embed:BotLogEmbed})
     }
 })
-
+client.on('message', function(message) {
+    if(message.content.startsWith('y!staff')) {
+        if(message.guild.id == misterDisc) {
+            const misterDiscStaff = new Discord.MessageEmbed()
+             .setColor('0dff00')
+             .setTitle('Server Staff: Misterdiscord')
+             .setDescription('Staff for misterdiscord!')
+             .addField('misterdepth', 'Role: Owner')
+             .addField('GabrielZ1', 'Role: Admin', true)
+             .addField('Chicken', 'Role: Admin', true)
+             .addField('Grandiloquentcy', 'Role: Moderator')
+             .addField('ExtraLead', 'Role: Jr. Moderator')
+             .setFooter('API developed by misterdepth')
+            message.channel.send({embed:misterDiscStaff})
+        } else {
+            message.channel.send('This server does not have any listed staff! If you want to add it, DM misterdepth.')
+        }
+    }
+})
 
 client.login(process.env.token)
