@@ -768,13 +768,9 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-            if(message.guild.id != misterDisc) {
-                return
-            } else {
             const channel = client.channels.cache.get(message.channel.id);  
             channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
             channel.send('Channel is now closed!')
-            }
         }
     }
 })
@@ -783,13 +779,9 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-            if(message.guild.id != misterDisc) {
-                return
-            } else {
             const channel = client.channels.cache.get(message.channel.id);  
             channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: true });
             channel.send('Channel is now opened!')
-            }
         }
     }
 })
