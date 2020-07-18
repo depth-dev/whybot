@@ -46,9 +46,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.5.3
+         .addField('Changelog:', `0.5.4
     - Changed the name for the final time to WhyBot
-    - Made some if commands to swith commands!`)
+    - Made some if commands to swith commands!
+    - Added y!close and y!open for admins!`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -251,6 +252,8 @@ client.on('message', function(message) {
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
             .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
             .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
+            .addField('**y!close**', 'Override permissions for everyone to send messages!', true)
+            .addField('**y!open**', 'Reopen a channel from y!close', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
@@ -752,7 +755,7 @@ client.on('message', function(message) {
              .setTitle('Server Staff: Misterdiscord')
              .setDescription('Staff for misterdiscord!')
              .addField('misterdepth', 'Role: Owner')
-             .addField('GabrielZ1', 'Role: Admin', true)
+             .addField('GabrielZ1', 'Role: Temp Admin', true)
              .addField('Chicken', 'Role: Admin', true)
              .addField('Grandiloquentcy', 'Role: Moderator')
              .addField('ExtraLead', 'Role: Jr. Moderator')
