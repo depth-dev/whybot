@@ -433,9 +433,9 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
-        if(messageDelete.channel.startsWith('y!poll')) {
+        if(messageDelete.content.startsWith('y!poll')) {
             return
-        } else if(messageDelete.channel.startsWith('y!feedback')) {
+        } else if(messageDelete.content.startsWith('y!feedback')) {
             return
         } else {
                 const channel = client.channels.cache.get('724337351936966727');  
