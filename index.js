@@ -429,31 +429,27 @@ client.on('message', function(message) {
         message.channel.send({embed:inviteEmbed})
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.guild.id != misterDisc) {
+client.on('messageDelete', (messageDelete) => {
+    if(messageDelete.guild.id != misetrDisc) {
         return
     } else {
-        if(messageDelete.content.includes('rawfishsticks')) {
-            return
-        } else {
-            if(messageDelete.content.startsWith('y!poll')) {
-                return
-            } else {
-                if(messageDelete.content.startsWith('y!feedback')) {
-                    return
-                } else {
-    const channel = client.channels.cache.get('724337351936966727');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}
-Sent By: ${messageDelete.author}`)
-    channel.send({embed:deleteEmbed})
-                }
-            }
+        switch(messageDelete.content.startsWith) {
+            case "y!poll":
+                return 
+            case "y!feedback":
+                return 
+            default:
+                const channel = client.channels.cache.get('724337351936966727');  
+                if(messageDelete.author.bot) return;
+                const deleteEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+                 .setThumbnail(messageDelete.author.displayAvatarURL())
+                 .setTitle('A Message was Deleted!')
+                 .setDescription(`Content: ${messageDelete.content}
+            Sent By: ${messageDelete.author}`)
+                channel.send({embed:deleteEmbed})
+
         }
     }
 })
@@ -547,9 +543,6 @@ Sent By: ${newMessage.author}`)
     if(messageDelete.guild.id != safety8) {
         return
     } else {
-        if(messageDelete.content.includes('rawfishsticks')) {
-            return
-        } else {
             if(messageDelete.content.startsWith('y!poll')) {
                 return
             } else {
@@ -569,7 +562,6 @@ Sent By: ${messageDelete.author}`)
     channel.send({embed:deleteEmbed})
                 }
             }
-        }
     }
 })
 
