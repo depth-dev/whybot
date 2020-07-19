@@ -430,7 +430,7 @@ client.on('message', function(message) {
     }
 })
 client.on('messageDelete', (messageDelete) => {
-    if(messageDelete.guild.id != misetrDisc) {
+    if(messageDelete.guild.id != misterDisc) {
         return
     } else {
         if(message.channel.startsWith('y!poll')) {
