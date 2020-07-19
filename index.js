@@ -433,10 +433,10 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
-        switch(messageDelete.content.startsWith) {
-            case "y!poll":
+        switch(messageDelete.content) {
+            case startsWith("y!poll"):
                 return 
-            case "y!feedback":
+            case startsWith("y!feedback"):
                 return 
             default:
                 const channel = client.channels.cache.get('724337351936966727');  
