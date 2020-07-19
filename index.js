@@ -430,15 +430,14 @@ client.on('message', function(message) {
     }
 })
 client.on('messageDelete', (messageDelete) => {
-    if(messageDelete.guild.id != misterDisc) {
+    if(messageDelete.guild.id != misetrDisc) {
         return
     } else {
-        switch(messageDelete.content.startsWith()) {
-            case "y!poll":
-                return 
-            case "y!feedback":
-                return 
-            default:
+        if(message.channel.startsWith('y!poll')) {
+            return
+        } else if(message.channel.startsWith('y!feedback')) {
+            return
+        } else {
                 const channel = client.channels.cache.get('724337351936966727');  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
@@ -449,7 +448,6 @@ client.on('messageDelete', (messageDelete) => {
                  .setDescription(`Content: ${messageDelete.content}
             Sent By: ${messageDelete.author}`)
                 channel.send({embed:deleteEmbed})
-
         }
     }
 })
