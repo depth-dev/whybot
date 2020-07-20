@@ -712,17 +712,6 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
 }
 })
 client.on('message', function(message) {
-    if(message.content == 'y!stroke') {
-        message.channel.send('sfdkjlssjklfsjdjklsdlksfjlfsdk')
-        message.channel.send('sdkljlkjkjjjjjjjjjjjjjjj')
-        message.channel.send('sdfjjjsdddddd')
-        message.channel.send('give me a esnddddddddddddddddddddd')
-        message.channel.send('let me clean things up here').then(message => {
-            setTimeout(function() {message.channel.bulkDelete(5)}, 2000)
-        })
-    }
-})
-client.on('message', function(message) {
     if(message.content == 'y!betterbotlogs') {
         const BotLogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
@@ -747,8 +736,8 @@ client.on('message', function(message) {
              .addField('misterdepth', 'Role: Owner')
              .addField('GabrielZ1', 'Role: Temp Admin', true)
              .addField('Chicken', 'Role: Admin', true)
-             .addField('Grandiloquentcy', 'Role: Moderator')
-             .addField('ExtraLead', 'Role: Jr. Moderator')
+             .addField('Grandiloquentcy', 'Role: Moderator',)
+             .addField('ExtraLead', 'Role: Moderator', true)
              .setFooter('API developed by misterdepth')
             message.channel.send({embed:misterDiscStaff})
         } else {
