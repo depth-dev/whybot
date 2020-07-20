@@ -736,7 +736,7 @@ client.on('message', function(message) {
              .addField('misterdepth', 'Role: Owner')
              .addField('GabrielZ1', 'Role: Temp Admin', true)
              .addField('Chicken', 'Role: Admin', true)
-             .addField('Grandiloquentcy', 'Role: Moderator',)
+             .addField('Grandiloquentcy', 'Role: Moderator', true)
              .addField('ExtraLead', 'Role: Moderator', true)
              .setFooter('API developed by misterdepth')
             message.channel.send({embed:misterDiscStaff})
