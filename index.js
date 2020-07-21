@@ -45,10 +45,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.5.4
-    - Changed the name for the final time to WhyBot
-    - Made some if commands to swith commands!
-    - Added y!close and y!open for admins!`)
+         .addField('Changelog:', `0.5.6
+    - Fixed bugs
+    - Added y!channel`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -251,8 +250,7 @@ client.on('message', function(message) {
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
             .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
             .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
-            .addField('**y!close**', 'Override permissions for everyone to send messages!', true)
-            .addField('**y!open**', 'Reopen a channel from y!close', true)
+            .addField('**y!channel**', 'Edit channel permissions!', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
@@ -723,28 +721,6 @@ More to come! This bot is still in development!`)
          .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so if you\'d like to have it in your server, please DM misterdepth!')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:BotLogEmbed})
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!close') {
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            const channel = client.channels.cache.get(message.channel.id);  
-            channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: false });
-            channel.send('Channel is now closed!')
-        }
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!open') {
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            const channel = client.channels.cache.get(message.channel.id);  
-            channel.updateOverwrite(channel.guild.roles.everyone, { SEND_MESSAGES: true });
-            channel.send('Channel is now opened!')
-        }
     }
 })
 client.on('message', function(message) {
