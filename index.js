@@ -290,60 +290,6 @@ client.on('message', function(message) {
     }
 })
 client.on('message', function(message) {
-    if(message.content.startsWith('y!rules')) {
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({noPermsEmbed})
-        } else {
-            const args = message.content.split(' ').slice(1)
-            if(!args[0]) {
-                message.channel.send('Please supply a server!')
-            } else {
-                if(args[0] == 'misterdisc') {
-                    const misterdiscordEmbed = new Discord.MessageEmbed()
-                     .setColor('0dff00')
-                     .setTitle('Misterdiscord Rules and Info:')
-                     .setDescription('Misterdiscord is the discord of misterdepth, a YouTuber. Make sure to follow the rules: ')
-                     .addField('#1: No Hate Speech', 'Roasting is fine, but nothing that gets personal or can hurt anyone\'s feelings.')
-                     .addField('#2: No Profanity', 'Please do not use any strong language, or use any inappropriate talk.')
-                     .addField('#3: Enjoy your time!', 'Have fun, and make sure that you\'re following the rules!')
-                     .addField('#4: No Spamming', 'Do not spam messages in any channel, or ping anyone excessively (including bots).')
-                     .addField('#5: No Advertising', 'Do not advertise unless permission from staff is given.')
-                     .addField('\u200b', '\u200b', true)
-                     .addField('\u200b', '\u200b', true)
-                     .addField('Enjoy your stay!', 'Other than these rules, freedom is yours. Have fun!')
-                     .setFooter('API developed by misterdepth')
-                    message.delete()
-                    message.channel.send({embed:misterdiscordEmbed})
-
-                }
-                if(args[0] == 'sbepic') {
-                    const sbgamerEmbed = new Discord.MessageEmbed()
-                    .setColor('0dff00')
-                    .setTitle('SkyBlock Rules and Info:')
-                    .setDescription('Welcome to SkyBlock, an epic gamer server for epic gamer stuff. If you want to stay, read the rules nerd:')
-                    .addField('#1: No Fighting', 'Don\'t fight or cause lots of drama. That\'s badness.')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#2: No Scamming', 'COOPADD ME FOR MONEY REEE <--- Don\'t do that.')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#3: Work as a Team', 'It isn\'t a competition, help out!')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#4: Stay ahead', 'Not a competition but try not to get left behind.')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#5: No toxicity', 'Don\'t be rude and/or toxic to others.')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#6: Be Peacful', 'Do not cause trouble!')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('#7: No Cursing', 'It\'s bad')
-                    .addField('\u200b', '\u200b', true)
-                    .addField('Enjoy your stay!', 'Other than these rules, freedom is yours ~~not really~~. Have fun!')
-                message.delete()
-                message.channel.send({embed:sbgamerEmbed})
-                }
-            }
-        }
-    }
-})
-client.on('message', function(message) {
     if(message.content == 'y!question') {
         let randomQuiz = Math.floor(Math.random()*10+1)
         switch(randomQuiz) {
