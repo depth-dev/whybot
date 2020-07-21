@@ -32,7 +32,6 @@ client.on('message', function(message) {
          .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
          .addField('**y!roses**', 'Get a roses are red poem.', true)
          .addField('**y!userinfo**', 'Get a user\'s information. More coming soon.', true)
-         .addField('**y!hint**', 'Get a hint at the event!', true)
          .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
          .setFooter('API developed by misterdepth')
@@ -619,28 +618,6 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!feedgabriel') {
         message.channel.send('uh come back when i find an emoji to use')
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!hint') {
-        message.channel.send(`Hint for the Event:
-Fish sticks, but I don't want to eat them.
-
-This is:
-all lowercase
-one word
-
-Good luck!`)
-    }
-})
-client.on('message', function(message) {
-    if(message.content.includes('rawfishsticks')) {
-        let guy = message.author
-        guy.send(`Hey!
-You found the secret code! If you are finding this message, please screenshot this and dm this to misterdepth for a reward!
-Pin: 83866 (do not remove this from screenshot)`)
-message.delete()
-console.log(guy.username + ' won!')
     }
 })
 client.on('message', function(message) {
