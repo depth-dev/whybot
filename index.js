@@ -748,7 +748,8 @@ client.on('message', function(message) {
             if(!inferiorMan) {
                 message.reply('Respond with someone to superior nerd')
             } else {
-                message.channel.send(message.author.tag + ' is superior to ' + inferiorMan.tag)
+                const args = message.content.split(' ').slice(1)
+                message.reply(' you are superior to ' + args[0] + '!')
             }
         }
     }
