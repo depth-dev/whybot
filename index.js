@@ -747,5 +747,44 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!channel')) {
+        const args = message.content.split(' ').slice(1)
+        if(message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            switch(args[0]) {
+                case "visible":
+                    const channelVis = client.channels.cache.get(message.channel.id);  
+                    channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
+                    message.channel.send('Channel is now visible!')
+                    break 
+                case "invisible":
+                    const channelInvis = client.channels.cache.get(message.channel.id);  
+                    channelInvis.updateOverwrite(channelInvis.guild.roles.everyone, { VIEW_CHANNEL: false })
+                    message.channel.send('Channel is now invisible! Ninja mode!')
+                    break 
+                case "close":
+                    const channelNosend = client.channels.cache.get(message.channel.id);  
+                    channelNosend.updateOverwrite(channelNosend.guild.roles.everyone, { SEND_MESSAGES: false })
+                    message.channel.send('Channel is now closed!')
+                    break
+                case "open":
+                    const channelSend = client.channels.cache.get(message.channel.id);  
+                    channelSend.updateOverwrite(channelSend.guild.roles.everyone, { SEND_MESSAGES: true })
+                    message.channel.send('Channel is now open!')
+                    break 
+                default:
+                    message.channel.send(`Please supply a valid option! Options:
+    - Visible
+    - Invisible
+    - Close
+    - Open
+All lowercase!`)
+                    
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
