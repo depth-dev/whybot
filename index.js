@@ -750,7 +750,7 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith('y!channel')) {
         const args = message.content.split(' ').slice(1)
-        if(message.member.hasPermission('ADMINISTRATOR')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
             switch(args[0]) {
