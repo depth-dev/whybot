@@ -739,5 +739,19 @@ All lowercase!`)
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!superior')) {
+        if(message.member.id != "323212867757277185") {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            let inferiorMan = message.mentions.users.first();
+            if(!inferiorMan) {
+                message.reply('Respond with someone to superior nerd')
+            } else {
+                message.channel.send(message.author.tag + ' is superior to ' + inferiorMan.tag)
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
