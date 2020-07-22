@@ -77,7 +77,7 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to kick!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(2)
+                const reason = args.slice(1)
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
@@ -102,7 +102,7 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to ban!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(2)
+                const reason = args.slice(1)
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
@@ -248,8 +248,8 @@ client.on('message', function(message) {
             .setTitle('WhyBot Moderation Help')
             .setDescription('For administrators and stuff.')
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
-            .addField('**y!kick**', 'Kick a user. (reason must be set, longer than 1 word.)', true)
-            .addField('**y!ban**', 'Ban a user. (reason must be set, longer than 1 word.)', true)
+            .addField('**y!kick**', 'Kick a user.', true)
+            .addField('**y!ban**', 'Ban a user.', true)
             .addField('**y!channel**', 'Edit channel permissions!', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
@@ -742,12 +742,5 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
    }); 
-client.on('message', function(message) {
-    if(message.content.startsWith('argtest')) {
-        const args = message.content.split(' ').slice(1)
-        const otherArgs = args.slice(2)
-        message.channel.send(otherArgs)
-    }
-})
 
 client.login(process.env.token)
