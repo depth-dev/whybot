@@ -81,11 +81,9 @@ client.on('message', function(message) {
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
-                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).catch(err => {
-                        message.channel.send('Oops! Something went wrong! Please try again!')
-                        console.error()
-                    })
-                    message.channel.send(unfortunateGuy1.user.tag + ' has been successfully kicked!')
+                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
+                    message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
+Reason: ` + reason)
 
                 }
             }
@@ -107,11 +105,8 @@ client.on('message', function(message) {
                     message.reply('A reason must be set!')
                 } else {
                     unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
-                    message.channel.send(unfortunateGuy2.user.tag + ' has been successfully banned! Unban them in the server settings.')
-                    .catch(err => {
-                        message.channel.send('Oops! Something went wrong! Please try again!')
-                        console.error()
-                    })
+                    message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
+Reason: ` + reason)
                 }
             }
         }
