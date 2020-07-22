@@ -77,7 +77,7 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to kick!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(2).join(' ') 
+                const reason = args.slice(2)
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
@@ -102,11 +102,11 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to ban!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(2).join(' ') 
+                const reason = args.slice(2)
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
-                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason: ' + reason)
+                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
                     message.channel.send(unfortunateGuy2.user.tag + ' has been successfully banned! Unban them in the server settings.')
                     .catch(err => {
                         message.channel.send('Oops! Something went wrong! Please try again!')
@@ -742,5 +742,12 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
    }); 
+client.on('message', function(message) {
+    if(message.content.startsWith('argtest')) {
+        const args = message.content.split(' ').slice(1)
+        const otherArgs = args.slice(2)
+        message.channel.send(otherArgs)
+    }
+})
 
 client.login(process.env.token)
