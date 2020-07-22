@@ -77,7 +77,7 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to kick!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1)
+                const reason = args.slice(1).join(' ')
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
@@ -102,7 +102,7 @@ client.on('message', function(message) {
                 message.reply('Please respond with a user to ban!')
             } else {
                 const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1)
+                const reason = args.slice(1).join(' ')
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
