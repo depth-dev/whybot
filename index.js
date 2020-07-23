@@ -132,7 +132,7 @@ client.on('message', async (msg) =>{
 })
 client.on('message', function(message) {
     if(message.content == 'y!quote') {
-        let randomQuote = Math.floor(Math.random()*5+1)
+        let randomQuote = Math.floor(Math.random()*10+1)
         switch(randomQuote) {
             case 1:
                 message.channel.send('What was the point of a channel about building houses?')
@@ -148,6 +148,21 @@ client.on('message', function(message) {
                 break
             case 5:
                 message.channel.send('I\'m struggling to make all these quotes.')
+                break
+            case 6:
+                message.channel.send('The original purpose of this bot was to moderate a single server. Now it is in maybe 10!')
+                break 
+            case 7:
+                message.channel.send('MEE6 is a bad bot. So is Carlbot. YAGPDB is a decent one tho.')
+                break 
+            case 8:
+                message.channel.send('The more difficult aspect of coding a discord bot: Motivation.')
+                break 
+            case 9:
+                message.channel.send('Hi! If you\'re seeing this, then my number generator rolled a 9!')
+                break 
+            case 10:
+                message.channel.send('Send food. I have gone 19 days without food. Send help')
                 break
             }
     }
