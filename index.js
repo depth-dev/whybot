@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.5.6', {
+    client.user.setActivity('y!help | v0.6.1', {
         type:'WATCHING'
     })
 })
@@ -48,9 +48,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.5.6
-    - Fixed bugs
-    - Added y!channel`)
+         .addField('Changelog:', `0.6.1
+    - Made y!invite link public!
+    - Began work on a support server.
+    - Fixed bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -62,7 +63,7 @@ client.on('message', function(message) {
         .setTitle('WhyBot Information')
         .setDescription('Here is the information about this bot!')
         .addField('What is WhyBot?', 'WhyBot is a general reason bot that is mainly used for things on one server.')
-        .addField('Is WhyBot public?', 'At the moment, it is closed to only a few servers, however it may be released one day!')
+        .addField('Is WhyBot public?', 'Yes! It is! Do y!invite to get the link!')
         .addField('What are all of the commands?', 'Use y!help to check out all of the commands!')
         .addField('What is the current prefix?', 'It is \'y!\'')
         .addField('What was added?', 'Use y!changelog to find that out!')
@@ -379,8 +380,9 @@ client.on('message', function(message) {
         const inviteEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Invite Link')
-         .setDescription('Warning: Potentional errors could occur due to the fact that this bot is designed for only a few serevers.')
-         .addField('Invite Link:', 'Currently this bot is in closed development. Come back later!')
+         .setDescription('Here is the Invite Link for WhyBot!')
+         .addField('Bot Invite:', '[Click here](https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8)')
+         .addField('Support Server Invite:', 'Currently unavailible! Come back later!')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:inviteEmbed})
     }
