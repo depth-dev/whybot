@@ -757,27 +757,5 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
    }); 
-   client.on('message', function(message) {
-    // Command handler, seen previously
-    if(message.content.startsWith('y!reacttest')) {
-                    message.reply('The bot will now shut down.\n'
-                            + 'Confirm with a thumb up or deny with a thumb down.');
-                    message.react('👍').then(r => {
-                            message.react('👎');
-                    });
-                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
-                            { max: 1, time: 5000 }).then(collected => {
-                                    if (collected.first().emoji.name == '👍') {
-                                            message.reply('Shutting down...');
-                                    }
-                                    else
-                                            message.reply('Operation canceled.');
-                            }).catch(() => {
-                                    message.reply('No reaction after 5 seconds, operation canceled');
-                            });
-
-            
-        }
-});
 
 client.login(process.env.token)
