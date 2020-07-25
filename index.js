@@ -750,6 +750,23 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!mute')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            const role = client.roles.cache.find(role => role.name === 'Muted');
+            const member = message.mentions.members.first();
+            if(!role) {
+                message.channel.send('Woops! Couldn\'t find a muted role!')
+            } else if(!member) {
+                message.channel.send('Please supply a user to mute!')
+            } else {
+                member.roles.add(role);
+            }
+        }
+    }
+})
 
 
 client.login(process.env.token)
