@@ -38,6 +38,7 @@ client.on('message', function(message) {
          .addField('**y!userinfo**', 'Get a user\'s information. More coming soon.', true)
          .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
+         .addField('**y!guess**', 'Try to guess the bot\'s number!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -136,7 +137,7 @@ client.on('message', async (msg) =>{
 })
 client.on('message', function(message) {
     if(message.content == 'y!quote') {
-        let randomQuote = Math.floor(Math.random()*10+1)
+        let randomQuote = Math.floor(Math.random()*15+1)
         switch(randomQuote) {
             case 1:
                 message.channel.send('What was the point of a channel about building houses?')
@@ -168,12 +169,44 @@ client.on('message', function(message) {
             case 10:
                 message.channel.send('Send food. I have gone 19 days without food. Send help')
                 break
+            case 11:
+                message.channel.send('There are over 800 lines of code in this file and growing!')
+                break 
+            case 12:
+                message.channel.send('Shoutout to Lieutenant Chicken for supporting this bot!')
+                break 
+            case 13:
+                message.channel.send('Why is "lol" said how it looks in our brains, but "wtf" isn\'t?')
+                break 
+            case 14:
+                message.channel.send("Node Error: Loud != Funny")
+                break 
+            case 15:
+                message.channel.send('Did you know that Terraria and Minecraft both support each other? You most likely did')
+                break          
             }
     }
 })
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
-        message.channel.send('This command is currently down. If you would like to submit a meme, DM misterdepth (must be SFW)!')
+       const randomMeme = Math.floor(Math.random()*5+1)
+       switch(randomMeme) {
+           case 1:
+               message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
+               break
+            case 2:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/565628173425967115/736373324354945175/image0.png']})
+                break
+            case 3:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/494415269796511745/736304432324542604/image0-4.png']})
+                break
+            case 4:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/736260431177580608/image0.jpg']})
+                break
+            case 5:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/735951324411330570/322fec8efe2abb619c32fff0b1010628.jpg']})
+                break
+       }
     }
 })
 client.on('message', function(message) {
@@ -185,52 +218,19 @@ client.on('message', function(message) {
             if(!args[0]) {
                 message.reply('Please supply an event.')
             } else {
-            if(args[0] == 'discduel2') {
-                const duel2Embed = new Discord.MessageEmbed()
-                .setColor('0dff00')
-                .setTitle('Misterdiscord Event Duel v2!')
-                .setDescription('The previous misterdiscord duel even twas recent, and it was a most success! Another will be hosted, with more time to join.')
-                .addField('**What is it?**', `This event is where misterdepth is going to duel everyone who is going to participate in the event.`)
-                .addField('**When?**', `misterdepth will ping the event role whenever it is going to happen.
-There will be a time when the dueling will start, and from there on you can request to duel. If you do not request to duel, you will not be in the event.`)
-                .addField('**How do I participate?**', 'misterdepth will ping you whenever it is your turn, and all you have to do is accept the party invite in Hypixel!')
-                .addField('**How do I get the Event Role?**', 'Put your IGN in #suggestions, and you will gain the Event Role from there.')
-                .addField('\u200b', '\u200b', true)
-                .addField('\u200b', '\u200b', true)
-                .addField('Get ready!', 'Good luck to everyone!')
-                .setFooter('API developed by misterdepth')
-            
-            message.delete()
-            message.channel.send({embed:duel2Embed})
-            }
-            if(args[0] == 'list') {
-                const eventList = new Discord.MessageEmbed()
-                .setColor('0dff00')
-                .setTitle('List of WhyBot Events:')
-                .setDescription('Here are all of the current listed events!')
-                .addField('Misterdiscord Duel v2:', 'an event for misterdepth\'s discord.')
-                .addField('IdleMinerChampionships', 'Try to get the highest rebirths in a certain amount of time!')
-                .addField('Coming Soon', 'More coming soon!')
-                .setFooter('API developed by misterdepth')
-            message.delete()
-            message.channel.send({embed:eventList})
-            }
-            if(args[0] == 'idleminerchamp') {
-                const idleEvent = new Discord.MessageEmbed()
-                 .setColor('0dff00')
-                 .setTitle('The Idle Miner Championships!')
-                 .setDescription('In Misterdiscord, whoever can get the highest idle miner stats by the end of June gets a reward!')
-                 .addField('How do I become better?', 'Get more rebirths, get a higher level backpack, pickaxe, or get an insane amount of money all in #idle-miner.')
-                 .addField('How can I check my rankings?', 'Everyday, the assumed top 3 (or so) people will be posted in #event-channel, so stay tuned!')
-                 .addField('How do I participate?', 'Check Idle-Miner Pins for more information.')
-                 .addField('How long do I have?', 'Until the end of June, or about 13 days.')
-                 .addField('\u200b', '\u200b', true)
-                 .addField('\u200b', '\u200b', true)
-                 .addField('Get ready!', 'Good luck to everyone!')
-                 .setFooter('API developed by misterdepth')
-                message.delete()
-                message.channel.send({embed:idleEvent})
-            }
+                switch(args[0]) {
+                    case "list":
+                        const eventListEmbed = new Discord.MessageEmbed()
+                         .setColor('0dff00')
+                         .setTitle('WhyBot Event List')
+                         .setDescription('Here are all of the events programmed into WhyBot!')
+                         .addField('Coming Soon', 'These Events are Coming Soon!')
+                         .setFooter('API developed by misterdepth')
+                        message.channel.send({embed:eventListEmbed})
+                        break
+                    default:
+                        message.reply('Please supply an event! To see the events, do y!event list')
+                }
             }
         }
     }
@@ -782,5 +782,6 @@ client.on('message', function(message) {
         }
     }
 })
+
 
 client.login(process.env.token)
