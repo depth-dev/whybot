@@ -755,6 +755,9 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
+            if(message.guild.id != misterDisc) {
+                return
+            } else {
             const role = client.roles.cache.find(role => role.name === 'Muted');
             const member = message.mentions.members.first();
             if(!role) {
@@ -764,6 +767,7 @@ client.on('message', function(message) {
             } else {
                 member.roles.add(role);
             }
+        }
         }
     }
 })
