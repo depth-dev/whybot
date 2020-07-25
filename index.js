@@ -662,6 +662,7 @@ client.on('message', function(message) {
         const BotLogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('BetterBotLogs Information:')
+         .setImage('https://cdn.discordapp.com/attachments/715386760317894757/736681429748154418/unknown.png')
          .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
          .addField('Features: ', `- Seeing Deleted Messages
 - Seeing Edited Messages
@@ -751,55 +752,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.guild.id != betaServer) {
-        return
-    } else {
-            if(messageDelete.content.startsWith('y!poll')) {
-                return
-            } else {
-                if(messageDelete.content.startsWith('y!feedback')) {
-                    return
-                } else {
-    const channel = client.channels.cache.get('736679918502543431');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}
-Sent By: ${messageDelete.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-                }
-            }
-    }
-})
-
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.guild.id != betaServer) {
-        return
-    } else {
-        if(newMessage.content.includes('rawfishsticks')) {
-            return
-        } else {
-    if(oldMessage.author.bot) return;
-    const channel = client.channels.cache.get('736679918502543431');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}
-
-New Content: ${newMessage.content}
-Sent By: ${newMessage.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:editEmbed})
-        }
-    }
-   });
 
 
 client.login(process.env.token)
