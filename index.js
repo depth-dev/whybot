@@ -758,7 +758,7 @@ client.on('message', function(message) {
             if(message.guild.id != misterDisc) {
                 return
             } else {
-            const role = client.roles.cache.find(role => role.name === 'Muted');
+            const role = misterDisc.roles.cache.find(role => role.name === 'Muted');
             const member = message.mentions.members.first();
             if(!role) {
                 message.channel.send('Woops! Couldn\'t find a muted role!')
