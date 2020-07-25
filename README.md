@@ -11,6 +11,8 @@ Bot Information:
 - BetterBotLogs Help Menu: y!betterbotlogs
 - Moderation Help Menu: y!modhelp
 
+INVITE LINK: https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8
+
 How to Use BetterBotLogs:
 1. Join the support server ( at https://discord.com/invite/9JhEsHe )
 2. Post a request in #whybot for betterbotlogs.
