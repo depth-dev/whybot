@@ -4,7 +4,6 @@ const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
 const safety8 = 730976964789403710
-const baldEarth = 734997909858418780
 const noPermsEmbed = new Discord.MessageEmbed()
  .setColor('0dff00')
  .setTitle('Inssuficient Perms')
@@ -13,8 +12,11 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
+    client.user.setActivity('y!help | v0.6.4', {
+        type:'WATCHING'
+    })
     function randomStatus() {
-    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool"]
+    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke"]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
@@ -58,6 +60,7 @@ client.on('message', function(message) {
     - Added y!guess
     - Re-added y!meme
     - Fixed bugs
+    - Added multiple statuses!
     - Prepared more things for future updates`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -722,47 +725,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on('messageDelete', (messageDelete) => {
-    if(messageDelete.guild.id != baldEarth) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) {
-            return
-        } else if(messageDelete.content.startsWith('y!feedback')) {
-            return
-        } else {
-                const channel = client.channels.cache.get('735002982390825033');  
-                if(messageDelete.author.bot) return;
-                const deleteEmbed = new Discord.MessageEmbed()
-                 .setColor('0dff00')
-                 .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-                 .setThumbnail(messageDelete.author.displayAvatarURL())
-                 .setTitle('A Message was Deleted!')
-                 .setDescription(`Content: ${messageDelete.content}
-            Sent By: ${messageDelete.author}`)
-                channel.send({embed:deleteEmbed})
-        }
-    }
-})
-
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.guild.id != baldEarth) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    const channel = client.channels.cache.get('735002982390825033');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}
-     
-New Content: ${newMessage.content}
-Sent By: ${newMessage.author}`)
-    channel.send({embed:editEmbed})
-    }
-   });
 
 client.on('message', function(message) {
     if(message.content.startsWith('y!guess')) {
