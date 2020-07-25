@@ -13,9 +13,13 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.6.1', {
+    function randomStatus() {
+    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool"]
+    let rstatus = Math.floor(Math.random()*status.length)
+    client.user.setActivity(status[rstatus], {
         type:'WATCHING'
     })
+} setInterval(randomStatus, 20000)
 })
 
 client.on('message', function(message) {
@@ -49,10 +53,12 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.6.1
-    - Made y!invite link public!
-    - Began work on a support server.
-    - Fixed bugs`)
+         .addField('Changelog:', `0.6.4
+    - Added more y!quotes
+    - Added y!guess
+    - Re-added y!meme
+    - Fixed bugs
+    - Prepared more things for future updates`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
