@@ -756,6 +756,31 @@ New Content: ${newMessage.content}
 Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
-   }); 
+   });
+
+client.on('message', function(message) {
+    if(message.content.startsWith('y!guess')) {
+        const args = message.content.split(' ').slice(1)
+        if(!args[0]) {
+            message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
+        } else {
+            const computerNumber = Math.floor(Math.random()*10+1)
+            const playerNumber = args[0]
+            if(isNaN(playerNumber)) {
+                message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
+            } else if(playerNumber > 10) {
+                message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
+            } else if(playerNumber < 1) {
+                message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
+            } else {
+                if(computerNumber == playerNumber) {
+                    message.channel.send('You guessed the number correctly! The number was ' + computerNumber + '!')
+                } else if(computerNumber != playerNumber) {
+                    message.channel.send('You did not guess the number! The number was ' + computerNumber + '!')
+                }
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
