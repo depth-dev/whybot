@@ -4,6 +4,7 @@ const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
 const safety8 = 730976964789403710
+const betaServer = 715003574190604371
 const noPermsEmbed = new Discord.MessageEmbed()
  .setColor('0dff00')
  .setTitle('Inssuficient Perms')
@@ -750,6 +751,55 @@ client.on('message', function(message) {
         }
     }
 })
+client.on("messageDelete", (messageDelete) => {
+    if(messageDelete.guild.id != betaServer) {
+        return
+    } else {
+            if(messageDelete.content.startsWith('y!poll')) {
+                return
+            } else {
+                if(messageDelete.content.startsWith('y!feedback')) {
+                    return
+                } else {
+    const channel = client.channels.cache.get('736679918502543431');  
+    if(messageDelete.author.bot) return;
+    const deleteEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+     .setThumbnail(messageDelete.author.displayAvatarURL())
+     .setTitle('A Message was Deleted!')
+     .setDescription(`Content: ${messageDelete.content}
+Sent By: ${messageDelete.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:deleteEmbed})
+                }
+            }
+    }
+})
+
+client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(newMessage.guild.id != betaServer) {
+        return
+    } else {
+        if(newMessage.content.includes('rawfishsticks')) {
+            return
+        } else {
+    if(oldMessage.author.bot) return;
+    const channel = client.channels.cache.get('736679918502543431');  
+    const editEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
+     .setThumbnail(newMessage.author.displayAvatarURL())
+     .setTitle('A Message was Updated!')
+     .setDescription(`Old Content: ${oldMessage.content}
+
+New Content: ${newMessage.content}
+Sent By: ${newMessage.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:editEmbed})
+        }
+    }
+   });
 
 
 client.login(process.env.token)
