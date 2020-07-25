@@ -774,9 +774,9 @@ client.on('message', function(message) {
                 message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
             } else {
                 if(computerNumber == playerNumber) {
-                    message.channel.send('You guessed the number correctly! The number was ' + computerNumber + '!')
+                    message.channel.send(':tada: You guessed the number correctly! The number was ' + computerNumber + '! :tada:')
                 } else if(computerNumber != playerNumber) {
-                    message.channel.send('You did not guess the number! The number was ' + computerNumber + '!')
+                    message.channel.send(':x: You did not guess the number! The number was ' + computerNumber + '! :x:')
                 }
             }
         }
