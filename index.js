@@ -17,7 +17,7 @@ client.on('ready', () => {
         type:'WATCHING'
     })
     function randomStatus() {
-    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke"]
+    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft Pog!"]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
@@ -392,7 +392,7 @@ client.on('message', function(message) {
          .setTitle('WhyBot Invite Link')
          .setDescription('Here is the Invite Link for WhyBot!')
          .addField('Bot Invite:', '[Click here](https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8)')
-         .addField('Support Server Invite:', 'Currently unavailible! Come back later!')
+         .addField('Support Server Invite:', '[Depth\'s Bot Server](https://discord.com/invite/9JhEsHe)')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:inviteEmbed})
     }
