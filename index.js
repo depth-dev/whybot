@@ -727,17 +727,6 @@ client.on('message', function(message) {
     }
 })
 client.on('message', function(message) {
-    if(message.content == 'y!eventregister') {
-        if(message.guild.id != misterDisc) {
-            return
-        } else {
-        let guildMember = message.member
-        guildMember.roles.add('719615227137622057')
-        message.author.send('Signed you up for the event!')
-        }
-    }
-})
-client.on('message', function(message) {
     if(message.content.startsWith('y!mute')) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
