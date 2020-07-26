@@ -742,7 +742,8 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
         } else {
-            const role = client.roles.cache.find(role => role.name === 'Muted');
+            const serverGuild = message.guild
+            const role = serverGuild.roles.cache.find(role => role.name === 'Muted');
             const member = message.mentions.members.first();
             if(!role) {
                 message.channel.send('Could not find the muted role! Make sure it is called "Muted"!')
