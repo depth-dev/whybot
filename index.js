@@ -752,6 +752,13 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!eventregister') {
+        var guildMember = message.member
+        guildMember.roles.add('719615227137622057')
+        message.author.send('Signed you up for the event!')
+    }
+})
 
 
 client.login(process.env.token)
