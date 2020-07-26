@@ -679,19 +679,58 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
 }
 })
 client.on('message', function(message) {
-    if(message.content == 'y!betterbotlogs') {
-        const BotLogEmbed = new Discord.MessageEmbed()
-         .setColor('0dff00')
-         .setTitle('BetterBotLogs Information:')
-         .setImage('https://cdn.discordapp.com/attachments/715386760317894757/736681429748154418/unknown.png')
-         .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
-         .addField('Features: ', `- Seeing Deleted Messages
-- Seeing Edited Messages
-
-More to come! This bot is still in development!`)
-         .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so if you\'d like to have it in your server, please DM misterdepth!')
-         .setFooter('API developed by misterdepth')
-        message.channel.send({embed:BotLogEmbed})
+    if(message.content.startsWith('y!betterbotlogs')) {
+        const args = message.content.split(' ').slice(1)
+        if(!args[0]) {
+            const BotLogEmbed = new Discord.MessageEmbed()
+            .setColor('0dff00')
+            .setTitle('BetterBotLogs Information:')
+            .setImage('https://cdn.discordapp.com/attachments/715386760317894757/736681429748154418/unknown.png')
+            .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
+            .addField('Features: ', `- Seeing Deleted Messages
+   - Seeing Edited Messages
+   
+   More to come! This bot is still in development!`)
+            .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
+            .setFooter('API developed by misterdepth')
+           message.channel.send({embed:BotLogEmbed})
+        } else {
+            if(args[0] == 'request') {
+                                    message.reply('Confirming request...\n'
+                                            + 'Are you sure you want to send a request? Logs will appear in this channel!');
+                                    message.react('👍').then(r => {
+                                            message.react('👎');
+                                    });
+                                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
+                                            { max: 1, time: 10000 }).then(collected => {
+                                                    if (collected.first().emoji.name == '👍') {
+                                                        const theChannel = message.channel.id
+                                                        const theGuild = message.guild.id
+                                                        console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
+                                                        message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
+Join the test server to keep everything updated!
+Invite: https://discord.com/invite/9JhEsHe`)
+                                                    }
+                                                    else
+                                                            message.reply('Request cancelled!');
+                                            }).catch(() => {
+                                                    message.reply('You didn\'t react! Request cancelled!');
+                                            }); 
+            } else {
+                const BotLogEmbed = new Discord.MessageEmbed()
+                .setColor('0dff00')
+                .setTitle('BetterBotLogs Information:')
+                .setImage('https://cdn.discordapp.com/attachments/715386760317894757/736681429748154418/unknown.png')
+                .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
+                .addField('Features: ', `- Seeing Deleted Messages
+       - Seeing Edited Messages
+       
+       More to come! This bot is still in development!`)
+                .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
+                .setFooter('API developed by misterdepth')
+               message.channel.send({embed:BotLogEmbed})
+            }
+        }
     }
 })
 client.on('message', function(message) {
