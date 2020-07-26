@@ -20,5 +20,4 @@ How to Use BetterBotLogs:
 4. Wait a couple of minutes, and your log setup is complete!
 
 Notes:
-- To save dyno hours, WhyBot has an up schedule of 10am PST to 10pm PST.
 - This bot is not for professional use, more for fun and extra use.
