@@ -220,32 +220,6 @@ client.on('message', function(message) {
     }
 })
 client.on('message', function(message) {
-    if(message.content.startsWith('y!event')) {
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            const args = message.content.split(' ').slice(1)
-            if(!args[0]) {
-                message.reply('Please supply an event.')
-            } else {
-                switch(args[0]) {
-                    case "list":
-                        const eventListEmbed = new Discord.MessageEmbed()
-                         .setColor('0dff00')
-                         .setTitle('WhyBot Event List')
-                         .setDescription('Here are all of the events programmed into WhyBot!')
-                         .addField('Coming Soon', 'These Events are Coming Soon!')
-                         .setFooter('API developed by misterdepth')
-                        message.channel.send({embed:eventListEmbed})
-                        break
-                    default:
-                        message.reply('Please supply an event! To see the events, do y!event list')
-                }
-            }
-        }
-    }
-})
-client.on('message', function(message) {
     if(message.content.startsWith('y!feedback')) {
         let args = message.content.split('y!feedback ').slice(1)
         console.log(message.author.username + ' suggested ' + args[0])
@@ -754,9 +728,30 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!eventregister') {
-        var guildMember = message.member
+        if(message.guild.id != misterDisc) {
+            return
+        } else {
+        let guildMember = message.member
         guildMember.roles.add('719615227137622057')
         message.author.send('Signed you up for the event!')
+        }
+    }
+})
+client.on('message', function(message) {
+    if(message.content.startsWith('y!mute')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({noPermsEmbed})
+        } else {
+            const role = client.roles.cache.find(role => role.name === 'Muted');
+            const member = message.mentions.members.first();
+            if(!role) {
+                message.channel.send('Could not find the muted role! Make sure it is called "Muted"!')
+            } else if(!member) {
+                message.channel.send('Please supply a member to mute!')
+            } else {
+            member.roles.add(role);
+            }
+        }
     }
 })
 
