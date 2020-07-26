@@ -752,7 +752,15 @@ client.on('message', function(message) {
             } else if (member.roles.cache.some(role => role.name === 'Muted')) {
                 message.channel.send('This user is already muted!')
             } else {
+                const args = message.content.split(' ').slice(1)
+                const reason = args.slice(1).join(' ')
+                if(!reason) {
+                    message.channel.send('Please supply a reason to mute this user!')
+                } else {
             member.roles.add(role);
+            message.channel.send(member.user.tag + ` has been muted!
+Reason: ` + reason)
+                }
             }
         }
     }
