@@ -696,26 +696,25 @@ client.on('message', function(message) {
            message.channel.send({embed:BotLogEmbed})
         } else {
             if(args[0] == 'request') {
-                                    message.reply('Confirming request...\n'
-                                            + 'Are you sure you want to send a request? Logs will appear in this channel!');
-                                    message.react('👍').then(r => {
-                                            message.react('👎');
-                                    });
-                                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
-                                            { max: 1, time: 10000 }).then(collected => {
-                                                    if (collected.first().emoji.name == '👍') {
-                                                        const theChannel = message.channel.id
-                                                        const theGuild = message.guild.id
-                                                        console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
-                                                        message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
+                message.reply('Confirming request...\n'
+                    + 'Are you sure you want to send a request? Logs will appear in this channel!');
+                    message.react('👍').then(r => {
+                        message.react('👎');
+                    });
+                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
+                        { max: 1, time: 10000 }).then(collected => {
+                            if (collected.first().emoji.name == '👍') {
+                                const theChannel = message.channel.id
+                                const theGuild = message.guild.id
+                                console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
+                                message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
 Join the test server to keep everything updated!
 Invite: https://discord.com/invite/9JhEsHe`)
-                                                    }
-                                                    else
-                                                            message.reply('Request cancelled!');
-                                            }).catch(() => {
-                                                    message.reply('You didn\'t react! Request cancelled!');
-                                            }); 
+                            } else
+                                message.reply('Request cancelled!');
+                                }).catch(() => {
+                                    message.reply('You didn\'t react! Request cancelled!');
+                                }); 
             } else {
                 const BotLogEmbed = new Discord.MessageEmbed()
                 .setColor('0dff00')
@@ -866,6 +865,31 @@ Reason: ` + reason)
                 }
             }
         }
+    }
+})
+client.on("messageDelete", (messageDelete) => {
+    if(messageDelete.guild.id != 670028957772414996) {
+        return
+    } else {
+            if(messageDelete.content.startsWith('y!poll')) {
+                return
+            } else {
+                if(messageDelete.content.startsWith('y!feedback')) {
+                    return
+                } else {
+    const channel = client.channels.cache.get('737090606672642050 ');  
+    if(messageDelete.author.bot) return;
+    const deleteEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+     .setThumbnail(messageDelete.author.displayAvatarURL())
+     .setTitle('A Message was Deleted!')
+     .setDescription(`Content: ${messageDelete.content}
+Sent By: ${messageDelete.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:deleteEmbed})
+                }
+            }
     }
 })
 
