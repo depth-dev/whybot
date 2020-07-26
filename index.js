@@ -13,11 +13,11 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.6.4', {
+    client.user.setActivity('y!help | v0.7.0', {
         type:'WATCHING'
     })
     function randomStatus() {
-    let status = ["y!help | v0.6.4", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft Pog!"]
+    let status = ["y!help | v0.7.0", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft Pog!"]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
@@ -56,13 +56,11 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.6.4
-    - Added more y!quotes
-    - Added y!guess
-    - Re-added y!meme
+         .addField('Changelog:', `0.7.0
     - Fixed bugs
-    - Added multiple statuses!
-    - Prepared more things for future updates`)
+    - Added y!mute
+    - Added y!unmute
+    - Updated some of the API`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -249,6 +247,8 @@ client.on('message', function(message) {
             .addField('**y!kick**', 'Kick a user.', true)
             .addField('**y!ban**', 'Ban a user.', true)
             .addField('**y!channel**', 'Edit channel permissions!', true)
+            .addField('**y!mute**', 'Mutes a user', true)
+            .addField('**y!unmute**', 'Unmutes a user.', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
