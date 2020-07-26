@@ -868,7 +868,7 @@ Reason: ` + reason)
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    const serverA = 737090606672642050 
+    const serverA = 670028957772414996 
     if(messageDelete.guild.id != serverA) {
         return
     } else {
