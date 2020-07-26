@@ -878,7 +878,7 @@ client.on("messageDelete", (messageDelete) => {
                 if(messageDelete.content.startsWith('y!feedback')) {
                     return
                 } else {
-    const channel = client.channels.cache.get('737090606672642050 ');  
+    const channel = client.channels.cache.get('737090606672642050');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
