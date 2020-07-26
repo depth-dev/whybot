@@ -752,15 +752,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on('message', function(message) {
-    if(message.content == 'y!eventsignup') {
-        if(message.guild.id != misterDisc) {
-            return
-        } else {
-            Discord.GuildMember.roles.add('719615227137622057')
-        }
-    }
-})
 
 
 client.login(process.env.token)
