@@ -93,7 +93,7 @@ client.on('message', function(message) {
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
-                    if(!member.kickable) {
+                    if(!unfortunateGuy1.kickable) {
                         return message.channel.send('You cannot kick this member!')
                     } else {
                     unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
@@ -120,7 +120,7 @@ client.on('message', function(message) {
                 if(!reason) {
                     message.reply('A reason must be set!')
                 } else {
-                    if(!member.bannable) {
+                    if(!unfortunateGuy2.bannable) {
                         return message.channel.send('You cannot ban this member!')
                     } else {
                     unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
