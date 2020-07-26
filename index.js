@@ -13,16 +13,16 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.7.0', {
+    client.user.setActivity('y!help | v0.7.1', {
         type:'WATCHING'
     })
     function randomStatus() {
-    let status = ["y!help | v0.7.0", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft Pog!"]
+    let status = ["y!help | v0.7.1", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!"]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
     })
-} setInterval(randomStatus, 20000)
+} setInterval(randomStatus, 40000)
 })
 
 client.on('message', function(message) {
@@ -56,11 +56,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.7.0
-    - Fixed bugs
-    - Added y!mute
-    - Added y!unmute
-    - Updated some of the API`)
+         .addField('Changelog:', `0.7.1
+    - Added more memes
+    - Added more questions
+    - Fixed a few bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -197,7 +196,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
-       const randomMeme = Math.floor(Math.random()*5+1)
+       const randomMeme = Math.floor(Math.random()*10+1)
        switch(randomMeme) {
            case 1:
                message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
@@ -214,6 +213,21 @@ client.on('message', function(message) {
             case 5:
                 message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/735951324411330570/322fec8efe2abb619c32fff0b1010628.jpg']})
                 break
+            case 6:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736881903713517628/Screenshot_20200726-114201_Reddit.jpg']})
+                break 
+            case 7:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736980450660188180/meme-man-8.png']})
+                break 
+            case 8:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736981016920719520/Screenshot_20190809-172917.jpg']})
+                break 
+            case 9:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/385837258768515083/736991164141404271/Screenshot_20200725-235257.png']})
+                break 
+            case 10:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/736738559184338974/image0.jpg']})
+                break 
        }
     }
 })
@@ -289,7 +303,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!question') {
-        let randomQuiz = Math.floor(Math.random()*10+1)
+        let randomQuiz = Math.floor(Math.random()*15+1)
         switch(randomQuiz) {
             case 1:
                 message.channel.send('**Question:** Apples or Oranges?').then(msg => {
@@ -347,6 +361,36 @@ client.on('message', function(message) {
                 break
             case 10:
                 message.channel.send('**Question:** Salted Crackers or Unsalted Crackers?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 11:
+                message.channel.send('**Question:** Anime or Regular Cartoons?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 12:
+                message.channel.send('**Question:** Grapes or Raisins?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 13:
+                message.channel.send('**Question:** Night or Day?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 14:
+                message.channel.send('**Question:** Java or Python?').then(msg => {
+                    msg.react("🇦")
+                    msg.react("🇧")
+                })
+                break
+            case 15:
+                message.channel.send('**Question:** Harry Potter or Percy Jackson?').then(msg => {
                     msg.react("🇦")
                     msg.react("🇧")
                 })
@@ -559,11 +603,6 @@ client.on('message', function(message) {
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:otherUserInfo})
         }
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!feedgabriel') {
-        message.channel.send('uh come back when i find an emoji to use')
     }
 })
 client.on('message', function(message) {
