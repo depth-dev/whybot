@@ -765,6 +765,33 @@ Reason: ` + reason)
         }
     }
 })
-
+client.on('message', function(message) {
+    if(message.content.startsWith('y!unmute')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({noPermsEmbed})
+        } else {
+            const serverGuild = message.guild
+            const role = serverGuild.roles.cache.find(role => role.name === 'Muted');
+            const member = message.mentions.members.first();
+            if(!role) {
+                message.channel.send('Could not find the muted role to remove! Make sure it is called "Muted"!')
+            } else if(!member) {
+                message.channel.send('Please supply a member to unmute!')
+            } else if (!member.roles.cache.some(role => role.name === 'Muted')) {
+                message.channel.send('This user is already unmuted!')
+            } else {
+                const args = message.content.split(' ').slice(1)
+                const reason = args.slice(1).join(' ')
+                if(!reason) {
+                    message.channel.send('Please supply a reason to unmute this user!')
+                } else {
+            member.roles.remove(role);
+            message.channel.send(member.user.tag + ` has been unmuted!
+Reason: ` + reason)
+                }
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
