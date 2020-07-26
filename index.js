@@ -749,6 +749,8 @@ client.on('message', function(message) {
                 message.channel.send('Could not find the muted role! Make sure it is called "Muted"!')
             } else if(!member) {
                 message.channel.send('Please supply a member to mute!')
+            } else if (member.roles.cache.some(role => role.name === 'Muted')) {
+                message.channel.send('This user is already muted!')
             } else {
             member.roles.add(role);
             }
