@@ -127,7 +127,11 @@ client.on('message', function(message) {
                     if(!unfortunateGuy2.bannable) {
                         return message.channel.send('You cannot ban this member!')
                     } else {
-                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
+                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.').catch(err => {
+                        message.channel.send('Could not ban this user!')
+                        console.error()
+                        return
+                      })
                     message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
 Reason: ` + reason)
                     }              
@@ -720,6 +724,9 @@ client.on('message', function(message) {
            message.channel.send({embed:BotLogEmbed})
         } else {
             if(args[0] == 'request') {
+                if(!message.member.hasPermission('ADMINISTRATOR')) {
+                    message.channel.send({embed:noPermsEmbed})
+                } else {
                 message.reply('Confirming request...\n'
                     + 'Are you sure you want to send a request? Logs will appear in this channel!');
                     message.react('👍').then(r => {
@@ -739,6 +746,7 @@ Invite: https://discord.com/invite/9JhEsHe`)
                                 }).catch(() => {
                                     message.reply('You didn\'t react! Request cancelled!');
                                 }); 
+                            }
             } else {
                 const BotLogEmbed = new Discord.MessageEmbed()
                 .setColor('0dff00')
