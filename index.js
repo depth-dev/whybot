@@ -929,7 +929,7 @@ client.on('message', function(message) {
                 message.reply('Please mention a user to mail! Note: This is recommended in a moderation channel.')
             } else if(!mail) {
                 message.reply(`Please include content to message to this user!
-Usage: \`y!mail <User:Mention> <Mail:Text>`)
+Usage: \`y!mail <User:Mention> <Mail:Text>\``)
             } else {
                 const mailEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
