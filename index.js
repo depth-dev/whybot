@@ -897,26 +897,5 @@ Sent By: ${messageDelete.author}`)
             }
     }
 })
-client.on('message', function(message) {
-    if(message.content.startsWith('y!register')) {
-        if(message.guild.id != misterDisc) {
-            message.channel.send('This command cannot be used in this server!')
-        } else {
-            const serverGuild = message.guild
-            const role = serverGuild.roles.cache.find(role => role.name === 'Event Verified');
-            const member = message.author
-            const args = message.content.split(' ').slice(1)
-            if(member.roles.cache.some(role => role.name === 'Event Verified')) {
-                message.reply('You are already verified!')
-            } else if(!args[0]) {
-                message.reply('Please add a username! Example: `y!verify <IGN:Text>`')
-            } else {
-                member.roles.add(role)
-                message.member.setNickname(args[0])
-                member.send(`You are now verified for the event in ${serverGuild.name}`)
-            }
-        }
-    }
-})
 
 client.login(process.env.token)
