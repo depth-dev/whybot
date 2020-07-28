@@ -590,7 +590,7 @@ client.on('message', function(message) {
             let roles = []
             message.member.roles.cache.map(role => {
               if (role.name !== "@everyone"){
-               roles.push(`${role.name},`) 
+               roles.push(`•${role.name}`) 
               }
             });
             const oneUserInfo = new Discord.MessageEmbed()
@@ -610,7 +610,7 @@ client.on('message', function(message) {
             let roles2 = []
             mentionDude.member.roles.cache.map(role => {
               if (role.name !== "@everyone"){
-               roles2.push(`${role.name},`) 
+               roles2.push(`•${role.name}`) 
               }
             });
             const otherUserInfo = new Discord.MessageEmbed()
