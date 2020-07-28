@@ -902,7 +902,7 @@ client.on('message', function(message) {
         let roles = []
         message.member.roles.cache.map(role => {
           if (role.name !== "@everyone"){
-           roles.push(`<@&${role.id}>`) 
+           roles.push(`${role.name}`) 
           }
         });
         message.channel.send(roles)
