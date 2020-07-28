@@ -834,6 +834,8 @@ client.on('message', function(message) {
             member.roles.add(role);
             message.channel.send(member.user.tag + ` has been muted!
 Reason: ` + reason)
+member.send(`You have been muted in ${serverGuild.name} by ${message.author.tag}!
+Reason: ` + reason)
                 }
             }
         }
@@ -861,6 +863,8 @@ client.on('message', function(message) {
                 } else {
             member.roles.remove(role);
             message.channel.send(member.user.tag + ` has been unmuted!
+Reason: ` + reason)
+                member.send(`You have been unmuted in ${serverGuild.name} by ${message.author.tag}!
 Reason: ` + reason)
                 }
             }
