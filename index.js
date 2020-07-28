@@ -275,6 +275,7 @@ client.on('message', function(message) {
             .addField('**y!channel**', 'Edit channel permissions!', true)
             .addField('**y!mute**', 'Mutes a user', true)
             .addField('**y!unmute**', 'Unmutes a user.', true)
+            .addField('**y!mail**', 'Send a specific user some mail!', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
