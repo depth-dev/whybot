@@ -897,5 +897,16 @@ Sent By: ${messageDelete.author}`)
             }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!rolecheck') {
+        let roles = []
+        message.member.roles.cache.map(role => {
+          if (role.name !== "@everyone"){
+           roles.push(`<@&${role.id}>`) 
+          }
+        });
+        message.channel.send(roles)
+    }
+})
 
 client.login(process.env.token)
