@@ -13,11 +13,11 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.7.1', {
+    client.user.setActivity('y!help | v0.7.2', {
         type:'WATCHING'
     })
     function randomStatus() {
-    let status = ["y!help | v0.7.1", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!"]
+    let status = ["y!help | v0.7.2", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!"]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
@@ -56,9 +56,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.7.1
-    - Added more memes
-    - Added more questions
+         .addField('Changelog:', `0.7.2
+    - Fixed y!feedback taking pretty much anything as feedback
+    - Added a "roles" category to y!userinfo
     - Fixed a few bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -242,9 +242,13 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith('y!feedback')) {
         let args = message.content.split('y!feedback ').slice(1)
+        if(!args[0]) {
+            message.reply('Please supply some feedback!')
+        } else {
         console.log(message.author.username + ' suggested ' + args[0])
         message.delete()
         message.channel.send('Thank you for your feedback!')
+        }
     }
 })
 client.on('message', function(message) {
@@ -590,7 +594,7 @@ client.on('message', function(message) {
             let roles = []
             message.member.roles.cache.map(role => {
               if (role.name !== "@everyone"){
-               roles.push(`•${role.name}`) 
+               roles.push(`• ${role.name}`) 
               }
             });
             const oneUserInfo = new Discord.MessageEmbed()
@@ -611,7 +615,7 @@ client.on('message', function(message) {
             let roles2 = []
             mentionMember.roles.cache.map(role => {
               if (role.name !== "@everyone"){
-               roles2.push(`•${role.name}`) 
+               roles2.push(`• ${role.name}`) 
               }
             });
             const otherUserInfo = new Discord.MessageEmbed()
