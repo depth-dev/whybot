@@ -916,5 +916,33 @@ Sent By: ${messageDelete.author}`)
             }
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!mail')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            let mailMan = message.mentions.users.first()
+            const serverGuild = message.guild
+            const args = message.content.split(' ').slice(1)
+            const mail = args.slice(1).join(' ')
+            if(!mailMan) {
+                message.reply('Please mention a user to mail! Note: This is recommended in a moderation channel.')
+            } else if(!mail) {
+                message.reply(`Please include content to message to this user!
+Usage: \`y!mail <User:Mention> <Mail:Text>`)
+            } else {
+                const mailEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setThumbnail(serverGuild.iconURL())
+                 .setTitle('You Have Mail!')
+                 .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
+                 .addField('Mail:', mail)
+                 .setFooter('API developed by misterdepth')
+                mailMan.send({embed:mailEmbed})
+                message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
