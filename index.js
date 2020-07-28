@@ -607,8 +607,9 @@ client.on('message', function(message) {
         } else {
             let mentionTag = mentionDude.tag
             let tagMention = mentionTag.split('#').slice(1)
+            let mentionMember = message.mentions.members.first()
             let roles2 = []
-            mentionDude.member.roles.cache.map(role => {
+            mentionMember.roles.cache.map(role => {
               if (role.name !== "@everyone"){
                roles2.push(`•${role.name}`) 
               }
