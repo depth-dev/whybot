@@ -587,6 +587,12 @@ client.on('message', function(message) {
         if(!mentionDude) {
             let authorTag = message.author.tag
             let tagAuthor = authorTag.split('#').slice(1)
+            let roles = []
+            message.member.roles.cache.map(role => {
+              if (role.name !== "@everyone"){
+               roles.push(`${role.name},`) 
+              }
+            });
             const oneUserInfo = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('User Information: ' + message.author.username)
@@ -595,11 +601,18 @@ client.on('message', function(message) {
             .addField('Username:', message.author.username)
             .addField('Tag:', tagAuthor[0])
             .addField('ID:', message.author.id)
+            .addField('Roles:', roles)
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:oneUserInfo})
         } else {
             let mentionTag = mentionDude.tag
             let tagMention = mentionTag.split('#').slice(1)
+            let roles2 = []
+            mentionDude.member.roles.cache.map(role => {
+              if (role.name !== "@everyone"){
+               roles2.push(`${role.name},`) 
+              }
+            });
             const otherUserInfo = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('User Information: ' + mentionDude.username )
@@ -608,6 +621,7 @@ client.on('message', function(message) {
             .addField('Username:', mentionDude.username)
             .addField('Tag:', tagMention[0])
             .addField('ID:', mentionDude.id)
+            .addField('Roles:', roles2)
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:otherUserInfo})
         }
@@ -895,17 +909,6 @@ Sent By: ${messageDelete.author}`)
     channel.send({embed:deleteEmbed})
                 }
             }
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!rolecheck') {
-        let roles = []
-        message.member.roles.cache.map(role => {
-          if (role.name !== "@everyone"){
-           roles.push(`${role.name}`) 
-          }
-        });
-        message.channel.send(roles)
     }
 })
 
