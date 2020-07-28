@@ -96,7 +96,11 @@ client.on('message', function(message) {
                     if(!unfortunateGuy1.kickable) {
                         return message.channel.send('You cannot kick this member!')
                     } else {
-                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
+                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).catch(err => {
+                        message.channel.send('Could not kick this user!')
+                        console.error()
+                        return
+                      })
                     message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
 Reason: ` + reason)
                     }
@@ -855,7 +859,10 @@ client.on('message', function(message) {
             message.channel.send(member.user.tag + ` has been muted!
 Reason: ` + reason)
 member.send(`You have been muted in ${serverGuild.name} by ${message.author.tag}!
-Reason: ` + reason)
+Reason: ` + reason).catch(err => {
+    console.error()
+    return
+  })
                 }
             }
         }
@@ -885,7 +892,10 @@ client.on('message', function(message) {
             message.channel.send(member.user.tag + ` has been unmuted!
 Reason: ` + reason)
                 member.send(`You have been unmuted in ${serverGuild.name} by ${message.author.tag}!
-Reason: ` + reason)
+Reason: ` + reason).catch(err => {
+    console.error()
+    return
+  })
                 }
             }
         }
@@ -939,7 +949,11 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                  .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
                  .addField('Mail:', mail)
                  .setFooter('API developed by misterdepth')
-                mailMan.send({embed:mailEmbed})
+                mailMan.send({embed:mailEmbed}).catch(err => {
+                    message.channel.send(':mailbox_closed: This user does not have their mailbox open!')
+                    console.error()
+                    return
+                  })
                 message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
             }
         }
