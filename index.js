@@ -13,16 +13,16 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.7.2', {
+    client.user.setActivity('y!help | v0.7.3', {
         type:'WATCHING'
     })
     function randomStatus() {
-    let status = ["y!help | v0.7.2", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!"]
+    let status = ["y!help | v0.7.3", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!", `y!help | ${client.guilds.cache.size} servers!`]
     let rstatus = Math.floor(Math.random()*status.length)
     client.user.setActivity(status[rstatus], {
         type:'WATCHING'
     })
-} setInterval(randomStatus, 40000)
+} setInterval(randomStatus, 20000)
 })
 
 client.on('message', function(message) {
@@ -56,9 +56,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.7.2
-    - Fixed y!feedback taking pretty much anything as feedback
-    - Added a "roles" category to y!userinfo
+         .addField('Changelog:', `0.7.3
+    - Added y!mail
+    - Added a few statuses
     - Fixed a few bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -957,11 +957,10 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                  .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
                  .addField('Mail:', mail)
                  .setFooter('API developed by misterdepth')
-                mailMan.send({embed:mailEmbed}).catch(err => {
-                    message.channel.send(':mailbox_closed: This user does not have their mailbox open!')
-                    console.error()
-                    return
-                  })
+                mailMan.send({embed:mailEmbed}).then(m => {
+                }).catch(err => {
+                    message.channel.send(':mailbox_closed: This user has their mailbox closed!')
+                });
                 message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
             }
         }
