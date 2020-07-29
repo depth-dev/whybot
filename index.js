@@ -972,7 +972,7 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Latency')
          .setDescription('Here is the WhyBot Ping!')
-         .addField(':bell: Ping:', botping)
+         .addField(':bell: Ping:', `${botping}ms`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:pingEmbed})
     }
