@@ -981,7 +981,7 @@ client.on("messageDelete", (messageDelete) => {
                 if(messageDelete.content.startsWith('y!feedback')) {
                     return
                 } else {
-    const channel = client.channels.cache.get('712826746843430913 ');  
+    const channel = client.channels.cache.get('712826746843430913');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
@@ -1002,7 +1002,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
         return
     } else {
     if(oldMessage.author.bot) return;
-    const channel = client.channels.cache.get('712826746843430913 ');  
+    const channel = client.channels.cache.get('712826746843430913');  
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
      .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
