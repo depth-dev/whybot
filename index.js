@@ -960,6 +960,7 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                 mailMan.send({embed:mailEmbed}).then(m => {
                 }).catch(err => {
                     message.channel.send(':mailbox_closed: This user has their mailbox closed!')
+                    return
                 });
                 message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
             }
