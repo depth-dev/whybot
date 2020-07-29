@@ -68,6 +68,7 @@ client.on('message', function(message) {
         .addField('What are all of the commands?', 'Use y!help to check out all of the commands!')
         .addField('What is the current prefix?', 'It is \'y!\'')
         .addField('What was added?', 'Use y!changelog to find that out!')
+        .addField('How many servers does this bot have?', `WhyBot is in ${client.guilds.cache.size} servers, and is watching over ${client.users.cache.size} users!`)
         .setFooter('API developed by misterdepth')
         message.channel.send({embed:infoEmbed})
     }
