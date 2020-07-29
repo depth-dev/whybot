@@ -43,9 +43,9 @@ client.on('message', function(message) {
          .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
          .addField('**y!roses**', 'Get a roses are red poem.', true)
          .addField('**y!userinfo**', 'Get a user\'s information. More coming soon.', true)
-         .addField('**y!poll**', 'Create a poll! Currently mods only.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
          .addField('**y!guess**', 'Try to guess the bot\'s number!', true)
+         .addField('**y!ping**', 'See the bot\'s latency!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -963,6 +963,18 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                 });
             }
         }
+    }
+})
+client.on('message', function(message) {
+    if(message.content == 'y!ping') {
+        const botping = new Date() - message.createdAt;
+        const pingEmbed = new Discord.MessageEmbed()
+         .setColor('0dff00')
+         .setTitle('WhyBot Latency')
+         .setDescription('Here is the WhyBot Ping!')
+         .addField(':bell: Ping:', botping)
+         .setFooter('API developed by misterdepth')
+        message.channel.send({embed:pingEmbed})
     }
 })
 

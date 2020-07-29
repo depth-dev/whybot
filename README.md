@@ -14,10 +14,9 @@ Bot Information:
 INVITE LINK: https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8
 
 How to Use BetterBotLogs:
-1. Join the support server ( at https://discord.com/invite/9JhEsHe )
-2. Post a request in #whybot for betterbotlogs.
-3. misterdepth will DM you asking for a temporary server invite. 
-4. Wait a couple of minutes, and your log setup is complete!
+1. Use "y!betterbotlogs request" in your logging channel.
+2. Wait for the misterdepth to complete your request (to keep updated join the Support Server: https://discord.com/invite/9JhEsHe)
+3. Enjoy!
 
 Notes:
 - This bot is not for professional use, more for fun and extra use.
