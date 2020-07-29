@@ -957,12 +957,11 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                  .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
                  .addField('Mail:', mail)
                  .setFooter('API developed by misterdepth')
-                mailMan.send({embed:mailEmbed}).then(m => {
+                mailMan.send({embed:mailEmbed}).then(message => {
+                    message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
                 }).catch(err => {
-                    message.channel.send(':mailbox_closed: This user has their mailbox closed!')
-                    return
+                    return message.channel.send(':mailbox_closed: This user has their mailbox closed!')
                 });
-                message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
             }
         }
     }
