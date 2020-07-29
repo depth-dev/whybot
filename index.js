@@ -96,13 +96,12 @@ client.on('message', function(message) {
                     if(!unfortunateGuy1.kickable) {
                         return message.channel.send('You cannot kick this member!')
                     } else {
-                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).catch(err => {
-                        message.channel.send('Could not kick this user!')
-                        console.error()
-                        return
-                      })
-                    message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
-Reason: ` + reason)
+                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).then(message => {
+                        message.channel.send(unfortunateGuy2.user.tag + ` has been successfully kicked!
+                        Reason: ` + reason)
+                    }).catch(err => {
+                        return message.channel.send('An error occured while trying to kick this user!')
+                    });
                     }
 
                 }
@@ -127,13 +126,13 @@ client.on('message', function(message) {
                     if(!unfortunateGuy2.bannable) {
                         return message.channel.send('You cannot ban this member!')
                     } else {
-                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.').catch(err => {
-                        message.channel.send('Could not ban this user!')
-                        console.error()
-                        return
-                      })
-                    message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
-Reason: ` + reason)
+                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.').then(message => {
+                        message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
+                        Reason: ` + reason)
+                    }).catch(err => {
+                        return message.channel.send('An error occured while trying to ban this user!')
+                    });
+
                     }              
                 }
             }
