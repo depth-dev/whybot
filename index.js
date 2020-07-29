@@ -16,13 +16,6 @@ client.on('ready', () => {
     client.user.setActivity('y!help | v0.7.3', {
         type:'WATCHING'
     })
-    function randomStatus() {
-    let status = ["y!help | v0.7.3", "y!help | Status Pog", "y!help | Very Cool", "y!help | 🎉 GG", "y!help | Having Stroke", "y!help | Minecraft!", "y!help | 10% Status!", `y!help | ${client.guilds.cache.size} servers!`]
-    let rstatus = Math.floor(Math.random()*status.length)
-    client.user.setActivity(status[rstatus], {
-        type:'WATCHING'
-    })
-} setInterval(randomStatus, 20000)
 })
 
 client.on('message', function(message) {
