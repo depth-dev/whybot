@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.7.3', {
+    client.user.setActivity('y!help | v0.7.4', {
         type:'WATCHING'
     })
 })
@@ -49,10 +49,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.7.3
-    - Added y!mail
-    - Added a few statuses
-    - Fixed a few bugs`)
+         .addField('Changelog:', `0.7.4
+    - Fixed bugs
+    - Added Channel Names to BetterBotLogs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -446,7 +445,8 @@ client.on('messageDelete', (messageDelete) => {
                  .setThumbnail(messageDelete.author.displayAvatarURL())
                  .setTitle('A Message was Deleted!')
                  .setDescription(`Content: ${messageDelete.content}
-            Sent By: ${messageDelete.author}`)
+Channel: ${messageDelete.channel.name}            
+Sent By: ${messageDelete.author}`)
                 channel.send({embed:deleteEmbed})
         }
     }
@@ -466,6 +466,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`Old Content: ${oldMessage.content}
      
 New Content: ${newMessage.content}
+Channel: ${newMessage.channel.name} 
 Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
@@ -512,6 +513,7 @@ client.on("messageDelete", (messageDelete) => {
      .setThumbnail(messageDelete.author.displayAvatarURL())
      .setTitle('A Message was Deleted!')
      .setDescription(`Content: ${messageDelete.content}
+Channel: ${messageDelete.channel.name} 
 Sent By: ${messageDelete.author}`)
     channel.send({embed:deleteEmbed})
         }
@@ -532,6 +534,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`Old Content: ${oldMessage.content}
      
 New Content: ${newMessage.content}
+Channel: ${newMessage.channel.name} 
 Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
@@ -555,6 +558,7 @@ Sent By: ${newMessage.author}`)
      .setThumbnail(messageDelete.author.displayAvatarURL())
      .setTitle('A Message was Deleted!')
      .setDescription(`Content: ${messageDelete.content}
+Channel: ${messageDelete.channel.name} 
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
@@ -580,6 +584,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`Old Content: ${oldMessage.content}
 
 New Content: ${newMessage.content}
+Channel: ${newMessage.channel.name} 
 Sent By: ${newMessage.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:editEmbed})
@@ -920,6 +925,7 @@ client.on("messageDelete", (messageDelete) => {
      .setThumbnail(messageDelete.author.displayAvatarURL())
      .setTitle('A Message was Deleted!')
      .setDescription(`Content: ${messageDelete.content}
+Channel: ${messageDelete.channel.name} 
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
@@ -988,6 +994,7 @@ client.on("messageDelete", (messageDelete) => {
      .setThumbnail(messageDelete.author.displayAvatarURL())
      .setTitle('A Message was Deleted!')
      .setDescription(`Content: ${messageDelete.content}
+Channel: ${messageDelete.channel.name} 
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
@@ -1009,6 +1016,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`Old Content: ${oldMessage.content}
 
 New Content: ${newMessage.content}
+Channel: ${newMessage.channel.name} 
 Sent By: ${newMessage.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:editEmbed})
