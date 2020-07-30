@@ -971,8 +971,7 @@ client.on('message', function(message) {
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    const delServerA = 707985845197602847
-    if(messageDelete.guild.id != delServerA) {
+    if(messageDelete.guild.id != 707985845197602847) {
         return
     } else {
             if(messageDelete.content.startsWith('y!poll')) {
@@ -997,8 +996,7 @@ Sent By: ${messageDelete.author}`)
     }
 })
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    const updServerA = 707985845197602847
-    if(newMessage.guild.id != updServerA) {
+    if(newMessage.guild.id != 707985845197602847) {
         return
     } else {
     if(oldMessage.author.bot) return;
