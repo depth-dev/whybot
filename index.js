@@ -1022,5 +1022,51 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
    });
+   client.on("messageDelete", (messageDelete) => {
+    if(messageDelete.guild.id != betaServer) {
+        return
+    } else {
+            if(messageDelete.content.startsWith('y!poll')) {
+                return
+            } else {
+                if(messageDelete.content.startsWith('y!feedback')) {
+                    return
+                } else {
+    const channel = client.channels.cache.get('712826746843430913');  
+    if(messageDelete.author.bot) return;
+    const deleteEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+     .setThumbnail(messageDelete.author.displayAvatarURL())
+     .setTitle('A Message was Deleted!')
+     .setDescription(`Content: ${messageDelete.content}
+Channel: ${messageDelete.channel} 
+Sent By: ${messageDelete.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:deleteEmbed})
+                }
+            }
+    }
+})
+client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(newMessage.guild.id != betaServer) {
+        return
+    } else {
+    if(oldMessage.author.bot) return;
+    const channel = client.channels.cache.get('712826746843430913');  
+    const editEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
+     .setThumbnail(newMessage.author.displayAvatarURL())
+     .setTitle('A Message was Updated!')
+     .setDescription(`Old Content: ${oldMessage.content}
+
+New Content: ${newMessage.content}
+Channel: ${newMessage.channel} 
+Sent By: ${newMessage.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:editEmbed})
+    }
+   });
 
 client.login(process.env.token)
