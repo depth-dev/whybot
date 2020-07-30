@@ -903,8 +903,7 @@ Reason: ` + reason).catch(err => {
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    const serverA = 670028957772414996 
-    if(messageDelete.guild.id != serverA) {
+    if(messageDelete.guild.id != 670028957772414996) {
         return
     } else {
             if(messageDelete.content.startsWith('y!poll')) {
