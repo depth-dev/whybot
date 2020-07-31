@@ -423,7 +423,7 @@ client.on('message', function(message) {
          .setTitle('WhyBot Invite Link')
          .setDescription('Here is the Invite Link for WhyBot!')
          .addField('Bot Invite:', '[Click here](https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8)')
-         .addField('Support Server Invite:', '[Depth\'s Bot Server](https://discord.com/invite/9JhEsHe)')
+         .addField('Support Server Invite:', '[WhyBot Support Server](https://discord.com/invite/9JhEsHe)')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:inviteEmbed})
     }
@@ -737,7 +737,7 @@ client.on('message', function(message) {
                                 const theGuild = message.guild.id
                                 console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
                                 message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
-Join the test server to keep everything updated!
+Join the support server to keep everything updated!
 Invite: https://discord.com/invite/9JhEsHe`)
                             } else
                                 message.reply('Request cancelled!');

@@ -15,7 +15,7 @@ INVITE LINK: https://discord.com/oauth2/authorize?client_id=722141994184474744&s
 
 How to Use BetterBotLogs:
 1. Use "y!betterbotlogs request" in your logging channel.
-2. Wait for the misterdepth to complete your request (to keep updated join the Support Server: https://discord.com/invite/9JhEsHe)
+2. Wait for the misterdepth (the dev) to complete your request (to keep updated join the Support Server: https://discord.com/invite/9JhEsHe)
 3. Enjoy!
 
 Notes:
