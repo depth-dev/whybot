@@ -447,8 +447,8 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
-        if(message.content.startsWith('y!poll')) return;
-        if(message.content.startsWith('y!feedback')) return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
                 const channel = client.channels.cache.get('724337351936966727');  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
@@ -514,8 +514,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != JaruCom) {
         return
     } else {
-        if(message.content.startsWith('y!poll')) return;
-        if(message.content.startsWith('y!feedback')) return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('728780814665515029');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -554,8 +554,8 @@ Sent By: ${newMessage.author}`)
     if(messageDelete.guild.id != safety8) {
         return
     } else {
-        if(message.content.startsWith('y!poll')) return;
-        if(message.content.startsWith('y!feedback')) return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('730987813641781248');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -918,8 +918,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != 670028957772414996) {
         return
     } else {
-        if(message.content.startsWith('y!poll')) return;
-        if(message.content.startsWith('y!feedback')) return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('737090606672642050');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -983,8 +983,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != 707985845197602847) {
         return
     } else {
-        if(message.content.startsWith('y!poll')) return;
-        if(message.content.startsWith('y!feedback')) return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('712826746843430913');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
