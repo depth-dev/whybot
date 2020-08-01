@@ -793,12 +793,24 @@ client.on('message', function(message) {
                     channelSend.updateOverwrite(channelSend.guild.roles.everyone, { SEND_MESSAGES: true })
                     message.channel.send('Channel is now open!')
                     break 
+                case "images":
+                    const channelImages = client.channels.cache.get(message.channel.id)
+                    channelImages.updateOverwrite(channelImages.guild.roles.everyone, { ATTACH_FILES : true })
+                    message.channel.send('You can now send images in this channel!')
+                    break 
+                case "text":
+                    const channelNoImages = client.channels.cache.get(message.channel.id)
+                    channelNoImages.updateOverwrite(channelNoImages.guild.roles.everyone, { ATTACH_FILES : false })
+                    message.channel.send('You can no longer send images in this channel!')
+                    break 
                 default:
                     message.channel.send(`Please supply a valid option! Options:
-    - Visible
-    - Invisible
-    - Close
-    - Open
+    - Visible (allows members to see)
+    - Invisible (disallows members to see)
+    - Open (allows members to send messages)
+    - Close (disallows members to send messages)
+    - Images (allows members to send images)
+    - Text (disallows members to send images)
 All lowercase!`)
                     
             }
