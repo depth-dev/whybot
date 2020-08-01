@@ -447,11 +447,8 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
-        if(messageDelete.content.startsWith('y!poll')) {
-            return
-        } else if(messageDelete.content.startsWith('y!feedback')) {
-            return
-        } else {
+        if(message.content.startsWith('y!poll')) return;
+        if(message.content.startsWith('y!feedback')) return;
                 const channel = client.channels.cache.get('724337351936966727');  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
@@ -463,7 +460,6 @@ client.on('messageDelete', (messageDelete) => {
 Channel: ${messageDelete.channel}            
 Sent By: ${messageDelete.author}`)
                 channel.send({embed:deleteEmbed})
-        }
     }
 })
 
@@ -518,9 +514,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != JaruCom) {
         return
     } else {
-        if(messageDelete.content.startsWith('y!feedback')) {
-            return
-        } else {
+        if(message.content.startsWith('y!poll')) return;
+        if(message.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('728780814665515029');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -532,7 +527,6 @@ client.on("messageDelete", (messageDelete) => {
 Channel: ${messageDelete.channel} 
 Sent By: ${messageDelete.author}`)
     channel.send({embed:deleteEmbed})
-        }
     }
 })
 
@@ -560,12 +554,8 @@ Sent By: ${newMessage.author}`)
     if(messageDelete.guild.id != safety8) {
         return
     } else {
-            if(messageDelete.content.startsWith('y!poll')) {
-                return
-            } else {
-                if(messageDelete.content.startsWith('y!feedback')) {
-                    return
-                } else {
+        if(message.content.startsWith('y!poll')) return;
+        if(message.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('730987813641781248');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -578,8 +568,6 @@ Channel: ${messageDelete.channel}
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
-                }
-            }
     }
 })
 
@@ -587,9 +575,6 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     if(newMessage.guild.id != safety8) {
         return
     } else {
-        if(newMessage.content.includes('rawfishsticks')) {
-            return
-        } else {
     if(oldMessage.author.bot) return;
     const channel = client.channels.cache.get('730987813641781248');  
     const editEmbed = new Discord.MessageEmbed()
@@ -604,7 +589,6 @@ Channel: ${newMessage.channel}
 Sent By: ${newMessage.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:editEmbed})
-        }
     }
 });
 
@@ -934,12 +918,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != 670028957772414996) {
         return
     } else {
-            if(messageDelete.content.startsWith('y!poll')) {
-                return
-            } else {
-                if(messageDelete.content.startsWith('y!feedback')) {
-                    return
-                } else {
+        if(message.content.startsWith('y!poll')) return;
+        if(message.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('737090606672642050');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -952,8 +932,6 @@ Channel: ${messageDelete.channel}
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
-                }
-            }
     }
 })
 client.on('message', function(message) {
@@ -1005,12 +983,8 @@ client.on("messageDelete", (messageDelete) => {
     if(messageDelete.guild.id != 707985845197602847) {
         return
     } else {
-            if(messageDelete.content.startsWith('y!poll')) {
-                return
-            } else {
-                if(messageDelete.content.startsWith('y!feedback')) {
-                    return
-                } else {
+        if(message.content.startsWith('y!poll')) return;
+        if(message.content.startsWith('y!feedback')) return;
     const channel = client.channels.cache.get('712826746843430913');  
     if(messageDelete.author.bot) return;
     const deleteEmbed = new Discord.MessageEmbed()
@@ -1023,8 +997,6 @@ Channel: ${messageDelete.channel}
 Sent By: ${messageDelete.author}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
-                }
-            }
     }
 })
 client.on("messageUpdate", (oldMessage, newMessage) => {
