@@ -1082,13 +1082,13 @@ client.on('message', function(message) {
                     message.reply(`Please reply with something to log ${args[0]} with!`)
                 } else {
                     message.channel.send(`\`\`\`
-Info Logged at ${message.createdTimestamp}:
+Info Logged at ${message.createdAt}:
     Category: ${args[0]}
     Logging Info: ${logInfo}
     
 Log Status: Successful!
 \`\`\``)
-                    console.log(`Info Logged at ${message.createdTimestamp}:
+                    console.log(`Info Logged at ${message.createdAt}:
     Category: ${args[0]}
     Logging Info: ${logInfo}`)
                 }
