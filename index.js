@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.7.4', {
+    client.user.setActivity('y!help | v0.8.0', {
         type:'WATCHING'
     })
 })
@@ -29,7 +29,6 @@ client.on('message', function(message) {
          .addField('**y!meme**', 'Memes.', true)
          .addField('**y!feedback**', 'Give us feedback!', true)
          .addField('**y!modhelp**', 'For administrators.', true)
-         .addField('**y!depth**', 'Check out the dev!', true)
          .addField('**y!info**', 'Check out some information on the bot.', true)
          .addField('**y!remind**', 'Remind someone they exist.', true)
          .addField('**y!question**', 'Be asked a question by the bot.', true)
@@ -40,6 +39,7 @@ client.on('message', function(message) {
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
          .addField('**y!guess**', 'Try to guess the bot\'s number!', true)
          .addField('**y!ping**', 'See the bot\'s latency!', true)
+         .addField('**y!fight**', 'Fight another user!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -51,8 +51,13 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.7.4
-    - Fixed bugs
+         .addField('Changelog:', `0.8.0
+    - Added y!fight
+    - Fixed y!kick, y!ban, and y!mail shutting down the bot due to permissions
+    - Added y!mail (added in an earlier update but wasn't logged)
+    - Added some bot support features that make using the bot easier
+    - Revamped the WhyBot Support Server ([Join here!](https://discord.com/invite/9JhEsHe))
+    - Fixed a few bugs with userinfo roles
     - Added Channel Names to BetterBotLogs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -1061,6 +1066,34 @@ client.on('message', function(message) {
             }
             }
         }
+    }
+})
+client.on('message', function(message) {
+    if(message.content.startsWith('y!log')) {
+        if(message.author.id != "315173627232518147") {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            let args = message.content.split(' ').slice(1)
+            let logInfo = args.slice(1).join(' ')
+            if(!args[0]) {
+                message.reply('Please supply a category to log!')
+            } else {
+                if(!logInfo) {
+                    message.reply(`Please reply with something to log ${args[0]} with!`)
+                } else {
+                    message.channel.send(`\`\`\`
+Info Logged at ${message.createdTimestamp}:
+    Category: ${args[0]}
+    Logging Info: ${logInfo}
+    
+Log Status: Successful!
+\`\`\``)
+                    console.log(`Info Logged at ${message.createdTimestamp}:
+    Category: ${args[0]}
+    Logging Info: ${logInfo}`)
+                }
+            }
+        }   
     }
 })
 
