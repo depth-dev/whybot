@@ -20,6 +20,7 @@ client.on('ready', () => {
 
 client.on('message', function(message) {
     if(message.content == 'y!help') {
+        if(message.author.bot) return;
         const youelpEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Commands and Help Menu')
@@ -45,6 +46,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!changelog') {
+        if(message.author.bot) return;
         const changelogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
@@ -58,6 +60,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!info') {
+        if(message.author.bot) return;
         const infoEmbed = new Discord.MessageEmbed()
         .setColor('0dff00')
         .setTitle('WhyBot Information')
@@ -74,6 +77,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!kick')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -104,6 +108,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!ban')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -135,6 +140,7 @@ client.on('message', function(message) {
 
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
+        if(message.author.bot) return;
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
         } else {
@@ -152,6 +158,7 @@ client.on('message', async (msg) =>{
 })
 client.on('message', function(message) {
     if(message.content == 'y!quote') {
+        if(message.author.bot) return;
         let randomQuote = Math.floor(Math.random()*15+1)
         switch(randomQuote) {
             case 1:
@@ -204,6 +211,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
+        if(message.author.bot) return;
        const randomMeme = Math.floor(Math.random()*10+1)
        switch(randomMeme) {
            case 1:
@@ -241,6 +249,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!feedback')) {
+        if(message.author.bot) return;
         let args = message.content.split('y!feedback ').slice(1)
         if(!args[0]) {
             message.reply('Please supply some feedback!')
@@ -253,6 +262,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!kill') {
+        if(message.author.bot) return;
         if(message.member.id != "315173627232518147") {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -262,6 +272,7 @@ client.on('message', function(message) {
   })
 client.on('message', function(message) {
     if(message.content == 'y!modhelp') {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed}) 
         } else {
@@ -288,6 +299,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!depth') {
+        if(message.author.bot) return;
         const socialEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('Depth\'s Socials:')
@@ -302,6 +314,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!remind')) {
+        if(message.author.bot) return;
         let authorGuy = message.author.username
         let recieverGuy = message.mentions.users.first()
         if(!recieverGuy) {
@@ -316,6 +329,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!question') {
+        if(message.author.bot) return;
         let randomQuiz = Math.floor(Math.random()*15+1)
         switch(randomQuiz) {
             case 1:
@@ -418,6 +432,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!invite') {
+        if(message.author.bot) return;
         const inviteEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Invite Link')
@@ -473,6 +488,7 @@ Sent By: ${newMessage.author}`)
    }); 
 client.on('message', function(message) {
     if(message.content == 'y!roses') {
+        if(message.author.bot) return;
         let randomRoses = Math.floor(Math.random()*5+1)
         switch(randomRoses) {
             case 1:
@@ -590,10 +606,11 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
         }
     }
-   });
+});
 
 client.on('message', function(message) {
     if(message.content.startsWith('y!userinfo')) {
+        if(message.author.bot) return;
         let mentionDude = message.mentions.users.first()
         if(!mentionDude) {
             let authorTag = message.author.tag
@@ -641,6 +658,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!poll')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -706,6 +724,7 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!betterbotlogs')) {
+        if(message.author.bot) return;
         const args = message.content.split(' ').slice(1)
         if(!args[0]) {
             const BotLogEmbed = new Discord.MessageEmbed()
@@ -764,6 +783,7 @@ Invite: https://discord.com/invite/9JhEsHe`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!channel')) {
+        if(message.author.bot) return;
         const args = message.content.split(' ').slice(1)
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
@@ -819,6 +839,7 @@ client.on('message', function(message) {
 
 client.on('message', function(message) {
     if(message.content.startsWith('y!guess')) {
+        if(message.author.bot) return;
         const args = message.content.split(' ').slice(1)
         if(!args[0]) {
             message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
@@ -843,6 +864,7 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!mute')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
         } else {
@@ -876,6 +898,7 @@ Reason: ` + reason).catch(err => {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!unmute')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
         } else {
@@ -935,6 +958,7 @@ Sent By: ${messageDelete.author}`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!mail')) {
+        if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -966,6 +990,7 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
 })
 client.on('message', function(message) {
     if(message.content == 'y!ping') {
+        if(message.author.bot) return;
         const botping = new Date() - message.createdAt;
         const pingEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
@@ -1022,5 +1047,37 @@ Sent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
     }
    });
+client.on('message', function(message) {
+    if(message.content.startsWith('y!fight')) {
+        if(message.author.bot) return;
+        let enemy = message.mentions.users.first()
+        if(!enemy) {
+            message.reply('Please supply someone to fight!')
+        } else {
+            if(enemy.bot) {
+                message.channel.send(`${message.author} tries to fight ${enemy}, but the super mega lasers of the robot destroy ${message.author}!`)
+            } else {
+            let randomFightOutcome = Math.floor(Math.random()*5+1)
+            switch(randomFightOutcome) {
+                case 1:
+                    message.channel.send(`${message.author} swings in, kicking hard, however ${enemy} wins the fight by barely a hit!`)
+                    break 
+                case 2:
+                    message.channel.send(`Ez! ${message.author} easily wins the fight by intimidating ${enemy}!`)
+                    break
+                case 3:
+                    message.channel.send(`${enemy} fights hard and strong, but with a few easy taps ${message.author} wins the battle.`)
+                    break 
+                case 4:
+                    message.channel.send(`${enemy} uses a gang of sewer rats to chase away ${message.author}!`)
+                    break
+                case 5:
+                    message.channel.send(`${message.author} roundhouse kicks ${enemy}, sending him flying into the wall!`)
+                    break
+            }
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
