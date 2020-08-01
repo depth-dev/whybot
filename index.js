@@ -1044,9 +1044,10 @@ client.on('message', function(message) {
             message.reply('Please supply someone to fight!')
         } else {
             if(enemy.bot) {
-                message.channel.send(`${message.author} tries to fight ${enemy}, but the super mega lasers of the robot destroy ${message.author}!`)
+                message.channel.send(`${message.author} tries to fight ${enemy}, but the super mega lasers of the robot destroy ${message.author}!
+(you can't fight bots!)`)
             } else {
-            let randomFightOutcome = Math.floor(Math.random()*5+1)
+            let randomFightOutcome = Math.floor(Math.random()*10+1)
             switch(randomFightOutcome) {
                 case 1:
                     message.channel.send(`${message.author} swings in, kicking hard, however ${enemy} wins the fight by barely a hit!`)
@@ -1063,6 +1064,21 @@ client.on('message', function(message) {
                 case 5:
                     message.channel.send(`${message.author} roundhouse kicks ${enemy}, sending him flying into the wall!`)
                     break
+                case 6:
+                    message.channel.send(`${enemy} combos ${message.author} so hard that they fly into oblivion!`)
+                    break 
+                case 7:
+                    message.channel.send(`${message.author} taps ${enemy} with a finger, blasting him into space.`)
+                    break 
+                case 8:
+                    message.channel.send(`With the power of penguins, ${enemy} intimidates ${message.author} into becoming part of the penguin gang!`)
+                    break 
+                case 9:
+                    message.channel.send(`Coding a sweet algorithm to predict ${message.author}'s moves, ${enemy} takes home the victory.`)
+                    break 
+                case 10:
+                    message.channel.send(`${enemy} leaves the arena and ${message.author} wins! What a coward ${enemy} is!`)
+                    break 
             }
             }
         }
