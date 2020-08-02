@@ -30,7 +30,6 @@ client.on('message', function(message) {
          .addField('**y!feedback**', 'Give us feedback!', true)
          .addField('**y!modhelp**', 'For administrators.', true)
          .addField('**y!info**', 'Check out some information on the bot.', true)
-         .addField('**y!remind**', 'Remind someone they exist.', true)
          .addField('**y!question**', 'Be asked a question by the bot.', true)
          .addField('**y!changelog**', 'Check out the changelog for WhyBot.', true)
          .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
@@ -315,21 +314,6 @@ client.on('message', function(message) {
          .setFooter('API developed by misterdepth')
         message.delete()
         message.channel.send({embed:socialEmbed})
-    }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!remind')) {
-        if(message.author.bot) return;
-        let authorGuy = message.author.username
-        let recieverGuy = message.mentions.users.first()
-        if(!recieverGuy) {
-            message.reply('Make sure you include someone in your message!')
-        } else {
-            recieverGuy.send(authorGuy + ' has reminded you exist. Please thank ' + authorGuy + ' for doing this.')
-            message.channel.send('The message has been sent.').then(message => {
-                setTimeout(function() {message.delete()}, 3000)
-            })
-        }
     }
 })
 client.on('message', function(message) {
