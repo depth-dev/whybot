@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.8.0', {
+    client.user.setActivity('y!help | v0.8.1', {
         type:'WATCHING'
     })
 })
@@ -50,14 +50,11 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.8.0
-    - Added y!fight
-    - Fixed y!kick, y!ban, and y!mail shutting down the bot due to permissions
-    - Added y!mail (added in an earlier update but wasn't logged)
-    - Added some bot support features that make using the bot easier
-    - Revamped the WhyBot Support Server ([Join here!](https://discord.com/invite/9JhEsHe))
-    - Fixed a few bugs with userinfo roles
-    - Added Channel Names to BetterBotLogs`)
+         .addField('Changelog:', `0.8.1
+    - Added more features in y!channel
+    - Added more memes
+    - Fixed a few bugs
+    - Removed y!remind`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -216,7 +213,7 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
         if(message.author.bot) return;
-       const randomMeme = Math.floor(Math.random()*10+1)
+       const randomMeme = Math.floor(Math.random()*15+1)
        switch(randomMeme) {
            case 1:
                message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
@@ -247,7 +244,23 @@ client.on('message', function(message) {
                 break 
             case 10:
                 message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/736738559184338974/image0.jpg']})
+                break
+            case 11:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533868964511774/no1.PNG']})
                 break 
+            case 12:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533989525585930/furries_be_stronk.PNG']})
+                break
+            case 13:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534005019475968/so_true.png']})
+                break
+            case 14:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534035037978704/funnibone.PNG']})
+                break
+            case 15:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534232174723102/fitnes.PNG']})
+                break
+
        }
     }
 })
