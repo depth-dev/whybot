@@ -79,6 +79,10 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith('y!kick')) {
         if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -110,6 +114,10 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith('y!ban')) {
         if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -142,6 +150,10 @@ client.on('message', function(message) {
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
         if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
         } else {
@@ -267,6 +279,10 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content.startsWith('y!feedback')) {
         if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         let args = message.content.split('y!feedback ').slice(1)
         if(!args[0]) {
             message.reply('Please supply some feedback!')
@@ -279,6 +295,10 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content == 'y!kill') {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         if(message.member.id != "315173627232518147") {
             message.channel.send({embed:noPermsEmbed})
@@ -290,6 +310,10 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!modhelp') {
         if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed}) 
         } else {
@@ -325,7 +349,6 @@ client.on('message', function(message) {
          .addField('Twitch:', 'https://twitch.tv/misterdepth')
          .addField('Discord:', 'https://discord.gg/bHqwhVm')
          .setFooter('API developed by misterdepth')
-        message.delete()
         message.channel.send({embed:socialEmbed})
     }
 })
@@ -446,6 +469,7 @@ client.on('message', function(message) {
     }
 })
 client.on('messageDelete', (messageDelete) => {
+    if(message.channel.type == "dm") return;
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
@@ -466,6 +490,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(message.channel.type == "dm") return;
     if(newMessage.guild.id != misterDisc) {
         return
     } else {
@@ -513,6 +538,7 @@ client.on('message', function(message) {
     }
 })
 client.on("messageDelete", (messageDelete) => {
+    if(message.channel.type == "dm") return;
     if(messageDelete.guild.id != JaruCom) {
         return
     } else {
@@ -533,6 +559,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(message.channel.type == "dm") return;
     if(newMessage.guild.id != JaruCom) {
         return
     } else {
@@ -553,6 +580,7 @@ Sent By: ${newMessage.author}`)
    });
 
    client.on("messageDelete", (messageDelete) => {
+    if(message.channel.type == "dm") return;
     if(messageDelete.guild.id != safety8) {
         return
     } else {
@@ -574,6 +602,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(message.channel.type == "dm") return;
     if(newMessage.guild.id != safety8) {
         return
     } else {
@@ -596,6 +625,10 @@ Sent By: ${newMessage.author}`)
 
 client.on('message', function(message) {
     if(message.content.startsWith('y!userinfo')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         let mentionDude = message.mentions.users.first()
         if(!mentionDude) {
@@ -644,6 +677,10 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!poll')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
@@ -710,6 +747,10 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!betterbotlogs')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         const args = message.content.split(' ').slice(1)
         if(!args[0]) {
@@ -769,6 +810,10 @@ Invite: https://discord.com/invite/9JhEsHe`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!channel')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         const args = message.content.split(' ').slice(1)
         if(!message.member.hasPermission('ADMINISTRATOR')) {
@@ -821,6 +866,10 @@ All lowercase!`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!superior')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.member.id != "323212867757277185") {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -862,6 +911,10 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!mute')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
@@ -896,6 +949,10 @@ Reason: ` + reason).catch(err => {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!unmute')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({noPermsEmbed})
@@ -929,6 +986,7 @@ Reason: ` + reason).catch(err => {
     }
 })
 client.on("messageDelete", (messageDelete) => {
+    if(message.channel.type == "dm") return;
     if(messageDelete.guild.id != 670028957772414996) {
         return
     } else {
@@ -950,6 +1008,10 @@ Sent By: ${messageDelete.author}`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!mail')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
@@ -994,6 +1056,7 @@ client.on('message', function(message) {
     }
 })
 client.on("messageDelete", (messageDelete) => {
+    if(message.channel.type == "dm") return;
     if(messageDelete.guild.id != 707985845197602847) {
         return
     } else {
@@ -1014,6 +1077,7 @@ Sent By: ${messageDelete.author}`)
     }
 })
 client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(message.channel.type == "dm") return;
     if(newMessage.guild.id != 707985845197602847) {
         return
     } else {
@@ -1035,6 +1099,10 @@ Sent By: ${newMessage.author}`)
    });
 client.on('message', function(message) {
     if(message.content.startsWith('y!fight')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.bot) return;
         let enemy = message.mentions.users.first()
         if(!enemy) {
@@ -1083,6 +1151,10 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!log')) {
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
         if(message.author.id != "315173627232518147") {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -1098,12 +1170,14 @@ client.on('message', function(message) {
 Info Logged at ${message.createdAt}:
     Category: ${args[0]}
     Logging Info: ${logInfo}
+    Logged By: ${message.author.tag}
     
 Log Status: Successful!
 \`\`\``)
                     console.log(`Info Logged at ${message.createdAt}:
     Category: ${args[0]}
-    Logging Info: ${logInfo}`)
+    Logging Info: ${logInfo}
+    Logged By: ${message.author.tag}`)
                 }
             }
         }   
