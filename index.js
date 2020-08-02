@@ -149,9 +149,9 @@ client.on('message', function(message) {
 
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
+        if(msg.author.bot) return;
+        if(msg.channel.type == "dm") {
+            msg.channel.send('You cannot use this feature in Direct Messages!')
             return
         }
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
