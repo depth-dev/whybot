@@ -1036,9 +1036,8 @@ Usage: \`y!mail <User:Mention> <Mail:Text>\``)
                  .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
                  .addField('Mail:', mail)
                  .setFooter('API developed by misterdepth')
-                mailMan.send({embed:mailEmbed}).then(message => {
-                    message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag)
-                }).catch(err => {
+                mailMan.send({embed:mailEmbed})
+                    message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag).catch(err => {
                     return message.channel.send(':mailbox_closed: This user has their mailbox closed!')
                 });
             }
