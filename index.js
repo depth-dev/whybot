@@ -1207,11 +1207,8 @@ client.on('message', function(message) {
                message.reply('This user already has that role!')
             } else {
                 let theUser = message.mentions.users.first()
-                member.roles.add(role).then(message => {
-                    message.channel.send(`${theUser.tag} now has ${roleName}!`)
-                }).catch(err => {
-                    return message.channel.send('An error occured while trying to give a role to this user!')
-                });
+                member.roles.add(role)
+                message.channel.send(`${theUser.tag} now has ${roleName}!`)
             }
         }
     }
@@ -1235,12 +1232,13 @@ client.on('message', function(message) {
             } else if (!member.roles.cache.some(role => role.name === `${roleName}`)) {
                message.reply('This user does not have that role')
             } else {
+                if(member.manageable) {
                 let theUser = message.mentions.users.first()
-                member.roles.remove(role).then(message => {
-                    message.channel.send(`${theUser.tag} no longer has ${roleName}!`)
-                }).catch(err => {
-                    return message.channel.send('An error occured while trying to remove a role from this user!')
-                });
+                member.roles.remove(role)
+                message.channel.send(`${theUser.tag} no longer has ${roleName}!`)
+                } else {
+                    message.reply('Could not remove this role!')
+                }
             }
         }
     }
