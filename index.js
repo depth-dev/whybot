@@ -495,6 +495,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
         return
     } else {
     if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
     const channel = client.channels.cache.get('724337351936966727');  
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
@@ -564,6 +565,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
         return
     } else {
     if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
     const channel = client.channels.cache.get('728780814665515029');  
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
@@ -607,6 +609,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
         return
     } else {
     if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
     const channel = client.channels.cache.get('730987813641781248');  
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
@@ -1082,6 +1085,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
         return
     } else {
     if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
     const channel = client.channels.cache.get('712826746843430913');  
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
