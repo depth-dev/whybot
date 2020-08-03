@@ -103,9 +103,7 @@ client.on('message', function(message) {
                     unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).then(message => {
                         message.channel.send(unfortunateGuy2.user.tag + ` has been successfully kicked!
                         Reason: ` + reason)
-                    }).catch(err => {
-                        return message.channel.send('An error occured while trying to kick this user!')
-                    });
+                    })
                     }
 
                 }
@@ -138,9 +136,7 @@ client.on('message', function(message) {
                     unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.').then(message => {
                         message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
                         Reason: ` + reason)
-                    }).catch(err => {
-                        return message.channel.send('An error occured while trying to ban this user!')
-                    });
+                    })
 
                     }              
                 }
