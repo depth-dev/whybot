@@ -1208,7 +1208,7 @@ client.on('message', function(message) {
             } else {
                 member.roles.add(role)
                 let theUser = message.mentions.users.first()
-                message.channel.send(`${theUser.tag} now has the ${roleName} role!`)
+                message.channel.send(`${theUser.tag} now has ${roleName}!`)
             }
         }
     }
@@ -1232,9 +1232,9 @@ client.on('message', function(message) {
             } else if (!member.roles.cache.some(role => role.name === `${roleName}`)) {
                message.reply('This user does not have that role')
             } else {
-                member.roles.add(role)
+                member.roles.remove(role)
                 let theUser = message.mentions.users.first()
-                message.channel.send(`${theUser.tag} no longer has the ${roleName} role!`)
+                message.channel.send(`${theUser.tag} no longer has ${roleName}!`)
             }
         }
     }
