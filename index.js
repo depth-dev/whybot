@@ -102,7 +102,7 @@ client.on('message', function(message) {
                     } else {
                     unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
                         message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
-                        Reason: ` + reason)
+Reason: ` + reason)
                     }
 
                 }
@@ -134,7 +134,7 @@ client.on('message', function(message) {
                     } else {
                     unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
                         message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
-                        Reason: ` + reason)
+Reason: ` + reason)
                     }              
                 }
             }
