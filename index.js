@@ -1187,5 +1187,30 @@ Log Status: Successful!
         }   
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!giverole')) {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            const args = message.content.split(' ').slice(1)
+            const roleName = args.slice(1).join(' ')
+            const serverGuild = message.guild
+            const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
+            const member = message.mentions.members.first();
+            if(!member) {
+                message.reply('Please supply a member to assign a role to!')
+            } else if(!roleName) {
+                message.reply('Please supply a role to be given!')
+            } else if(!role) {
+                message.reply('Could not find this role!')
+            } else if (member.roles.cache.some(role => role.name === `${roleName}`)) {
+               message.reply('This user already has that role!')
+            } else {
+                member.roles.add(role)
+                message.channel.send(`${member.tag} now has the ${roleName} role!`)
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
