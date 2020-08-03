@@ -101,7 +101,7 @@ client.on('message', function(message) {
                         return message.channel.send('You cannot kick this member!')
                     } else {
                     unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).then(message => {
-                        message.channel.send(unfortunateGuy2.user.tag + ` has been successfully kicked!
+                        message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
                         Reason: ` + reason)
                     })
                     }
