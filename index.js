@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.8.1', {
+    client.user.setActivity('y!help | v0.8.2', {
         type:'WATCHING'
     })
 })
@@ -50,11 +50,13 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.8.1
-    - Added more features in y!channel
-    - Added more memes
-    - Fixed a few bugs
-    - Removed y!remind`)
+         .addField('Changelog:', `0.8.2
+    - Added more y!memes
+    - Added y!giverole
+    - Added y!removerole
+    - Added more outcomes if you fight a bot in y!fight
+    
+    NOTE: REMOVEROLE AND GIVEROLE Are being used with some shaky code, so it may be removed later on.`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -328,6 +330,8 @@ client.on('message', function(message) {
             .addField('**y!mute**', 'Mutes a user', true)
             .addField('**y!unmute**', 'Unmutes a user.', true)
             .addField('**y!mail**', 'Send a specific user some mail!', true)
+            .addField('**y!giverole**', 'Give a user a role! (WhyBot\'s role must be higher than their role!)', true)
+            .addField('**y!removerole**', 'Remove a user\'s role! (WhyBot\'s role must be higher than their role!)', true)
             .addField('\u200b', '\u200b', true)
             .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
@@ -1113,8 +1117,24 @@ client.on('message', function(message) {
             message.reply('Please supply someone to fight!')
         } else {
             if(enemy.bot) {
-                message.channel.send(`${message.author} tries to fight ${enemy}, but the super mega lasers of the robot destroy ${message.author}!
-(you can't fight bots!)`)
+                let botOutcomes = Math.floor(Math.random()*5+1)
+                switch(botOutcomes) {
+                    case 1:
+                        message.channel.send(`${message.author} tries to fight ${enemy}, but the super mega lasers of the robot destroy ${message.author}`)
+                        break 
+                    case 2:
+                        message.channel.send(`${message.author} invents an accurate algorithm to help beat ${enemy}, but the bot easily bypasses all outcomes and beats ${message.author}!`)
+                        break 
+                    case 3:
+                        message.channel.send(`${enemy} uses its heavy platings of metal in order to deflect all attacks from ${message.author}!`)
+                        break 
+                    case 4:
+                        message.channel.send(`${message.author} brings on an army to defeat ${enemy}, but ${enemy}, being a robot, destroys them all!`)
+                        break 
+                    case 5:
+                        message.channel.send(`${enemy} bypasses all attacks by being a robot.`)
+                        break 
+                }
             } else {
             let randomFightOutcome = Math.floor(Math.random()*10+1)
             switch(randomFightOutcome) {
@@ -1189,6 +1209,8 @@ Log Status: Successful!
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!giverole')) {
+        if(message.author.bot) return;
+        if(message.channel.type == "dm") return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -1219,6 +1241,8 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!removerole')) {
+        if(message.author.bot) return;
+        if(message.channel.type == "dm") return;
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
