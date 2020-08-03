@@ -490,7 +490,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(mewMessage.channel.type == "dm") return;
+    if(newMessage.channel.type == "dm") return;
     if(newMessage.guild.id != misterDisc) {
         return
     } else {
