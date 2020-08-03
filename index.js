@@ -469,7 +469,7 @@ client.on('message', function(message) {
     }
 })
 client.on('messageDelete', (messageDelete) => {
-    if(message.channel.type == "dm") return;
+    if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != misterDisc) {
         return
     } else {
@@ -490,7 +490,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(message.channel.type == "dm") return;
+    if(mewMessage.channel.type == "dm") return;
     if(newMessage.guild.id != misterDisc) {
         return
     } else {
@@ -538,7 +538,7 @@ client.on('message', function(message) {
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    if(message.channel.type == "dm") return;
+    if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != JaruCom) {
         return
     } else {
@@ -559,7 +559,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(message.channel.type == "dm") return;
+    if(newMessage.channel.type == "dm") return;
     if(newMessage.guild.id != JaruCom) {
         return
     } else {
@@ -580,7 +580,7 @@ Sent By: ${newMessage.author}`)
    });
 
    client.on("messageDelete", (messageDelete) => {
-    if(message.channel.type == "dm") return;
+    if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != safety8) {
         return
     } else {
@@ -602,7 +602,7 @@ Sent By: ${messageDelete.author}`)
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(message.channel.type == "dm") return;
+    if(newMessage.channel.type == "dm") return;
     if(newMessage.guild.id != safety8) {
         return
     } else {
@@ -986,7 +986,7 @@ Reason: ` + reason).catch(err => {
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    if(message.channel.type == "dm") return;
+    if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != 670028957772414996) {
         return
     } else {
@@ -1056,7 +1056,7 @@ client.on('message', function(message) {
     }
 })
 client.on("messageDelete", (messageDelete) => {
-    if(message.channel.type == "dm") return;
+    if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != 707985845197602847) {
         return
     } else {
@@ -1077,7 +1077,7 @@ Sent By: ${messageDelete.author}`)
     }
 })
 client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(message.channel.type == "dm") return;
+    if(newMessage.channel.type == "dm") return;
     if(newMessage.guild.id != 707985845197602847) {
         return
     } else {
