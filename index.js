@@ -100,10 +100,9 @@ client.on('message', function(message) {
                     if(!unfortunateGuy1.kickable) {
                         return message.channel.send('You cannot kick this member!')
                     } else {
-                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason).then(message => {
+                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
                         message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
                         Reason: ` + reason)
-                    })
                     }
 
                 }
@@ -133,11 +132,9 @@ client.on('message', function(message) {
                     if(!unfortunateGuy2.bannable) {
                         return message.channel.send('You cannot ban this member!')
                     } else {
-                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.').then(message => {
+                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
                         message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
                         Reason: ` + reason)
-                    })
-
                     }              
                 }
             }
