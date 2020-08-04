@@ -80,65 +80,12 @@ client.on('message', function(message) {
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!kick')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            let unfortunateGuy1 = message.mentions.members.first()
-            if(!unfortunateGuy1) {
-                message.reply('Please respond with a user to kick!')
-            } else {
-                const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1).join(' ')
-                if(!reason) {
-                    message.reply('A reason must be set!')
-                } else {
-                    if(!unfortunateGuy1.kickable) {
-                        return message.channel.send('You cannot kick this member!')
-                    } else {
-                    unfortunateGuy1.kick(message.author.tag + ' kicked for the reason: ' + reason)
-                        message.channel.send(unfortunateGuy1.user.tag + ` has been successfully kicked!
-Reason: ` + reason)
-                    }
-
-                }
-            }
-        }
+        message.reply('This command is temporarily closed!')
     }
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!ban')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            let unfortunateGuy2 = message.mentions.members.first()
-            if(!unfortunateGuy2) {
-                message.reply('Please respond with a user to ban!')
-            } else {
-                const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1).join(' ')
-                if(!reason) {
-                    message.reply('A reason must be set!')
-                } else {
-                    if(!unfortunateGuy2.bannable) {
-                        return message.channel.send('You cannot ban this member!')
-                    } else {
-                    unfortunateGuy2.ban(message.author.tag + ' banned for the reason a user.')
-                        message.channel.send(unfortunateGuy2.user.tag + ` has been successfully banned! Unban them in the server settings.
-Reason: ` + reason)
-                    }              
-                }
-            }
-        }
+        message.reply('This command is temporarily closed!')
     }
 })
 
@@ -479,9 +426,7 @@ client.on('messageDelete', (messageDelete) => {
                  .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
                  .setThumbnail(messageDelete.author.displayAvatarURL())
                  .setTitle('A Message was Deleted!')
-                 .setDescription(`Content: ${messageDelete.content}
-Channel: ${messageDelete.channel}            
-Sent By: ${messageDelete.author}`)
+                 .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
                 channel.send({embed:deleteEmbed})
     }
 })
@@ -937,11 +882,6 @@ client.on('message', function(message) {
             member.roles.add(role);
             message.channel.send(member.user.tag + ` has been muted!
 Reason: ` + reason)
-member.send(`You have been muted in ${serverGuild.name} by ${message.author.tag}!
-Reason: ` + reason).catch(err => {
-    console.error()
-    return
-  })
                 }
             }
         }
@@ -975,11 +915,6 @@ client.on('message', function(message) {
             member.roles.remove(role);
             message.channel.send(member.user.tag + ` has been unmuted!
 Reason: ` + reason)
-                member.send(`You have been unmuted in ${serverGuild.name} by ${message.author.tag}!
-Reason: ` + reason).catch(err => {
-    console.error()
-    return
-  })
                 }
             }
         }
@@ -1008,37 +943,7 @@ Sent By: ${messageDelete.author}`)
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!mail')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            let mailMan = message.mentions.users.first()
-            const serverGuild = message.guild
-            const args = message.content.split(' ').slice(1)
-            const mail = args.slice(1).join(' ')
-            if(!mailMan) {
-                message.reply('Please mention a user to mail! Note: This is recommended in a moderation channel.')
-            } else if(!mail) {
-                message.reply(`Please include content to message to this user!
-Usage: \`y!mail <User:Mention> <Mail:Text>\``)
-            } else {
-                const mailEmbed = new Discord.MessageEmbed()
-                 .setColor('0dff00')
-                 .setThumbnail(serverGuild.iconURL())
-                 .setTitle('You Have Mail!')
-                 .setDescription(`You have new mail from ${message.author.tag} in ${serverGuild.name}!`)
-                 .addField('Mail:', mail)
-                 .setFooter('API developed by misterdepth')
-                mailMan.send({embed:mailEmbed})
-                    message.channel.send(':mailbox_with_mail: Mail sent to ' + mailMan.tag).catch(err => {
-                    return message.channel.send(':mailbox_closed: This user has their mailbox closed!')
-                });
-            }
-        }
+        message.reply('This command is temporarily closed!')
     }
 })
 client.on('message', function(message) {
@@ -1201,66 +1106,12 @@ Log Status: Successful!
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!giverole')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            const args = message.content.split(' ').slice(1)
-            const roleName = args.slice(1).join(' ')
-            const serverGuild = message.guild
-            const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
-            const member = message.mentions.members.first();
-            if(!member) {
-                message.reply('Please supply a member to assign a role to!')
-            } else if(!roleName) {
-                message.reply('Please supply a role to be given!')
-            } else if(!role) {
-                message.reply('Could not find this role!')
-            } else if (member.roles.cache.some(role => role.name === `${roleName}`)) {
-               message.reply('This user already has that role!')
-            } else {
-                if(member.manageable) {
-                let theUser = message.mentions.users.first()
-                member.roles.add(role)
-                message.channel.send(`${theUser.tag} now has ${roleName}!`)
-                } else {
-                    message.reply('Could not set this user\'s role!')
-                }
-            }
-        }
+       message.reply('This command is temporarily closed!')
     }
 })
 client.on('message', function(message) {
     if(message.content.startsWith('y!removerole')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            const args = message.content.split(' ').slice(1)
-            const roleName = args.slice(1).join(' ')
-            const serverGuild = message.guild
-            const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
-            const member = message.mentions.members.first();
-            if(!member) {
-                message.reply('Please supply a member to remove a role from!')
-            } else if(!roleName) {
-                message.reply('Please supply a role to be removed!')
-            } else if(!role) {
-                message.reply('Could not find this role!')
-            } else if (!member.roles.cache.some(role => role.name === `${roleName}`)) {
-               message.reply('This user does not have that role')
-            } else {
-                if(member.manageable) {
-                let theUser = message.mentions.users.first()
-                member.roles.remove(role)
-                message.channel.send(`${theUser.tag} no longer has ${roleName}!`)
-                } else {
-                    message.reply('Could not remove this role!')
-                }
-            }
-        }
+        message.reply('This command is temporarily closed!')
     }
 })
 
