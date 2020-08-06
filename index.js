@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v0.8.2', {
+    client.user.setActivity('y!help | v1.0.0', {
         type:'WATCHING'
     })
 })
@@ -34,11 +34,12 @@ client.on('message', function(message) {
          .addField('**y!changelog**', 'Check out the changelog for WhyBot.', true)
          .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
          .addField('**y!roses**', 'Get a roses are red poem.', true)
-         .addField('**y!userinfo**', 'Get a user\'s information. More coming soon.', true)
+         .addField('**y!userinfo**', 'Get a user\'s information.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
          .addField('**y!guess**', 'Try to guess the bot\'s number!', true)
          .addField('**y!ping**', 'See the bot\'s latency!', true)
          .addField('**y!fight**', 'Fight another user!', true)
+         .addField('**y!content**', 'The help menu for content!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -50,13 +51,12 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `0.8.2
+         .addField('Changelog:', `1.0.0
     - Added more y!memes
-    - Added y!giverole
-    - Added y!removerole
-    - Added more outcomes if you fight a bot in y!fight
-    
-    NOTE: REMOVEROLE AND GIVEROLE Are being used with some shaky code, so it may be removed later on.`)
+    - Added y!content help menu
+    - Added y!twitch 
+    - Removed 90% of the moderation commands (this bot was never intended to be used as a moderation bot)
+    - BetterBotLogs will no longer take pins/image message updates as message updates`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -157,7 +157,7 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!meme') {
         if(message.author.bot) return;
-       const randomMeme = Math.floor(Math.random()*15+1)
+       const randomMeme = Math.floor(Math.random()*20+1)
        switch(randomMeme) {
            case 1:
                message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
@@ -204,6 +204,21 @@ client.on('message', function(message) {
             case 15:
                 message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534232174723102/fitnes.PNG']})
                 break
+            case 16:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534040041914418/villan.PNG']})
+                break 
+            case 17:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533999319416852/cananda.PNG']})
+                break 
+            case 18:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534219172249691/chessbord.PNG']})
+                break 
+            case 19:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/740946643620462592/20200806_155555.jpg']})
+                break 
+            case 20:
+                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533915152449607/tetris.png']})
+                break 
 
        }
     }
@@ -1031,9 +1046,9 @@ client.on('message', function(message) {
                 if(!channel) {
                     message.reply('Could not find that channel!')
                 } else if(!role) {
-                    message.reply('Could not find this role!')
+                    message.reply('Could not find this role! (This only works with Server Roles, not everyone/here!)')
                 } else {
-                    channel.send(`Hey! ${args[0]} is now live on https://twitch.tv/${args[0]} ! Go watch! ${role}`)
+                    channel.send(`Hey! **${args[0]}** is now live on https://twitch.tv/${args[0]} ! Go watch! ${role}`)
                 }
             }
         }
