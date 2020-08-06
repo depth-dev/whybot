@@ -78,16 +78,6 @@ client.on('message', function(message) {
         message.channel.send({embed:infoEmbed})
     }
 })
-client.on('message', function(message) {
-    if(message.content.startsWith('y!kick')) {
-        message.reply('This command is temporarily closed!')
-    }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!ban')) {
-        message.reply('This command is temporarily closed!')
-    }
-})
 
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
@@ -264,16 +254,7 @@ client.on('message', function(message) {
             .setTitle('WhyBot Moderation Help')
             .setDescription('For administrators and stuff.')
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
-            .addField('**y!kick**', 'Kick a user.', true)
-            .addField('**y!ban**', 'Ban a user.', true)
             .addField('**y!channel**', 'Edit channel permissions!', true)
-            .addField('**y!mute**', 'Mutes a user', true)
-            .addField('**y!unmute**', 'Unmutes a user.', true)
-            .addField('**y!mail**', 'Send a specific user some mail!', true)
-            .addField('**y!giverole**', 'Give a user a role! (WhyBot\'s role must be higher than their role!)', true)
-            .addField('**y!removerole**', 'Remove a user\'s role! (WhyBot\'s role must be higher than their role!)', true)
-            .addField('\u200b', '\u200b', true)
-            .addField('\u200b', '\u200b', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
             .addField('**y!purge**', 'Purge a number of messages.', true)
             .addField('**y!poll**', 'Create a poll! Use the syntax!', true)
@@ -838,72 +819,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on('message', function(message) {
-    if(message.content.startsWith('y!mute')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({noPermsEmbed})
-        } else {
-            const serverGuild = message.guild
-            const role = serverGuild.roles.cache.find(role => role.name === 'Muted');
-            const member = message.mentions.members.first();
-            if(!role) {
-                message.channel.send('Could not find the muted role! Make sure it is called "Muted"!')
-            } else if(!member) {
-                message.channel.send('Please supply a member to mute!')
-            } else if (member.roles.cache.some(role => role.name === 'Muted')) {
-                message.channel.send('This user is already muted!')
-            } else {
-                const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1).join(' ')
-                if(!reason) {
-                    message.channel.send('Please supply a reason to mute this user!')
-                } else {
-            member.roles.add(role);
-            message.channel.send(member.user.tag + ` has been muted!
-Reason: ` + reason)
-                }
-            }
-        }
-    }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!unmute')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
-            message.channel.send({noPermsEmbed})
-        } else {
-            const serverGuild = message.guild
-            const role = serverGuild.roles.cache.find(role => role.name === 'Muted');
-            const member = message.mentions.members.first();
-            if(!role) {
-                message.channel.send('Could not find the muted role to remove! Make sure it is called "Muted"!')
-            } else if(!member) {
-                message.channel.send('Please supply a member to unmute!')
-            } else if (!member.roles.cache.some(role => role.name === 'Muted')) {
-                message.channel.send('This user is already unmuted!')
-            } else {
-                const args = message.content.split(' ').slice(1)
-                const reason = args.slice(1).join(' ')
-                if(!reason) {
-                    message.channel.send('Please supply a reason to unmute this user!')
-                } else {
-            member.roles.remove(role);
-            message.channel.send(member.user.tag + ` has been unmuted!
-Reason: ` + reason)
-                }
-            }
-        }
-    }
-})
 client.on("messageDelete", (messageDelete) => {
     if(messageDelete.channel.type == "dm") return;
     if(messageDelete.guild.id != 670028957772414996) {
@@ -921,11 +836,6 @@ client.on("messageDelete", (messageDelete) => {
      .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
      .setFooter('API developed by misterdepth')
     channel.send({embed:deleteEmbed})
-    }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!mail')) {
-        message.reply('This command is temporarily closed!')
     }
 })
 client.on('message', function(message) {
@@ -1012,34 +922,34 @@ client.on('message', function(message) {
             let randomFightOutcome = Math.floor(Math.random()*10+1)
             switch(randomFightOutcome) {
                 case 1:
-                    message.channel.send(`${message.author} swings in, kicking hard, however ${enemy} wins the fight by barely a hit!`)
+                    message.channel.send(`${message.author.username} swings in, kicking hard, however ${enemy.username} wins the fight by barely a hit!`)
                     break 
                 case 2:
-                    message.channel.send(`Ez! ${message.author} easily wins the fight by intimidating ${enemy}!`)
+                    message.channel.send(`Ez! ${message.author.username} easily wins the fight by intimidating ${enemy.username}!`)
                     break
                 case 3:
-                    message.channel.send(`${enemy} fights hard and strong, but with a few easy taps ${message.author} wins the battle.`)
+                    message.channel.send(`${enemy.username} fights hard and strong, but with a few easy taps ${message.author.username} wins the battle.`)
                     break 
                 case 4:
-                    message.channel.send(`${enemy} uses a gang of sewer rats to chase away ${message.author}!`)
+                    message.channel.send(`${enemy.username} uses a gang of sewer rats to chase away ${message.author.username}!`)
                     break
                 case 5:
-                    message.channel.send(`${message.author} roundhouse kicks ${enemy}, sending him flying into the wall!`)
+                    message.channel.send(`${message.author.username} roundhouse kicks ${enemy.username}, sending him flying into the wall!`)
                     break
                 case 6:
-                    message.channel.send(`${enemy} combos ${message.author} so hard that they fly into oblivion!`)
+                    message.channel.send(`${enemy.username} combos ${message.author.username} so hard that they fly into oblivion!`)
                     break 
                 case 7:
-                    message.channel.send(`${message.author} taps ${enemy} with a finger, blasting him into space.`)
+                    message.channel.send(`${message.author.username} taps ${enemy.username} with a finger, blasting him into space.`)
                     break 
                 case 8:
-                    message.channel.send(`With the power of penguins, ${enemy} intimidates ${message.author} into becoming part of the penguin gang!`)
+                    message.channel.send(`With the power of penguins, ${enemy.username} intimidates ${message.author.username} into becoming part of the penguin gang!`)
                     break 
                 case 9:
-                    message.channel.send(`Coding a sweet algorithm to predict ${message.author}'s moves, ${enemy} takes home the victory.`)
+                    message.channel.send(`Coding a sweet algorithm to predict ${message.author.username}'s moves, ${enemy.username} takes home the victory.`)
                     break 
                 case 10:
-                    message.channel.send(`${enemy} leaves the arena and ${message.author} wins! What a coward ${enemy} is!`)
+                    message.channel.send(`${enemy.username} leaves the arena and ${message.author.username} wins! What a coward ${enemy.username} is!`)
                     break 
             }
             }
@@ -1081,14 +991,23 @@ Log Status: Successful!
     }
 })
 client.on('message', function(message) {
-    if(message.content.startsWith('y!giverole')) {
-       message.reply('This command is temporarily closed!')
+    if(message.content.startsWith('y!content')) {
+        if(message.channel.type == "dm") return;
+        if(message.author.bot) return;
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            const contentHelpMenu = new Discord.MessageEmbed()
+             .setColor('0dff00')
+             .setTitle('WhyBot Content Help Menu')
+             .setDescription('Here are some content commands!')
+             .addField('**y!twitch**', 'Display when you are live on twitch!', true)
+             .addField('Coming Soon', 'More coming soon!', true)
+             .setFooter('API developed by misterdepth')
+            message.channel.send({embed:contentHelpMenu})
+        }
     }
 })
-client.on('message', function(message) {
-    if(message.content.startsWith('y!removerole')) {
-        message.reply('This command is temporarily closed!')
-    }
-})
+
 
 client.login(process.env.token)
