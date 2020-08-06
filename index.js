@@ -1025,6 +1025,7 @@ client.on('message', function(message) {
                 message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else {
                 const channel = client.channels.cache.get(args[1])
+                const serverGuild = message.guild
                 const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
                 if(!channel) {
                     message.reply('Could not find that channel!')
