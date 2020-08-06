@@ -1008,6 +1008,34 @@ client.on('message', function(message) {
         }
     }
 })
-
+client.on('message', function(message) {
+    if(message.content.startsWith('y!twitch')) {
+        if(message.channel.type == "dm") return;
+        if(message.author.bot) return;  
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            const args = message.content.split(' ').slice(1)
+            const roleName = args.slice(2).join(' ')
+            if(!args[0]) {
+                message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
+            } else if(!args[1]) {
+                message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
+            } else if(!roleName) {
+                message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
+            } else {
+                const channel = client.channels.cache.get(args[1])
+                const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
+                if(!channel) {
+                    message.reply('Could not find that channel!')
+                } else if(!role) {
+                    message.reply('Could not find this role!')
+                } else {
+                    channel.send(`Hey! ${args[0]} is now live on https://twitch.tv/${args[0]}! Go watch! ${role}`)
+                }
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
