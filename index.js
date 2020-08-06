@@ -1033,7 +1033,7 @@ client.on('message', function(message) {
                 } else if(!role) {
                     message.reply('Could not find this role!')
                 } else {
-                    channel.send(`Hey! ${args[0]} is now live on https://twitch.tv/${args[0]}! Go watch! ${role}`)
+                    channel.send(`Hey! ${args[0]} is now live on https://twitch.tv/${args[0]} ! Go watch! ${role}`)
                 }
             }
         }
