@@ -1024,7 +1024,8 @@ client.on('message', function(message) {
             } else if(!roleName) {
                 message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else {
-                const channel = client.channels.cache.get()
+                const theChannel = args[1].replace('#', '').replace('<', '').replace('>', '')
+                const channel = client.channels.cache.get(theChannel)
                 const serverGuild = message.guild
                 const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
                 if(!channel) {
@@ -1036,13 +1037,6 @@ client.on('message', function(message) {
                 }
             }
         }
-    }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('channeltest')) {
-        const args = message.content.split(' ').slice(1)
-        const channelName = args[0].replace('#', '')
-        message.reply(channelName)
     }
 })
 
