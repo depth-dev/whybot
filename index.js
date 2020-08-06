@@ -1024,7 +1024,7 @@ client.on('message', function(message) {
             } else if(!roleName) {
                 message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else {
-                const channel = client.channels.cache.get(args[1])
+                const channel = client.channels.cache.get(args[1].id)
                 const serverGuild = message.guild
                 const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
                 if(!channel) {
