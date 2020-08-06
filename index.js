@@ -1054,5 +1054,42 @@ client.on('message', function(message) {
         }
     }
 })
+client.on("messageDelete", (messageDelete) => {
+    if(messageDelete.channel.type == "dm") return;
+    if(messageDelete.guild.id != 741043961736462386) {
+        return
+    } else {
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
+    const channel = client.channels.cache.get('741055677388292226');  
+    if(messageDelete.author.bot) return;
+    const deleteEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+     .setThumbnail(messageDelete.author.displayAvatarURL())
+     .setTitle('A Message was Deleted!')
+     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:deleteEmbed})
+    }
+})
+client.on("messageUpdate", (oldMessage, newMessage) => {
+    if(newMessage.channel.type == "dm") return;
+    if(newMessage.guild.id != 741043961736462386) {
+        return
+    } else {
+    if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
+    const channel = client.channels.cache.get('741055677388292226');  
+    const editEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
+     .setThumbnail(newMessage.author.displayAvatarURL())
+     .setTitle('A Message was Updated!')
+     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
+     .setFooter('API developed by misterdepth')
+    channel.send({embed:editEmbed})
+    }
+   });
 
 client.login(process.env.token)
