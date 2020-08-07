@@ -46,13 +46,13 @@ client.on('message', function(message) {
 })
 client.on('message', async (msg) =>{
     if(msg.content.startsWith('y!purge')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
+        if(msg.author.bot) return;
+        if(msg.channel.type == "dm") {
+            msg.channel.send('You cannot use this feature in Direct Messages!')
             return
         }
-        if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
-            message.channel.send('Woops! I can\'t use this command here! Please give me the `MANAGE_MESSAGES` Permission!')
+        if(!msg.guild.me.hasPermission('MANAGE_MESSAGES')) {
+            msg.channel.send('Woops! I can\'t use this command here! Please give me the `MANAGE_MESSAGES` Permission!')
         } else {
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
