@@ -44,6 +44,32 @@ client.on('message', function(message) {
         message.channel.send({embed:youelpEmbed})
     }
 })
+client.on('message', async (msg) =>{
+    if(msg.content.startsWith('y!purge')) {
+        if(message.author.bot) return;
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this feature in Direct Messages!')
+            return
+        }
+        if(!message.guild.me.hasPermission('MANAGE_MESSAGES')) {
+            message.channel.send('Woops! I can\'t use this command here! Please give me the `MANAGE_MESSAGES` Permission!')
+        } else {
+        if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
+            msg.channel.send({embed:noPermsEmbed})
+        } else {
+            const args = msg.content.split(' ').slice(1)
+            const amount = args.join(' ')
+            if (!amount) return msg.reply('You haven\'t given an amount of messages which should be deleted!')
+            if (isNaN(amount)) return msg.reply('The amount parameter isn`t a number!')
+            if (amount > 100) return msg.reply('You can`t delete more than 100 messages at once!')
+            if (amount < 1) return msg.reply('You have to delete at least 1 message!')
+            await msg.channel.messages.fetch({ limit: amount }).then(messages => { // Fetches the messages
+                msg.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
+            )});
+        }
+    }
+    }
+})
 client.on('message', function(message) {
     if(message.content == 'y!changelog') {
         if(message.author.bot) return;
