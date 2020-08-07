@@ -1041,9 +1041,9 @@ client.on('message', function(message) {
             if(!args[0]) {
                 message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else if(!args[1]) {
-                message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
+                message.channel.send('Invalid Usage! Please provide a channel! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else if(!roleName) {
-                message.channel.send('Invalid Usage! Please provide your Twitch Username! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
+                message.channel.send('Invalid Usage! Please provide a role! Ex: `y!twitch <IGN:Text> <Channel:Channel> <Ping:RoleName>`')
             } else {
                 const theChannel = args[1].replace('#', '').replace('<', '').replace('>', '')
                 const channel = client.channels.cache.get(theChannel)
@@ -1097,5 +1097,38 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     channel.send({embed:editEmbed})
     }
    });
+   client.on('message', function(message) {
+    if(message.content.startsWith('y!youtube')) {
+        if(message.channel.type == "dm") return;
+        if(message.author.bot) return;  
+        if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+            message.channel.send({embed:noPermsEmbed})
+        } else {
+            const args = message.content.split(' ').slice(1)
+            const roleName = args.slice(3).join(' ')
+            if(!args[0]) {
+                message.channel.send('Invalid Usage! Please provide your Youtube Username! Ex: `y!youtube <IGN:Text> <Channel:Channel> <URL:Link> <Ping:RoleName>`')
+            } else if(!args[1]) {
+                message.channel.send('Invalid Usage! Please provide a channel! Ex: `y!youtube <IGN:Text> <Channel:Channel> <URL:Link> <Ping:RoleName>`')
+            } else if(!args[2]) {
+                message.channel.send('Invalid usage! Please provide the video URL! Ex: `y!youtube <IGN:Text> <Channel:Channel> <URL:Link> <Ping:RoleName>`')
+            } else if(!roleName) {
+                message.channel.send('Invalid Usage! Please provide a role! Ex: `y!youtube <IGN:Text> <Channel:Channel> <URL:Link> <Ping:RoleName>`')
+            } else {
+                const theChannel = args[1].replace('#', '').replace('<', '').replace('>', '')
+                const channel = client.channels.cache.get(theChannel)
+                const serverGuild = message.guild
+                const role = serverGuild.roles.cache.find(role => role.name === `${roleName}`);
+                if(!channel) {
+                    message.reply('Could not find that channel!')
+                } else if(!role) {
+                    message.reply('Could not find this role! (This only works with Server Roles, not everyone/here!)')
+                } else {
+                    channel.send(`Hey! ${args[0]} just uploaded a new video ${args[2]} ! Go watch! ${role}`)
+                }
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
