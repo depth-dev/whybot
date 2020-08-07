@@ -720,6 +720,9 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
+            if(message.guild.me.hasPermission('MANAGE_CHANNELS')) {
+                message.channel.send('Woops! Looks like I can\'t use this command! Please give me the `MANAGE_CHANNELS` permission!')
+            } else {
             switch(args[0]) {
                 case "visible":
                     const channelVis = client.channels.cache.get(message.channel.id);  
@@ -762,6 +765,7 @@ client.on('message', function(message) {
 All lowercase!`)
                     
             }
+        }
         }
     }
 })
