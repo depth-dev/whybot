@@ -13,7 +13,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v1.0.0', {
+    client.user.setActivity('y!help | v1.0.1', {
         type:'WATCHING'
     })
 })
@@ -77,12 +77,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.0.0
-    - Added more y!memes
-    - Added y!content help menu
-    - Added y!twitch 
-    - Removed 90% of the moderation commands (this bot was never intended to be used as a moderation bot)
-    - BetterBotLogs will no longer take pins/image message updates as message updates`)
+         .addField('Changelog:', `1.0.1
+    - Added y!youtube
+    - Fixed a few bugs
+    - Made a few things smoother`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -1023,7 +1021,7 @@ client.on('message', function(message) {
              .setTitle('WhyBot Content Help Menu')
              .setDescription('Here are some content commands!')
              .addField('**y!twitch**', 'Display when you are live on twitch!', true)
-             .addField('Coming Soon', 'More coming soon!', true)
+             .addField('**y!youtube**', 'Display when you upload a video on YouTube!', true)
              .setFooter('API developed by misterdepth')
             message.channel.send({embed:contentHelpMenu})
         }
@@ -1096,8 +1094,8 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setFooter('API developed by misterdepth')
     channel.send({embed:editEmbed})
     }
-   });
-   client.on('message', function(message) {
+});
+client.on('message', function(message) {
     if(message.content.startsWith('y!youtube')) {
         if(message.channel.type == "dm") return;
         if(message.author.bot) return;  
@@ -1123,8 +1121,10 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
                     message.reply('Could not find that channel!')
                 } else if(!role) {
                     message.reply('Could not find this role! (This only works with Server Roles, not everyone/here!)')
+                } else if(!args[2].startsWith('https://youtube.com/watch?v=')) {
+                    message.reply('This isn\'t a valid YouTube video URL! Please provide a valid **YouTube video URL**.')
                 } else {
-                    channel.send(`Hey! ${args[0]} just uploaded a new video ${args[2]} ! Go watch! ${role}`)
+                    channel.send(`Hey! **${args[0]}** just uploaded a new video ${args[2]} ! Go watch! ${role}`)
                 }
             }
         }
