@@ -32,7 +32,6 @@ client.on('message', function(message) {
          .addField('**y!modhelp**', 'For administrators.', true)
          .addField('**y!info**', 'Check out some information on the bot.', true)
          .addField('**y!question**', 'Be asked a question by the bot.', true)
-         .addField('**y!changelog**', 'Check out the changelog for WhyBot.', true)
          .addField('**y!invite**', 'Get the invite link for WhyBot.', true)
          .addField('**y!roses**', 'Get a roses are red poem.', true)
          .addField('**y!userinfo**', 'Get a user\'s information.', true)
@@ -41,6 +40,7 @@ client.on('message', function(message) {
          .addField('**y!ping**', 'See the bot\'s latency!', true)
          .addField('**y!fight**', 'Fight another user!', true)
          .addField('**y!content**', 'The help menu for content!', true)
+         .addField('**y!animals**', 'Animal command help menu!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -1131,15 +1131,38 @@ client.on('message', function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!animals') {
+        const animalHelpEmbed = new Discord.MessageEmbed()
+         .setColor('0dff00')
+         .setTitle('WhyBot Animal Commands')
+         .setDescription('Here are some wholesome commands!')
+         .addField('**y!cat**', 'Get an image of a cat!', true)
+         .addField('**y!dog**', 'Get an image of a dog.', true)
+         .addField('**y!fox**', 'Get an image of a fox!', true)
+         .setFooter('API developed by misterdepth')
+    }
+})
 client.on('message', async function(message) {
     if(message.content == 'y!cat') {
         const obj = await fetch("https://api.thecatapi.com/v1/images/search").then(x => x.json())
         const catURL = obj[0]
         const catEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
-         .setTitle('Meow!')
+         .setTitle(':heart_eyes_cat: Meow!')
          .setImage(catURL.url)
         message.channel.send({embed:catEmbed})
+    }
+})
+client.on('message', async function(message) {
+    if(message.content == 'y!dog') {
+        const obj = await fetch("https://api.thedogapi.com/v1/images/search").then(x => x.json())
+        const dogURL = obj[0]
+        const dogEmbed = new Discord.MessageEmbed()
+         .setColor('0dff00')
+         .setTitle(':dog: Woof!')
+         .setImage(dogURL.url)
+        message.channel.send({embed:dogEmbed})
         console.log(obj)
     }
 })
