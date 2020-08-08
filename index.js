@@ -1171,9 +1171,8 @@ client.on('message', async function(message) {
         const foxEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle(':fox: Fox!')
-         .setImage(obj.url)
+         .setImage(obj.image)
         message.channel.send({embed:foxEmbed})
-        console.log(obj)
     }
 })
 
