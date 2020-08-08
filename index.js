@@ -1152,6 +1152,7 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':heart_eyes_cat: Meow!')
          .setImage(catURL.url)
+         .setFooter('Images provided by [TheCatApi](https://thecatapi.com)')
         message.channel.send({embed:catEmbed})
     }
 })
@@ -1163,6 +1164,7 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':dog: Woof!')
          .setImage(dogURL.url)
+         .setFooter('Images provided by [TheDogApi](https://thedogapi.com)')
         message.channel.send({embed:dogEmbed})
     }
 })
@@ -1173,17 +1175,8 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':fox: Fox!')
          .setImage(obj.image)
+         .setFooter('Images provided by [RandomFox](https://randomfox.ca)')
         message.channel.send({embed:foxEmbed})
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!dmme') {
-        try {
-            message.author.send('hi')
-        } catch (error) {
-            message.reply('a')
-            return
-        }
     }
 })
 
