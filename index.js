@@ -1141,6 +1141,7 @@ client.on('message', function(message) {
          .addField('**y!dog**', 'Get an image of a dog.', true)
          .addField('**y!fox**', 'Get an image of a fox!', true)
          .setFooter('API developed by misterdepth')
+        message.channel.send({embed:animalHelpEmbed})
     }
 })
 client.on('message', async function(message) {
@@ -1173,6 +1174,16 @@ client.on('message', async function(message) {
          .setTitle(':fox: Fox!')
          .setImage(obj.image)
         message.channel.send({embed:foxEmbed})
+    }
+})
+client.on('message', function(message) {
+    if(message.content == 'y!dmme') {
+        try {
+            message.author.send('hi')
+        } catch (err) {
+            message.reply('a')
+            console.log(err)
+        }
     }
 })
 
