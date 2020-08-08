@@ -1201,7 +1201,7 @@ client.on('message', async function(message) {
                  .setTitle('Minecraft Information for User')
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}?overlay`) 
                  .setDescription(`**Past Usernames:**\n ` + nameArray)
-                 .addField('**Skin:**', `[Download Skin](https://crafatar.com/skins/${uuid}`)
+                 .addField('**Skin:**', `[Download Skin](https://crafatar.com/skins/${uuid})`)
                  .setFooter('Names Provided by Mojang API, Avatar Provided by Crafatar API')
                 message.channel.send({embed:thingEmbed})
             }
