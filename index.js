@@ -1186,6 +1186,10 @@ client.on('message', async function(message) {
             message.reply('You must provide a name!')
         } else if(!isNaN(args[0])) {
             message.reply('This is an invalid name!')
+        } else if(args[0] < 3) {
+            message.reply('This is an invalid name!')
+        } else if(args[0] > 16) {
+            message.reply('This is an invalid name!')
         } else {
             const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json())
             const uuid = obj.id 
@@ -1198,7 +1202,7 @@ client.on('message', async function(message) {
                  .setColor('0dff00')
                  .setTitle('Minecraft Information for User')
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
-                 .setDescription('**Past Usernames:**\n ' + nameArray)
+                 .setDescription(`**Past Usernames (Total ${nameArray.length}):**\n ` + nameArray)
                 message.channel.send({embed:thingEmbed})
             }
 
