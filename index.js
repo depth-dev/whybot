@@ -1139,6 +1139,7 @@ client.on('message', async function(message) {
          .setTitle('Meow!')
          .setImage(obj.url)
         message.channel.send({embed:catEmbed})
+        console.log(obj.url)
     }
 })
 
