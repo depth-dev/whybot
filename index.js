@@ -1152,7 +1152,7 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':heart_eyes_cat: Meow!')
          .setImage(catURL.url)
-         .setFooter('Images provided by [TheCatApi](https://thecatapi.com)')
+         .setFooter('Images provided by https://thecatapi.com')
         message.channel.send({embed:catEmbed})
     }
 })
@@ -1164,7 +1164,7 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':dog: Woof!')
          .setImage(dogURL.url)
-         .setFooter('Images provided by [TheDogApi](https://thedogapi.com)')
+         .setFooter('Images provided by https://thedogapi.com')
         message.channel.send({embed:dogEmbed})
     }
 })
@@ -1175,7 +1175,7 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle(':fox: Fox!')
          .setImage(obj.image)
-         .setFooter('Images provided by [RandomFox](https://randomfox.ca)')
+         .setFooter('Images provided by https://randomfox.ca')
         message.channel.send({embed:foxEmbed})
     }
 })
