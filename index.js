@@ -1193,7 +1193,7 @@ client.on('message', async function(message) {
                 message.reply('This is an invalid name!')
             } else {
                 const nameHistory = await fetch(`https://api.mojang.com/user/profiles/${uuid}/names`).then(x => x.json())
-                const nameArray = nameHistory.map(x => x.name)
+                const nameArray = nameHistory.map(x => x.name).join('\n')
                 const thingEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
                  .setTitle('Minecraft Information for User')
