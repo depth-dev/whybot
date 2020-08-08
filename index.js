@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const fetch = require('node-fetch')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -1128,6 +1129,17 @@ client.on('message', function(message) {
                 }
             }
         }
+    }
+})
+client.on('message', async function(message) {
+    if(message.content == 'y!cat') {
+        const obj = await fetch("https://api.thecatapi.com/v1/images/search").then(x => x.json())
+        const catURL = JSON.parse(obj)
+        const catEmbed = new Discord.MessageEmbed()
+         .setColor('0dff00')
+         .setTitle('Meow!')
+         .setImage(catURL.url)
+        message.channel.send({embed:catEmbed})
     }
 })
 
