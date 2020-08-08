@@ -14,7 +14,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v1.0.1', {
+    client.user.setActivity('y!help | v1.1.0', {
         type:'WATCHING'
     })
 })
@@ -37,10 +37,10 @@ client.on('message', function(message) {
          .addField('**y!userinfo**', 'Get a user\'s information.', true)
          .addField('**y!betterbotlogs**', 'See information about BetterBotLogs!', true)
          .addField('**y!guess**', 'Try to guess the bot\'s number!', true)
-         .addField('**y!ping**', 'See the bot\'s latency!', true)
          .addField('**y!fight**', 'Fight another user!', true)
          .addField('**y!content**', 'The help menu for content!', true)
          .addField('**y!animals**', 'Animal command help menu!', true)
+         .addField('**y!mcinfo**', 'See the minecraft information for a user!', true)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -78,10 +78,11 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.0.1
-    - Added y!youtube
+         .addField('Changelog:', `1.1.0: The API Update
+    - Added y!animals (including some wholesome API photos)
+    - Added y!mcinfo
     - Fixed a few bugs
-    - Made a few things smoother`)
+    - Maybe began looking into bringing moderation commands back?`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -1198,8 +1199,10 @@ client.on('message', async function(message) {
                 const thingEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
                  .setTitle('Minecraft Information for User')
-                 .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
+                 .setThumbnail(`https://crafatar.com/avatars/${uuid}?overlay`) 
                  .setDescription(`**Past Usernames:**\n ` + nameArray)
+                 .addField('**Skin:**', `[Download Skin](https://crafatar.com/skins/${uuid}`)
+                 .setFooter('Names Provided by Mojang API, Avatar Provided by Crafatar API')
                 message.channel.send({embed:thingEmbed})
             }
             } catch (err) {
