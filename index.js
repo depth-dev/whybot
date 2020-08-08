@@ -1135,9 +1135,7 @@ client.on('message', function(message) {
 client.on('message', function(message) {
     if(message.content == 'y!animals') {
         if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in DMs!')
-        }
+        if(message.channel.type == "dm") return
         const animalHelpEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Animal Commands')
@@ -1152,9 +1150,7 @@ client.on('message', function(message) {
 client.on('message', async function(message) {
     if(message.content == 'y!cat') {
         if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in DMs!')
-        }
+        if(message.channel.type == "dm") return
         const obj = await fetch("https://api.thecatapi.com/v1/images/search").then(x => x.json())
         const catURL = obj[0]
         const catEmbed = new Discord.MessageEmbed()
@@ -1168,9 +1164,7 @@ client.on('message', async function(message) {
 client.on('message', async function(message) {
     if(message.content == 'y!dog') {
         if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in DMs!')
-        }
+        if(message.channel.type == "dm") return
         const obj = await fetch("https://api.thedogapi.com/v1/images/search").then(x => x.json())
         const dogURL = obj[0]
         const dogEmbed = new Discord.MessageEmbed()
@@ -1184,9 +1178,7 @@ client.on('message', async function(message) {
 client.on('message', async function(message) {
     if(message.content == 'y!fox') {
         if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in DMs!')
-        }
+        if(message.channel.type == "dm") return
         const obj = await fetch("https://randomfox.ca/floof/").then(x => x.json())
         const foxEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
@@ -1199,9 +1191,7 @@ client.on('message', async function(message) {
 client.on('message', async function(message) {
     if(message.content.startsWith('y!mcinfo')) {
         if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in DMs!')
-        }
+        if(message.channel.type == "dm") return
         const args = message.content.split(' ').slice(1)
         if(!args[0]) {
             message.reply('You must provide a name!')
