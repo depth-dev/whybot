@@ -1163,7 +1163,17 @@ client.on('message', async function(message) {
          .setTitle(':dog: Woof!')
          .setImage(dogURL.url)
         message.channel.send({embed:dogEmbed})
-        console.log(obj)
+    }
+})
+client.on('message', async function(message) {
+    if(message.content == 'y!fox') {
+        const obj = await fetch("https://randomfox.ca/floof/").then(x => x.json())
+        const foxURL = obj.replace('\\', '')
+        const foxEmbed = new Discord.MessageEmbed()
+         .setColor('0dff00')
+         .setTitle(':fox: Fox!')
+         .setImage(foxURL.url)
+        message.channel.send({embed:foxEmbed})
     }
 })
 
