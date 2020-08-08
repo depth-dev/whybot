@@ -709,6 +709,8 @@ client.on('message', function(message) {
                                 const theChannel = message.channel.id
                                 const theGuild = message.guild.id
                                 console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
+                                const anotherChannel = client.channels.cache.get('741707735833378927')
+                                anotherChannel.send('NEW REQUEST:\nChannel: ' + theChannel + '\nServer: ' + theGuild)
                                 message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
 Join the support server to keep everything updated!
 Invite: https://discord.com/invite/9JhEsHe`)
