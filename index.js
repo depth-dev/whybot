@@ -1189,9 +1189,6 @@ client.on('message', async function(message) {
         } else {
             try {
             const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json())
-            } catch (err) {
-                message.reply('This is an invalid name!')
-            }
             const uuid = obj.id 
             if(!uuid) {
                 message.reply('This is an invalid name!')
@@ -1204,6 +1201,9 @@ client.on('message', async function(message) {
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
                  .setDescription(`**Past Usernames:**\n ` + nameArray)
                 message.channel.send({embed:thingEmbed})
+            }
+            } catch (err) {
+                message.reply('This is an invalid name!')
             }
 
         }
