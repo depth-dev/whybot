@@ -1202,7 +1202,7 @@ client.on('message', async function(message) {
                  .setColor('0dff00')
                  .setTitle('Minecraft Information for User')
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
-                 .setDescription(`**Past Usernames (Total ${nameArray.length}):**\n ` + nameArray)
+                 .setDescription(`**Past Usernames:**\n ` + nameArray)
                 message.channel.send({embed:thingEmbed})
             }
 
