@@ -1182,7 +1182,7 @@ client.on('message', function(message) {
             message.author.send('hi')
         } catch (err) {
             message.reply('a')
-            console.log(err)
+            return
         }
     }
 })
