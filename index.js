@@ -1180,7 +1180,7 @@ client.on('message', function(message) {
     if(message.content == 'y!dmme') {
         try {
             message.author.send('hi')
-        } catch (err) {
+        } catch (error) {
             message.reply('a')
             return
         }
