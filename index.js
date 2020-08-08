@@ -1189,11 +1189,16 @@ client.on('message', async function(message) {
             const uuid = obj.id 
             if(!uuid) {
                 message.reply('This is an invalid name!')
+            } else if(!isNaN(args[0])) {
+                message.reply('This is an invalid name!')
             } else {
+                const nameHistory = await fetch(`https://api.mojang.com/user/profiles/${id}/names`).then(x => x.json())
+                const nameArray = nameHistory.map(x => x.name)
                 const thingEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
-                 .setTitle('Minecraft Test')
-                 .setThumbnail(`https://crafatar.com/avatars/${uuid}`)
+                 .setTitle('Minecraft Information for User')
+                 .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
+                 .setDescription('Past Usernames:\n ' + nameArray)
                 message.channel.send({embed:thingEmbed})
             }
 
