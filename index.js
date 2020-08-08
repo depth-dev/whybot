@@ -1187,7 +1187,8 @@ client.on('message', async function(message) {
         } else if(!isNaN(args[0])) {
             message.reply('This is an invalid name!')
         } else {
-            const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json()).catch(() => {message.reply('This is an invalid name!')})
+            const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json()).catch(() => {message.reply('This is an invalid name!')
+        return})
             const uuid = obj.id 
             if(!uuid) {
                 message.reply('This is an invalid name!')
