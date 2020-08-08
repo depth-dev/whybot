@@ -1179,5 +1179,26 @@ client.on('message', async function(message) {
         message.channel.send({embed:foxEmbed})
     }
 })
+client.on('message', async function(message) {
+    if(message.content.startsWith('y!mcinfo')) {
+        const args = message.content.split(' ').slice(1)
+        if(!args[0]) {
+            message.reply('You must provide a name!')
+        } else {
+            const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json())
+            const uuid = obj.id 
+            if(!uuid) {
+                message.reply('This is an invalid name!')
+            } else {
+                const thingEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setTitle('Minecraft Test')
+                 .setThumbnail(`https://crafatar.com/avatars/${uuid}`)
+                message.channel.send({embed:thingEmbed})
+            }
+
+        }
+    }
+})
 
 client.login(process.env.token)
