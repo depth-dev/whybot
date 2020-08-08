@@ -1168,11 +1168,10 @@ client.on('message', async function(message) {
 client.on('message', async function(message) {
     if(message.content == 'y!fox') {
         const obj = await fetch("https://randomfox.ca/floof/").then(x => x.json())
-        const foxURL = obj.replace('\\', '')
         const foxEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle(':fox: Fox!')
-         .setImage(foxURL.url)
+         .setImage(obj.url)
         message.channel.send({embed:foxEmbed})
     }
 })
