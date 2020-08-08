@@ -1184,12 +1184,12 @@ client.on('message', async function(message) {
         const args = message.content.split(' ').slice(1)
         if(!args[0]) {
             message.reply('You must provide a name!')
+        } else if(!isNaN(args[0])) {
+            message.reply('This is an invalid name!')
         } else {
             const obj = await fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`).then(x => x.json())
             const uuid = obj.id 
             if(!uuid) {
-                message.reply('This is an invalid name!')
-            } else if(!isNaN(args[0])) {
                 message.reply('This is an invalid name!')
             } else {
                 const nameHistory = await fetch(`https://api.mojang.com/user/profiles/${uuid}/names`).then(x => x.json())
@@ -1198,7 +1198,7 @@ client.on('message', async function(message) {
                  .setColor('0dff00')
                  .setTitle('Minecraft Information for User')
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}`) 
-                 .setDescription('Past Usernames:\n ' + nameArray)
+                 .setDescription('**Past Usernames:**\n ' + nameArray)
                 message.channel.send({embed:thingEmbed})
             }
 
