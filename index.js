@@ -1173,6 +1173,7 @@ client.on('message', async function(message) {
          .setTitle(':fox: Fox!')
          .setImage(obj.url)
         message.channel.send({embed:foxEmbed})
+        console.log(obj)
     }
 })
 
