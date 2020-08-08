@@ -1134,10 +1134,11 @@ client.on('message', function(message) {
 client.on('message', async function(message) {
     if(message.content == 'y!cat') {
         const obj = await fetch("https://api.thecatapi.com/v1/images/search").then(x => x.json())
+        const catURL = obj[0]
         const catEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('Meow!')
-         .setImage(obj.url)
+         .setImage(catURL.url)
         message.channel.send({embed:catEmbed})
         console.log(obj)
     }
