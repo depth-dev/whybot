@@ -1192,7 +1192,7 @@ client.on('message', async function(message) {
             } else if(!isNaN(args[0])) {
                 message.reply('This is an invalid name!')
             } else {
-                const nameHistory = await fetch(`https://api.mojang.com/user/profiles/${id}/names`).then(x => x.json())
+                const nameHistory = await fetch(`https://api.mojang.com/user/profiles/${uuid}/names`).then(x => x.json())
                 const nameArray = nameHistory.map(x => x.name)
                 const thingEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
