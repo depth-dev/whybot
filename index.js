@@ -643,6 +643,10 @@ client.on('message', function(message) {
             } else {
             switch(args[0]) {
                 case "visible":
+                    const alrPerms = message.channel.permissionOverwrites.get(id)
+                    if(alrPerms && alrPerms.READ_MESSAGES === true) {
+                        message.reply('This channel is already visible!')
+                    }
                     const channelVis = client.channels.cache.get(message.channel.id);  
                     channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
                     message.channel.send('Channel is now visible!')
@@ -1014,6 +1018,7 @@ client.on('message', async function(message) {
                  .setThumbnail(`https://crafatar.com/avatars/${uuid}?overlay`) 
                  .setDescription(`**Past Usernames:**\n ` + nameArray)
                  .addField('**Skin:**', `[Download Skin](https://crafatar.com/skins/${uuid})`)
+                 .addField('**UUID**:', `${uuid}`)
                  .setFooter('Names Provided by Mojang API, Avatar Provided by Crafatar API')
                 message.channel.send({embed:thingEmbed})
             }
