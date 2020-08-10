@@ -14,7 +14,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v1.1.0', {
+    client.user.setActivity('y!help | v1.2.0', {
         type:'WATCHING'
     })
 })
@@ -78,11 +78,9 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.1.0: The API Update
-    - Added y!animals (including some wholesome API photos)
-    - Added y!mcinfo
-    - Fixed a few bugs
-    - Maybe began looking into bringing moderation commands back?`)
+         .addField('Changelog:', `1.2.0: The BetterBotLogs Update
+    - BetterBotLogs will now log to a channel called 'message-logs'
+    - y!betterbotlogs check was added!`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -614,23 +612,15 @@ client.on('message', function(message) {
             .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
             .setFooter('API developed by misterdepth')
            message.channel.send({embed:BotLogEmbed})
-        } else {
-            if(!message.member.hasPermission('ADMINISTRATOR')) {
-                    message.channel.send({embed:noPermsEmbed})
-                } else {
-                const BotLogEmbed = new Discord.MessageEmbed()
-                .setColor('0dff00')
-                .setTitle('BetterBotLogs Information:')
-                .setImage('https://cdn.discordapp.com/attachments/715386760317894757/738532821802418176/unknown.png')
-                .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
-                .addField('Features: ', `- Seeing Deleted Messages
-       - Seeing Edited Messages
-       
-       More to come! This bot is still in development!`)
-                .addField('How Can I Get BetterBotLogs?', 'Create a channel called "message-logs", and it will appear there!')
-                .setFooter('API developed by misterdepth')
-               message.channel.send({embed:BotLogEmbed})
-            }
+           if(args[0] == 'check') {
+               const serverGuild = message.guild
+               const channelThing = serverGuild.channels.cache.find(x => x.name === "message-logs")
+               if(!channelThing) {
+                   message.reply('A message logging channel was not found! Make sure it is called "message-logs"!')
+               } else {
+                   message.reply(`A message logging channel was found! (${channelThing})`)
+               }
+           }
         }
     }
 })
