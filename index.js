@@ -636,9 +636,7 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-            if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
-                message.channel.send('Woops! Looks like I can\'t use this command! Please give me the `MANAGE_CHANNELS` permission!')
-            } else {
+            try {
             switch(args[0]) {
                 case "visible":
                     const channelVis = client.channels.cache.get(message.channel.id);  
@@ -679,8 +677,9 @@ client.on('message', function(message) {
     - Images (allows members to send images)
     - Text (disallows members to send images)
 All lowercase!`)
-                    
             }
+            } catch(err) {
+                message.reply('Woops! Something went wrong, probably with permissions! Make sure I have the permissions "manage_channels"!')
         }
         }
     }
