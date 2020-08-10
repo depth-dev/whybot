@@ -12,12 +12,6 @@ const noPermsEmbed = new Discord.MessageEmbed()
  .setDescription('Sorry, but you do not have the required permissions!')
  .setFooter('API developed by misterdepth')
 
-mongoose.connect('mongodb://localhost:27017/whybot', {
-    useNewUrlParser: true }, (err) => {
-        if(err) return console.error()
-        console.log('COnnected to MongoDB')
-})
-
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setActivity('y!help | v1.1.0', {
