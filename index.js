@@ -414,7 +414,7 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.channel.type == "dm") return;
         if(messageDelete.content.startsWith('y!poll')) return;
         if(messageDelete.content.startsWith('y!feedback')) return;
-                const channel = client.channels.cache.get(x => x.name === "message-logs");
+                const channel = client.channels.cache.find(x => x.name === "message-logs");
                 if(!channel) return  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
@@ -430,7 +430,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     if(newMessage.channel.type == "dm") return;
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get(x => x.name === "message-logs");  
+    const channel = client.channels.cache.find(x => x.name === "message-logs");  
     if(!channel) return
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
@@ -440,11 +440,6 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
    }); 
-client.on('message', function(message) {
-    if(message.content == 'y!test') {
-        message.channel.send(message.channel.name)
-    }
-})
 client.on('message', function(message) {
     if(message.content == 'y!roses') {
         if(message.author.bot) return;
