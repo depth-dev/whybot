@@ -53,7 +53,7 @@ client.on('message', async (msg) =>{
             return
         }
         if(!msg.guild.me.hasPermission('MANAGE_MESSAGES')) {
-            msg.channel.send('Woops! I can\'t use this command here! Please give me the `MANAGE_MESSAGES` Permission!')
+            msg.channel.send('Woops! I can\'t use this command here! Please give me the `MANAGE_MESSAGES` Permission in the server (no channel permission overwrites)!')
         } else {
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
