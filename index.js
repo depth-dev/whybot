@@ -643,10 +643,10 @@ client.on('message', function(message) {
             } else {
             switch(args[0]) {
                 case "visible":
-                    if(!message.channel.permissionsFor(message.guild.id).has('READ_MESSAGES')) {
+                    const channelVis = client.channels.cache.get(message.channel.id);  
+                    if(channelVis.permissionsFor(message.guild.roles.everyone).has('READ_MESSAGES')) {
                         message.reply('This channel is already closed!')
                     }
-                    const channelVis = client.channels.cache.get(message.channel.id);  
                     channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
                     message.channel.send('Channel is now visible!')
                     break 
