@@ -414,7 +414,8 @@ client.on('messageDelete', (messageDelete) => {
     if(messageDelete.channel.type == "dm") return;
         if(messageDelete.content.startsWith('y!poll')) return;
         if(messageDelete.content.startsWith('y!feedback')) return;
-                const channel = client.channels.cache.find(x => x.name === "message-logs");
+        const serverGuild = messageDelete.guild
+                const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");
                 if(!channel) return  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
@@ -430,7 +431,7 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     if(newMessage.channel.type == "dm") return;
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
-    const serverGuild = message.guild
+    const serverGuild = newMessage.guild
     const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");  
     if(!channel) return
     const editEmbed = new Discord.MessageEmbed()
