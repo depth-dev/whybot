@@ -636,60 +636,39 @@ client.on('message', function(message) {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
+            if(!message.guild.me.hasPermission('MANAGE_CHANNELS')) {
+                message.reply('I don\'t have permissions! Make sure I have guild permissions "MANAGE_CHANNELS" with no channel permissions!')
+            } else {
             switch(args[0]) {
                 case "visible":
-                    try {
                     const channelVis = client.channels.cache.get(message.channel.id);  
                     channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
                     message.channel.send('Channel is now visible!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break 
                 case "invisible":
-                    try {
                     const channelInvis = client.channels.cache.get(message.channel.id);  
                     channelInvis.updateOverwrite(channelInvis.guild.roles.everyone, { VIEW_CHANNEL: false })
                     message.channel.send('Channel is now invisible! Ninja mode!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break 
                 case "close":
-                    try {
                     const channelNosend = client.channels.cache.get(message.channel.id);  
                     channelNosend.updateOverwrite(channelNosend.guild.roles.everyone, { SEND_MESSAGES: false })
                     message.channel.send('Channel is now closed!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break
                 case "open":
-                    try {
                     const channelSend = client.channels.cache.get(message.channel.id);  
                     channelSend.updateOverwrite(channelSend.guild.roles.everyone, { SEND_MESSAGES: true })
                     message.channel.send('Channel is now open!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break 
                 case "images":
-                    try {
                     const channelImages = client.channels.cache.get(message.channel.id)
                     channelImages.updateOverwrite(channelImages.guild.roles.everyone, { ATTACH_FILES : true })
                     message.channel.send('You can now send images in this channel!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break 
                 case "text":
-                    try {
                     const channelNoImages = client.channels.cache.get(message.channel.id)
                     channelNoImages.updateOverwrite(channelNoImages.guild.roles.everyone, { ATTACH_FILES : false })
                     message.channel.send('You can no longer send images in this channel!')
-                    } catch(err) {
-                        message.reply('Woops! Something went wrong, most likely with permissions! Make sure I have "Manage Channels" permissions!')
-                    }
                     break 
                 default:
                     message.channel.send(`Please supply a valid option! Options:
@@ -701,6 +680,7 @@ client.on('message', function(message) {
     - Text (disallows members to send images)
 All lowercase!`)
             }
+        }
         }
     }
 })
