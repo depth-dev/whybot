@@ -652,26 +652,46 @@ client.on('message', function(message) {
                     message.channel.send('Channel is now visible!')
                     break 
                 case "invisible":
+                    if(!message.channel.permissionsFor(message.guild.roles.everyone).has('VIEW_CHANNEL')) {
+                        message.reply('This channel is already invisible!')
+                        return
+                    }
                     const channelInvis = client.channels.cache.get(message.channel.id);  
                     channelInvis.updateOverwrite(channelInvis.guild.roles.everyone, { VIEW_CHANNEL: false })
                     message.channel.send('Channel is now invisible! Ninja mode!')
                     break 
                 case "close":
+                    if(!message.channel.permissionsFor(message.guild.roles.everyone).has('SEND_MESSAGES')) {
+                        message.reply('This channel is already closed!')
+                        return
+                    }
                     const channelNosend = client.channels.cache.get(message.channel.id);  
                     channelNosend.updateOverwrite(channelNosend.guild.roles.everyone, { SEND_MESSAGES: false })
                     message.channel.send('Channel is now closed!')
                     break
                 case "open":
+                    if(message.channel.permissionsFor(message.guild.roles.everyone).has('SEND_MESSAGES')) {
+                        message.reply('This channel is already open!')
+                        return
+                    }
                     const channelSend = client.channels.cache.get(message.channel.id);  
                     channelSend.updateOverwrite(channelSend.guild.roles.everyone, { SEND_MESSAGES: true })
                     message.channel.send('Channel is now open!')
                     break 
                 case "images":
+                    if(message.channel.permissionsFor(message.guild.roles.everyone).has('ATTATCH_FILES')) {
+                        message.reply('This channel already allows images!')
+                        return
+                    }
                     const channelImages = client.channels.cache.get(message.channel.id)
                     channelImages.updateOverwrite(channelImages.guild.roles.everyone, { ATTACH_FILES : true })
                     message.channel.send('You can now send images in this channel!')
                     break 
                 case "text":
+                    if(!message.channel.permissionsFor(message.guild.roles.everyone).has('ATTACH_FILES')) {
+                        message.reply('This channel already disallows images!')
+                        return
+                    }
                     const channelNoImages = client.channels.cache.get(message.channel.id)
                     channelNoImages.updateOverwrite(channelNoImages.guild.roles.everyone, { ATTACH_FILES : false })
                     message.channel.send('You can no longer send images in this channel!')
