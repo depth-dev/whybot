@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
-const Config = require('../node_modules/mongodb')
+const Config = require('../lib/mongodb')
 const mongoose = require('mongoose')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
