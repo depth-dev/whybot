@@ -1,8 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
-const Config = require('../lib/mongodb')
-const mongoose = require('mongoose')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -24,20 +22,6 @@ client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setActivity('y!help | v1.1.0', {
         type:'WATCHING'
-    })
-    await client.guilds.keyArray().forEach(id => {
-        Config.findOne({
-            guildID: id
-        }, (err, guild) => {
-            if(err) console.error()
-            if(!guild) {
-                const newConfig = new Config({
-                    guildID: id
-                    
-                })
-                return newConfig.save()
-            }
-        })
     })
 })
 
