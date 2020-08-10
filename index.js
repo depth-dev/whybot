@@ -643,9 +643,8 @@ client.on('message', function(message) {
             } else {
             switch(args[0]) {
                 case "visible":
-                    const alrPerms = message.channel.permissionOverwrites.get(message.guild.roles.everyone)
-                    if(alrPerms && alrPerms.READ_MESSAGES === true) {
-                        message.reply('This channel is already visible!')
+                    if(!message.channel.permissionsFor(message.guild.roles.everyone).has('READ_MESSAGES')) {
+                        message.reply('This channel is already closed!')
                     }
                     const channelVis = client.channels.cache.get(message.channel.id);  
                     channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
