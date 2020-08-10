@@ -645,6 +645,7 @@ client.on('message', function(message) {
                 case "visible":
                     if(message.channel.permissionsFor(message.guild.roles.everyone).has('VIEW_CHANNEL')) {
                         message.reply('This channel is already visible!')
+                        return
                     }
                     const channelVis = client.channels.cache.get(message.channel.id);  
                     channelVis.updateOverwrite(channelVis.guild.roles.everyone, { VIEW_CHANNEL: true })
