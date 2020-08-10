@@ -643,7 +643,7 @@ client.on('message', function(message) {
             } else {
             switch(args[0]) {
                 case "visible":
-                    const alrPerms = message.channel.permissionOverwrites.get(id)
+                    const alrPerms = message.channel.permissionOverwrites.get(message.guild.roles.everyone)
                     if(alrPerms && alrPerms.READ_MESSAGES === true) {
                         message.reply('This channel is already visible!')
                     }
