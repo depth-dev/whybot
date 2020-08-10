@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
+const Config = require('../node_modules/mongodb')
+const mongoose = require('mongoose')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -12,10 +14,30 @@ const noPermsEmbed = new Discord.MessageEmbed()
  .setDescription('Sorry, but you do not have the required permissions!')
  .setFooter('API developed by misterdepth')
 
-client.on('ready', () => {
+mongoose.connect('mongodb://localhost:27017/whybot', {
+    useNewUrlParser: true }, (err) => {
+        if(err) return console.error()
+        console.log('COnnected to MongoDB')
+})
+
+client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
     client.user.setActivity('y!help | v1.1.0', {
         type:'WATCHING'
+    })
+    await client.guilds.keyArray().forEach(id => {
+        Config.findOne({
+            guildID: id
+        }, (err, guild) => {
+            if(err) console.error()
+            if(!guild) {
+                const newConfig = new Config({
+                    guildID: id
+                    
+                })
+                return newConfig.save()
+            }
+        })
     })
 })
 
