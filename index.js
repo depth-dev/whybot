@@ -603,13 +603,13 @@ client.on('message', function(message) {
             const BotLogEmbed = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('BetterBotLogs Information:')
-            .setImage('https://cdn.discordapp.com/attachments/715386760317894757/736681429748154418/unknown.png')
+            .setImage('https://cdn.discordapp.com/attachments/715386760317894757/742233048040472626/unknown.png')
             .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
             .addField('Features: ', `- Seeing Deleted Messages
    - Seeing Edited Messages
    
    More to come! This bot is still in development!`)
-            .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
+            .addField('How Can I Get BetterBotLogs?', 'Create a channel called `message-logs` and the logging will appear there!')
             .setFooter('API developed by misterdepth')
            message.channel.send({embed:BotLogEmbed})
         }
