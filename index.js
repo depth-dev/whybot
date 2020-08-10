@@ -612,6 +612,7 @@ client.on('message', function(message) {
             .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
             .setFooter('API developed by misterdepth')
            message.channel.send({embed:BotLogEmbed})
+        }
            if(args[0] == 'check') {
                const serverGuild = message.guild
                const channelThing = serverGuild.channels.cache.find(x => x.name === "message-logs")
@@ -620,7 +621,7 @@ client.on('message', function(message) {
                } else {
                    message.reply(`A message logging channel was found! (${channelThing})`)
                }
-           }
+           
         }
     }
 })
