@@ -52,7 +52,7 @@ client.on('message', async (msg) =>{
             msg.channel.send('You cannot use this feature in Direct Messages!')
             return
         }
-        const guild = message.guild
+        const guild = msg.guild
         if(!msg.channel.permissionsFor(guild.me).has('MANAGE_MESSAGES')) {
             msg.channel.send('Woops! I can\'t use this command here! Please give the manage messages permission for this channel!')
         } else {
