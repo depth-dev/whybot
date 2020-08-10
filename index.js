@@ -430,7 +430,8 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     if(newMessage.channel.type == "dm") return;
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.find(x => x.name === "message-logs");  
+    const serverGuild = message.guild
+    const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");  
     if(!channel) return
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
