@@ -441,6 +441,11 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
     channel.send({embed:editEmbed})
    }); 
 client.on('message', function(message) {
+    if(message.content == 'y!test') {
+        message.channel.send(message.channel.name)
+    }
+})
+client.on('message', function(message) {
     if(message.content == 'y!roses') {
         if(message.author.bot) return;
         let randomRoses = Math.floor(Math.random()*5+1)
