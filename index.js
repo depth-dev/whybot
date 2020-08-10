@@ -412,12 +412,10 @@ client.on('message', function(message) {
 })
 client.on('messageDelete', (messageDelete) => {
     if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != misterDisc) {
-        return
-    } else {
         if(messageDelete.content.startsWith('y!poll')) return;
         if(messageDelete.content.startsWith('y!feedback')) return;
-                const channel = client.channels.cache.get('724337351936966727');  
+                const channel = client.channels.cache.get(x => x.name === "message-logs");
+                if(!channel) return  
                 if(messageDelete.author.bot) return;
                 const deleteEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
@@ -426,17 +424,14 @@ client.on('messageDelete', (messageDelete) => {
                  .setTitle('A Message was Deleted!')
                  .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
                 channel.send({embed:deleteEmbed})
-    }
 })
 
 client.on("messageUpdate", (oldMessage, newMessage) => {
     if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != misterDisc) {
-        return
-    } else {
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('724337351936966727');  
+    const channel = client.channels.cache.get(x => x.name === "message-logs");  
+    if(!channel) return
     const editEmbed = new Discord.MessageEmbed()
      .setColor('0dff00')
      .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
@@ -444,7 +439,6 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setTitle('A Message was Updated!')
      .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
     channel.send({embed:editEmbed})
-    }
    }); 
 client.on('message', function(message) {
     if(message.content == 'y!roses') {
@@ -474,81 +468,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != JaruCom) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('728780814665515029');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-    channel.send({embed:deleteEmbed})
-    }
-})
-
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != JaruCom) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('728780814665515029');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
-    channel.send({embed:editEmbed})
-    }
-   });
-
-   client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != safety8) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('730987813641781248');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-    }
-})
-
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != safety8) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('730987813641781248');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:editEmbed})
-    }
-});
 
 client.on('message', function(message) {
     if(message.content.startsWith('y!userinfo')) {
@@ -694,33 +613,9 @@ client.on('message', function(message) {
             .setFooter('API developed by misterdepth')
            message.channel.send({embed:BotLogEmbed})
         } else {
-            if(args[0] == 'request') {
-                if(!message.member.hasPermission('ADMINISTRATOR')) {
+            if(!message.member.hasPermission('ADMINISTRATOR')) {
                     message.channel.send({embed:noPermsEmbed})
                 } else {
-                message.reply('Confirming request...\n'
-                    + 'Are you sure you want to send a request? Logs will appear in this channel!');
-                    message.react('👍').then(r => {
-                        message.react('👎');
-                    });
-                    message.awaitReactions((reaction, user) => user.id == message.author.id && (reaction.emoji.name == '👍' || reaction.emoji.name == '👎'),
-                        { max: 1, time: 10000 }).then(collected => {
-                            if (collected.first().emoji.name == '👍') {
-                                const theChannel = message.channel.id
-                                const theGuild = message.guild.id
-                                console.log(message.author.tag + ' requested BetterBotLogs! The Channel is ' + theChannel + ' and the guild is ' + theGuild + '!')
-                                const anotherChannel = client.channels.cache.get('741707735833378927')
-                                anotherChannel.send('NEW REQUEST:\nChannel: ' + theChannel + '\nServer: ' + theGuild)
-                                message.channel.send(`:mailbox_with_mail: Request sent! Please await the logs to appear!
-Join the support server to keep everything updated!
-Invite: https://discord.com/invite/9JhEsHe`)
-                            } else
-                                message.reply('Request cancelled!');
-                                }).catch(() => {
-                                    message.reply('You didn\'t react! Request cancelled!');
-                                }); 
-                            }
-            } else {
                 const BotLogEmbed = new Discord.MessageEmbed()
                 .setColor('0dff00')
                 .setTitle('BetterBotLogs Information:')
@@ -730,7 +625,7 @@ Invite: https://discord.com/invite/9JhEsHe`)
        - Seeing Edited Messages
        
        More to come! This bot is still in development!`)
-                .addField('How Can I Get BetterBotLogs?', 'BetterBotLogs takes some private development, so it might take a while. But do y!betterbotlogs request to request it!')
+                .addField('How Can I Get BetterBotLogs?', 'Create a channel called "message-logs", and it will appear there!')
                 .setFooter('API developed by misterdepth')
                message.channel.send({embed:BotLogEmbed})
             }
@@ -842,25 +737,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != 670028957772414996) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('737090606672642050');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-    }
-})
 client.on('message', function(message) {
     if(message.content == 'y!ping') {
         if(message.author.bot) return;
@@ -874,43 +750,6 @@ client.on('message', function(message) {
         message.channel.send({embed:pingEmbed})
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != 707985845197602847) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('712826746843430913');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-    }
-})
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != 707985845197602847) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('712826746843430913');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:editEmbed})
-    }
-   });
 client.on('message', function(message) {
     if(message.content.startsWith('y!fight')) {
         if(message.channel.type == "dm") {
@@ -1062,43 +901,6 @@ client.on('message', function(message) {
         }
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != 741043961736462386) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('741055677388292226');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-    }
-})
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != 741043961736462386) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('741055677388292226');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:editEmbed})
-    }
-});
 client.on('message', function(message) {
     if(message.content.startsWith('y!youtube')) {
         if(message.channel.type == "dm") return;
@@ -1224,42 +1026,5 @@ client.on('message', async function(message) {
         }
     }
 })
-client.on("messageDelete", (messageDelete) => {
-    if(messageDelete.channel.type == "dm") return;
-    if(messageDelete.guild.id != 717960643226894446) {
-        return
-    } else {
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-    const channel = client.channels.cache.get('730522088858714113');  
-    if(messageDelete.author.bot) return;
-    const deleteEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-     .setThumbnail(messageDelete.author.displayAvatarURL())
-     .setTitle('A Message was Deleted!')
-     .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:deleteEmbed})
-    }
-})
-client.on("messageUpdate", (oldMessage, newMessage) => {
-    if(newMessage.channel.type == "dm") return;
-    if(newMessage.guild.id != 717960643226894446) {
-        return
-    } else {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    const channel = client.channels.cache.get('730522088858714113');  
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
-     .setFooter('API developed by misterdepth')
-    channel.send({embed:editEmbed})
-    }
-});
 
 client.login(process.env.token)
