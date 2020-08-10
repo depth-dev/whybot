@@ -679,7 +679,7 @@ client.on('message', function(message) {
                     message.channel.send('Channel is now open!')
                     break 
                 case "images":
-                    if(message.channel.permissionsFor(message.guild.roles.everyone).has('ATTATCH_FILES')) {
+                    if(message.channel.permissionsFor(message.guild.roles.everyone).has('ATTACH_FILES')) {
                         message.reply('This channel already allows images!')
                         return
                     }
