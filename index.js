@@ -888,6 +888,8 @@ client.on('message', function(message) {
                     message.reply('Could not find that channel!')
                 } else if(!role) {
                     message.reply('Could not find this role! (This only works with Server Roles, not everyone/here!)')
+                } else if(!channel.permissionsFor(serverGuild.me).has('MENTION_EVERYONE')) {
+                    message.reply('Oops! I can\'t ping this role in that channel! Please give me permissions!')
                 } else {
                     channel.send(`Hey! **${args[0]}** is now live on https://twitch.tv/${args[0]} ! Go watch! ${role}`)
                 }
@@ -923,6 +925,8 @@ client.on('message', function(message) {
                     message.reply('Could not find this role! (This only works with Server Roles, not everyone/here!)')
                 } else if(!args[2].startsWith('https://youtube.com/watch?v=')) {
                     message.reply('This isn\'t a valid YouTube video URL! Please provide a valid **YouTube video URL**.')
+                } else if(!channel.permissionsFor(serverGuild.me).has('MENTION_EVERYONE')) {
+                    message.reply('Oops! I can\'t ping this role in that channel! Please give me permissions!')
                 } else {
                     channel.send(`Hey! **${args[0]}** just uploaded a new video ${args[2]} ! Go watch! ${role}`)
                 }
