@@ -609,7 +609,7 @@ client.on('message', function(message) {
             const BotLogEmbed = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('BetterBotLogs Information:')
-            .setImage('https://cdn.discordapp.com/attachments/715386760317894757/742233048040472626/unknown.png')
+            .setImage('https://cdn.discordapp.com/attachments/715386760317894757/742803112875786330/unknown.png')
             .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
             .addField('Features: ', `- Seeing Deleted Messages
    - Seeing Edited Messages
