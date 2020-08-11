@@ -424,7 +424,8 @@ client.on('messageDelete', (messageDelete) => {
                  .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
                  .setThumbnail(messageDelete.author.displayAvatarURL())
                  .setTitle('A Message was Deleted!')
-                 .setDescription(`Content: ${messageDelete.content}\nSent By: ${messageDelete.author}\nChannel: ${messageDelete.channel}`)
+                 .setDescription(`A Message was Deleted By ${messageDelete.author} in ${messageDelete.channel}!`)
+                 .addField('**Content:**', `${messageDelete.content}`)
                 channel.send({embed:deleteEmbed})
 })
 
@@ -440,7 +441,9 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
      .setThumbnail(newMessage.author.displayAvatarURL())
      .setTitle('A Message was Updated!')
-     .setDescription(`Old Content: ${oldMessage.content}\nNew Content: ${newMessage.content}\nChannel: ${newMessage.channel}\nSent By: ${newMessage.author}`)
+     .setDescription(`A Message was Edited by ${newMessage.author} in ${newMessage.channel}!`)
+     .addField('**Old Content:**', `${oldMessage.content}`)
+     .addField('**New Content:**', `${newMessage.content}`)
     channel.send({embed:editEmbed})
    }); 
 client.on('message', function(message) {
