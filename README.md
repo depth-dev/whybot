@@ -6,9 +6,11 @@ The reason for the change was because I wanted to be more original, so just take
 Bot Information:
 - Prefix: y!
 - Invite Link: (below and in y!invite)
-- Required permissions: Administrator
+- Required permissions: Administrator (However it can function with "Send Embed, Read Messages, Send Messages" permissions!)
+
 
 INVITE LINK: https://discord.com/oauth2/authorize?client_id=722141994184474744&scope=bot&permissions=8
+
 
 Bot Commands and Usage:
 - y!help: Help Menu

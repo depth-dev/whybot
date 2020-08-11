@@ -95,7 +95,7 @@ client.on('message', function(message) {
         .setColor('0dff00')
         .setTitle('WhyBot Information')
         .setDescription('Here is the information about this bot!')
-        .addField('What is WhyBot?', 'WhyBot is a general reason bot that is mainly used for things on one server.')
+        .addField('What is WhyBot?', 'WhyBot is a general purpose bot for content creators, animal lovers, and more!')
         .addField('Is WhyBot public?', 'Yes! It is! Do y!invite to get the link!')
         .addField('What are all of the commands?', 'Use y!help to check out all of the commands!')
         .addField('What is the current prefix?', 'It is \'y!\'')
