@@ -1056,7 +1056,7 @@ client.on('messageDelete', function(messageDelete) {
     if(messageDelete.channel.type == "dm") return
     const poorMan = messageDelete.mentions.users.first()
     if(!poorMan) return
-    message.channel.send('Ghost pinger lmfao\nContent:' + messageDelete.content)
+    messageDelete.channel.send('Ghost pinger lmfao\nContent:' + messageDelete.content)
 })
 
 client.login(process.env.token)
