@@ -1051,5 +1051,12 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('messageDelete', function(messageDelete) {
+    if(messageDelete.author.bot) return
+    if(messageDelete.channel.type == "dm") return
+    const poorMan = messageDelete.mentions.users.first()
+    if(!poorMan) return
+    message.channel.send('Ghost pinger lmfao\nContent:' + messageDelete.content)
+})
 
 client.login(process.env.token)
