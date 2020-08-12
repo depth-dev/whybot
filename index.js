@@ -76,11 +76,11 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.2.1: Bug Fixes
-    - Better Channel Permission Checking was fixed
-    - BBL not sending was fixed
-    - y!channel saying that a channel had been opened after it had already been opened is fixed
-    - UUIDS have been added to y!mcinfo`)
+         .addField('Changelog:', `1.2.2: General Changes
+    - BBL not sending due to long messages is fixed
+    - Certain commands not sending due to API errors is fixed
+    - UUIDs have been added to y!mcinfo
+    - Fixed a few bugs in y!twitch`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
