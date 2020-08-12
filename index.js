@@ -80,11 +80,11 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.2.2: General Changes
-    - BBL not sending due to long messages is fixed
-    - Certain commands not sending due to API errors is fixed
-    - UUIDs have been added to y!mcinfo
-    - Fixed a few bugs in y!twitch`)
+         .addField('Changelog:', `1.2.3: y!mail and y!pureg
+    - y!mail has been added back with better systems
+    - y!purge has been added back with better system
+    - Fixed a few bugs with y!purge
+    - Hopefully looked into adding a few more mod commands back!`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -275,8 +275,10 @@ client.on('message', function(message) {
             .setDescription('For administrators and stuff.')
             .addField('Admin Only Commands: ', 'Commands that can only be used by members with the administrator permissions.')
             .addField('**y!channel**', 'Edit channel permissions!', true)
+            .addField('**y!mail**', 'Send a user some mail.', true)
             .addField('Moderators Only: ', 'Commands only for people with the "manage messages" perms.')
             .addField('**y!poll**', 'Create a poll! Use the syntax!', true)
+            .addField('**y!purge**', 'Purge a certain number of messages!', true)
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:modEmbedHelp})
         }
