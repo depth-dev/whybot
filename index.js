@@ -1059,5 +1059,16 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content.startsWith('y!mee6exp')) {
+        const lvl = message.content.split(' ').slice(1)
+        if(!lvl) {
+            message.reply('Please supply a mee6 level to get the EXP for!')
+        } else {
+            const expReq = 5 * (lvl ^ 2) + 50 * lvl + 100
+            message.reply(`${lvl} requires ${expReq} exp!`)
+        }
+    }
+})
 
 client.login(process.env.token)
