@@ -19,6 +19,8 @@ Bot Commands and Usage:
 - y!modhelp: Moderation Help
     - y!purge (nmber): Purges a number of messages!
     - y!poll (question/answer1/answer2): Poll!
+    - y!channel (edit): Edit a channel's permissions! (for everyone)
+    - y!mail (user) (mail): Mail a user some information!
 - y!info: Grab information of the bot!
 - y!question: Get asked a random question by the bot.
 - y!invite: Get the bot invite.
