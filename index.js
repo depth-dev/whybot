@@ -1080,7 +1080,7 @@ client.on('message', async function(message) {
                 const serverGuild = message.guild
                 const mailEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
-                 .setThumbnail(serverGuild.iconURL)
+                 .setThumbnail(serverGuild.iconURL())
                  .setTitle(`New Mail From ${serverGuild.name}`)
                  .setDescription(`You have new mail from user ${message.author.tag} in ${serverGuild.name}!`)
                  .addField('**Mail:**', mail)
