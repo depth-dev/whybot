@@ -411,10 +411,11 @@ client.on('message', function(message) {
         message.channel.send({embed:inviteEmbed})
     }
 })
-client.on('messageDelete', (messageDelete) => {
+client.on('messageDelete', async function(messageDelete) {
     if(messageDelete.channel.type == "dm") return;
         if(messageDelete.content.startsWith('y!poll')) return;
         if(messageDelete.content.startsWith('y!feedback')) return;
+        try {
         const serverGuild = messageDelete.guild
                 const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");
                 if(!channel) return  
@@ -426,13 +427,17 @@ client.on('messageDelete', (messageDelete) => {
                  .setTitle('A Message was Deleted!')
                  .setDescription(`A Message was Deleted By ${messageDelete.author} in ${messageDelete.channel}!`)
                  .addField('**Content:**', `${messageDelete.content}`)
-                channel.send({embed:deleteEmbed})
+                await channel.send({embed:deleteEmbed})
+        } catch (err) {
+            return
+        }
 })
 
-client.on("messageUpdate", (oldMessage, newMessage) => {
+client.on("messageUpdate", async function(oldMessage, newMessage){
     if(newMessage.channel.type == "dm") return;
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
+    try {
     const serverGuild = newMessage.guild
     const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");  
     if(!channel) return
@@ -444,7 +449,10 @@ client.on("messageUpdate", (oldMessage, newMessage) => {
      .setDescription(`A Message was Edited by ${newMessage.author} in ${newMessage.channel}!`)
      .addField('**Old Content:**', `${oldMessage.content}`)
      .addField('**New Content:**', `${newMessage.content}`)
-    channel.send({embed:editEmbed})
+    await channel.send({embed:editEmbed})
+    } catch (err) {
+        return
+    }
    }); 
 client.on('message', function(message) {
     if(message.content == 'y!roses') {
