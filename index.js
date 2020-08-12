@@ -1070,10 +1070,9 @@ client.on('message', async function(message) {
         if(message.author.bot) return
         if(message.channel.type == "dm") {
             message.channel.send('You cannot use this in DMs!')
-        }
-        if(!message.member.hasPermission('ADMINISTRATOR')) {
+        } else if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
-        }
+        } else {
         const args = message.content.split(' ').slice(1)
         const mail = args.slice(1).join(' ')
         const mailMan = message.mentions.users.first()
@@ -1096,6 +1095,7 @@ client.on('message', async function(message) {
             } catch (err) {
                 message.reply(':mailbox_closed: This user has their mailbox closed! (Something went wrong)!')
             }
+        }
         }
     }
 })
