@@ -56,6 +56,7 @@ client.on('message', async (msg) =>{
         if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
         } else {
+            try {
             const args = msg.content.split(' ').slice(1)
             const amount = args.join(' ')
             if (!amount) return msg.reply('You haven\'t given an amount of messages which should be deleted!')
@@ -65,6 +66,9 @@ client.on('message', async (msg) =>{
             await msg.channel.messages.fetch({ limit: amount }).then(messages => { // Fetches the messages
                 msg.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
             )});
+            } catch (err) {
+                msg.reply('Something went wrong! Please try again!')
+            }
         }
     }
     }
@@ -1086,9 +1090,9 @@ client.on('message', async function(message) {
                  .addField('**Mail:**', mail)
                  .setFooter('API developed by misterdepth')
                 await mailMan.send({embed:mailEmbed})
-                message.reply('Mail send!')
+                message.reply(':mailbox_with_mail: Mail sent!')
             } catch (err) {
-                message.reply('Woops! Something went wrong!')
+                message.reply(':mailbox_closed: This user has their mailbox closed! (Something went wrong)!')
             }
         }
     }
