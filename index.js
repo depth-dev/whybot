@@ -64,7 +64,7 @@ client.on('message', async (msg) =>{
             if (amount > 100) return msg.reply('You can`t delete more than 100 messages at once!')
             if (amount < 1) return msg.reply('You have to delete at least 1 message!')
             await msg.channel.messages.fetch({ limit: amount }).then(messages => { // Fetches the messages
-                msg.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
+                await msg.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
             )});
             } catch (err) {
                 msg.reply('Something went wrong! Please try again!')
