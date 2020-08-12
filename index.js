@@ -14,9 +14,6 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity('y!help | v1.2.1', {
-        type:'WATCHING'
-    })
 })
 
 client.on('message', function(message) {
