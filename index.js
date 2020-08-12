@@ -1059,5 +1059,39 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('message', async function(message) {
+    if(message.content.startsWith('y!mail')) {
+        if(message.author.bot) return
+        if(message.channel.type == "dm") {
+            message.channel.send('You cannot use this in DMs!')
+        }
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
+            message.channel.send({embed:noPermsEmbed})
+        }
+        const args = message.content.split(' ').slice(1)
+        const mail = args.slice(1).join(' ')
+        const mailMan = message.mentions.users.first()
+        if(!mailMan) {
+            message.reply('Please reply with someone to mail!')
+        } else if(!mail) {
+            message.reply('Please reply with something to mail!')
+        } else {
+            try {
+                const serverGuild = message.guild
+                const mailEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setThumbnail(serverGuild.iconURL)
+                 .setTitle(`New Mail From ${serverGuild.name}`)
+                 .setDescription(`You have new mail from user ${message.author.tag} in ${serverGuild.name}!`)
+                 .addField('**Mail:**', mail)
+                 .setFooter('API developed by misterdepth')
+                await mailMan.send({embed:mailEmbed})
+                message.reply('Mail send!')
+            } catch (err) {
+                message.reply('Woops! Something went wrong!')
+            }
+        }
+    }
+})
 
 client.login(process.env.token)
