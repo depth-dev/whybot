@@ -1054,5 +1054,14 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('message', async function(message) {
+    if(message.content == 'y!dmme') {
+        try {
+            await message.author.send('Hi!')
+        } catch (err) {
+            message.reply('I cannot dm you father!')
+        }
+    }
+})
 
 client.login(process.env.token)
