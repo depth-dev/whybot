@@ -83,7 +83,6 @@ client.on('message', function(message) {
          .setDescription('Check out all of the new features in WhyBot updates.')
          .addField('Changelog:', `1.2.4: Cooldowns
     - Added y!mail 20 second cooldown
-    - Added y!feedback 1 minute cooldown
     - Fixed a few bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
@@ -235,9 +234,6 @@ client.on('message', function(message) {
             message.channel.send('You cannot use this feature in Direct Messages!')
             return
         }
-        if (talkedRecently.has(message.author.id)) {
-            message.reply('You just suggested something! Please wait 1 minute before using this command again!');
-    } else {
         let args = message.content.split('y!feedback ').slice(1)
         if(!args[0]) {
             message.reply('Please supply some feedback!')
@@ -246,11 +242,6 @@ client.on('message', function(message) {
         message.delete()
         message.channel.send('Thank you for your feedback!')
         }
-        talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          talkedRecently.delete(message.author.id);
-        }, 60000);
-    }
     }
 })
 client.on('message', function(message) {
