@@ -1081,6 +1081,10 @@ client.on('message', async function(message) {
         } else if(!mail) {
             message.reply('Please reply with something to mail!')
         } else {
+            const talkedRecently = new Set()
+            if(talkedRecently.has(msg.author.id)) {
+                message.channel.send("Wait 10 seconds before getting typing this again. - " + message.author);
+        } else {
             try {
                 const serverGuild = message.guild
                 const mailEmbed = new Discord.MessageEmbed()
@@ -1095,6 +1099,11 @@ client.on('message', async function(message) {
             } catch (err) {
                 message.reply(':mailbox_closed: This user has their mailbox closed! (Something went wrong)!')
             }
+            talkedRecently.add(message.author.id);
+            setTimeout(() => {
+              talkedRecently.delete(message.author.id);
+            }, 10000);
+        }
         }
         }
     }
