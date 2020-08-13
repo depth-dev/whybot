@@ -1082,7 +1082,7 @@ client.on('message', async function(message) {
             message.reply('Please reply with something to mail!')
         } else {
             const talkedRecently = new Set()
-            if(talkedRecently.has(msg.author.id)) {
+            if(talkedRecently.has(message.author.id)) {
                 message.channel.send("Wait 10 seconds before getting typing this again. - " + message.author);
         } else {
             try {
