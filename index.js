@@ -1083,7 +1083,7 @@ client.on('message', async function(message) {
             message.reply('Please reply with something to mail!')
         } else {
             if(talkedRecently.has(message.author.id)) {
-                message.channel.send("Wait 10 seconds before getting typing this again. - " + message.author);
+                message.reply(':ice_cube: Chill out man! You\'re on cooldown for 10 seconds!');
         } else {
             try {
                 const serverGuild = message.guild
