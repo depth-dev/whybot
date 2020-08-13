@@ -53,7 +53,7 @@ client.on('message', async (msg) =>{
         if(!msg.channel.permissionsFor(guild.me).has('MANAGE_MESSAGES')) {
             msg.channel.send('Woops! I can\'t use this command here! Please give the manage messages permission for this channel!')
         } else {
-        if(!msg.member.hasPermission('MANAGE_MESSAGES')) {
+        if(!msg.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
             msg.channel.send({embed:noPermsEmbed})
         } else {
             try {
@@ -545,7 +545,7 @@ client.on('message', function(message) {
             return
         }
         if(message.author.bot) return;
-        if(!message.member.hasPermission('MANAGE_MESSAGES')) {
+        if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
         const args = message.content.split('/').slice(1)
