@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
+const talkedRecently = new Set()
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -1081,7 +1082,6 @@ client.on('message', async function(message) {
         } else if(!mail) {
             message.reply('Please reply with something to mail!')
         } else {
-            const talkedRecently = new Set()
             if(talkedRecently.has(message.author.id)) {
                 message.channel.send("Wait 10 seconds before getting typing this again. - " + message.author);
         } else {
