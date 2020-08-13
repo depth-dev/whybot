@@ -81,11 +81,10 @@ client.on('message', function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.2.3: y!mail and y!pureg
-    - y!mail has been added back with better systems
-    - y!purge has been added back with better system
-    - Fixed a few bugs with y!purge
-    - Hopefully looked into adding a few more mod commands back!`)
+         .addField('Changelog:', `1.2.4: Cooldowns
+    - Added y!mail 20 second cooldown
+    - Added y!feedback 1 minute cooldown
+    - Fixed a few bugs`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -236,6 +235,9 @@ client.on('message', function(message) {
             message.channel.send('You cannot use this feature in Direct Messages!')
             return
         }
+        if (talkedRecently.has(message.author.id)) {
+            message.reply('You just suggested something! Please wait 1 minute before using this command again!');
+    } else {
         let args = message.content.split('y!feedback ').slice(1)
         if(!args[0]) {
             message.reply('Please supply some feedback!')
@@ -244,6 +246,11 @@ client.on('message', function(message) {
         message.delete()
         message.channel.send('Thank you for your feedback!')
         }
+        talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          talkedRecently.delete(message.author.id);
+        }, 60000);
+    }
     }
 })
 client.on('message', function(message) {
@@ -1083,7 +1090,7 @@ client.on('message', async function(message) {
             message.reply('Please reply with something to mail!')
         } else {
             if(talkedRecently.has(message.author.id)) {
-                message.reply(':ice_cube: Chill out man! You\'re on cooldown for 10 seconds!');
+                message.reply(':ice_cube: Chill out man! You\'re on cooldown for 20 seconds!');
         } else {
             try {
                 const serverGuild = message.guild
@@ -1097,12 +1104,12 @@ client.on('message', async function(message) {
                 await mailMan.send({embed:mailEmbed})
                 message.reply(':mailbox_with_mail: Mail sent!')
             } catch (err) {
-                message.reply(':mailbox_closed: This user has their mailbox closed! (Something went wrong)!')
+                message.reply(':mailbox_closed: This user has their mailbox closed!')
             }
             talkedRecently.add(message.author.id);
             setTimeout(() => {
               talkedRecently.delete(message.author.id);
-            }, 10000);
+            }, 20000);
         }
         }
         }
