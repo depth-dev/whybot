@@ -1106,5 +1106,13 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('message', function(message) {
+    if(message.content == 'y!type') {
+        message.channel.startTyping()
+        setTimeout(() => {
+            message.channel.stopTyping()
+        }, 3000)
+    }
+})
 
 client.login(process.env.token)
