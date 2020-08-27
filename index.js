@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
 const talkedRecently = new Set()
+const process = require('./process.json')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -17,9 +18,13 @@ client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
 })
 
-client.on('message', function(message) {
-    if(message.content == 'y!help') {
-        if(message.author.bot) return;
+client.on('message', async function(message) {
+    if(message.author.bot || !message.content.startsWith(prefix)) return
+    if(message.channel.type == "dm") return message.reply('You can\'t use WhyBot in dms!')
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
+    
+    if(command === "help") {
         const youelpEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Commands and Help Menu')
@@ -42,55 +47,44 @@ client.on('message', function(message) {
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
-})
-client.on('message', async (msg) =>{
-    if(msg.content.startsWith('y!purge')) {
-        if(msg.author.bot) return;
-        if(msg.channel.type == "dm") {
-            msg.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        const guild = msg.guild
-        if(!msg.channel.permissionsFor(guild.me).has('MANAGE_MESSAGES')) {
+
+    if(command === "purge") {
+        const guild = message.guild
+        if(!message.channel.permissionsFor(guild.me).has('MANAGE_MESSAGES')) {
             msg.channel.send('Woops! I can\'t use this command here! Please give the manage messages permission for this channel!')
         } else {
-        if(!msg.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
-            msg.channel.send({embed:noPermsEmbed})
+        if(!message.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
+            message.channel.send({embed:noPermsEmbed})
         } else {
             try {
-            const args = msg.content.split(' ').slice(1)
             const amount = args.join(' ')
-            if (!amount) return msg.reply('You haven\'t given an amount of messages which should be deleted!')
-            if (isNaN(amount)) return msg.reply('The amount parameter isn`t a number!')
-            if (amount > 100) return msg.reply('You can`t delete more than 100 messages at once!')
-            if (amount < 1) return msg.reply('You have to delete at least 1 message!')
-            await msg.channel.messages.fetch({ limit: amount }).then(async messages => { // Fetches the messages
-                await msg.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
+            if (!amount) return message.reply('You haven\'t given an amount of messages which should be deleted!')
+            if (isNaN(amount)) return message.reply('The amount parameter isn`t a number!')
+            if (amount > 100) return message.reply('You can`t delete more than 100 messages at once!')
+            if (amount < 1) return MessageChannel.reply('You have to delete at least 1 message!')
+            await message.channel.messages.fetch({ limit: amount }).then(async messages => { // Fetches the messages
+                await message.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
             )});
             } catch (err) {
-                msg.reply('Something went wrong! Please try again!')
+                message.reply('Something went wrong! Please try again!')
             }
         }
     }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!changelog') {
-        if(message.author.bot) return;
+
+    if(command === "changelog") {
         const changelogEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.2.4: Cooldowns
-    - Added y!mail 20 second cooldown
-    - Fixed a few bugs`)
+         .addField('Changelog:', `1.2.6: Revamped Code
+    - Fixed some bugs
+    - Added better command handlers
+    - Looked into adding a few other things :)`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!info') {
-        if(message.author.bot) return;
+    if(command === "info") {
         const infoEmbed = new Discord.MessageEmbed()
         .setColor('0dff00')
         .setTitle('WhyBot Information')
@@ -104,10 +98,7 @@ client.on('message', function(message) {
         .setFooter('API developed by misterdepth')
         message.channel.send({embed:infoEmbed})
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!quote') {
-        if(message.author.bot) return;
+    if(command === "quote") {
         let randomQuote = Math.floor(Math.random()*15+1)
         switch(randomQuote) {
             case 1:
@@ -157,11 +148,8 @@ client.on('message', function(message) {
                 break          
             }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!meme') {
-        if(message.author.bot) return;
-       const randomMeme = Math.floor(Math.random()*20+1)
+    if(command === "meme") {
+        const randomMeme = Math.floor(Math.random()*20+1)
        switch(randomMeme) {
            case 1:
                message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
@@ -226,14 +214,7 @@ client.on('message', function(message) {
 
        }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!feedback')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
+    if(command === "feedback") {
         let args = message.content.split('y!feedback ').slice(1)
         if(!args[0]) {
             message.reply('Please supply some feedback!')
@@ -243,28 +224,14 @@ client.on('message', function(message) {
         message.channel.send('Thank you for your feedback!')
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!kill') {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
+    if(command === "shutdown") {
         if(message.member.id != "315173627232518147") {
             message.channel.send({embed:noPermsEmbed})
         } else {
             client.destroy()
         }
     }
-  })
-client.on('message', function(message) {
-    if(message.content == 'y!modhelp') {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
+    if(command === "modhelp") {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed}) 
         } else {
@@ -282,24 +249,7 @@ client.on('message', function(message) {
         message.channel.send({embed:modEmbedHelp})
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!depth') {
-        if(message.author.bot) return;
-        const socialEmbed = new Discord.MessageEmbed()
-         .setColor('0dff00')
-         .setTitle('Depth\'s Socials:')
-         .setDescription('Here are all of Depth\'s socials!')
-         .addField('YouTube:', 'https://www.youtube.com/channel/UCY3uJvG0zTYLw8JErrtJDhA')
-         .addField('Twitch:', 'https://twitch.tv/misterdepth')
-         .addField('Discord:', 'https://discord.gg/bHqwhVm')
-         .setFooter('API developed by misterdepth')
-        message.channel.send({embed:socialEmbed})
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!question') {
-        if(message.author.bot) return;
+    if(command === "quiz") {
         let randomQuiz = Math.floor(Math.random()*15+1)
         switch(randomQuiz) {
             case 1:
@@ -394,15 +344,7 @@ client.on('message', function(message) {
                 break
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!bald') {
-        message.channel.send('Bald Splashes is amazing, you should join it at discord.gg/bald')
-    }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!invite') {
-        if(message.author.bot) return;
+    if(command === "invite") {
         const inviteEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
          .setTitle('WhyBot Invite Link')
@@ -412,53 +354,7 @@ client.on('message', function(message) {
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:inviteEmbed})
     }
-})
-client.on('messageDelete', async function(messageDelete) {
-    if(messageDelete.channel.type == "dm") return;
-        if(messageDelete.content.startsWith('y!poll')) return;
-        if(messageDelete.content.startsWith('y!feedback')) return;
-        try {
-        const serverGuild = messageDelete.guild
-                const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");
-                if(!channel) return  
-                if(messageDelete.author.bot) return;
-                const deleteEmbed = new Discord.MessageEmbed()
-                 .setColor('0dff00')
-                 .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
-                 .setThumbnail(messageDelete.author.displayAvatarURL())
-                 .setTitle('A Message was Deleted!')
-                 .setDescription(`A Message was Deleted By ${messageDelete.author} in ${messageDelete.channel}!`)
-                 .addField('**Content:**', `${messageDelete.content}`)
-                await channel.send({embed:deleteEmbed})
-        } catch (err) {
-            return
-        }
-})
-
-client.on("messageUpdate", async function(oldMessage, newMessage){
-    if(newMessage.channel.type == "dm") return;
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-    try {
-    const serverGuild = newMessage.guild
-    const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");  
-    if(!channel) return
-    const editEmbed = new Discord.MessageEmbed()
-     .setColor('0dff00')
-     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
-     .setThumbnail(newMessage.author.displayAvatarURL())
-     .setTitle('A Message was Updated!')
-     .setDescription(`A Message was Edited by ${newMessage.author} in ${newMessage.channel}!`)
-     .addField('**Old Content:**', `${oldMessage.content}`)
-     .addField('**New Content:**', `${newMessage.content}`)
-    await channel.send({embed:editEmbed})
-    } catch (err) {
-        return
-    }
-   }); 
-client.on('message', function(message) {
-    if(message.content == 'y!roses') {
-        if(message.author.bot) return;
+    if(command === "roses") {
         let randomRoses = Math.floor(Math.random()*5+1)
         switch(randomRoses) {
             case 1:
@@ -483,15 +379,7 @@ client.on('message', function(message) {
                 break
         }
     }
-})
-
-client.on('message', function(message) {
-    if(message.content.startsWith('y!userinfo')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
+    if(command === "userinfo") {
         let mentionDude = message.mentions.users.first()
         if(!mentionDude) {
             let authorTag = message.author.tag
@@ -536,14 +424,7 @@ client.on('message', function(message) {
         message.channel.send({embed:otherUserInfo})
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!poll')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
+    if(command === "poll") {
         if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -605,16 +486,8 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
     }
     }
     }
-}
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!betterbotlogs')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
-        const args = message.content.split(' ').slice(1)
+    }
+    if(command === "betterbotlogs") {
         if(!args[0]) {
             const BotLogEmbed = new Discord.MessageEmbed()
             .setColor('0dff00')
@@ -640,15 +513,7 @@ client.on('message', function(message) {
            
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!channel')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
-        const args = message.content.split(' ').slice(1)
+    if(command === "channel") {
         if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -724,31 +589,7 @@ All lowercase!`)
         }
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!superior')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.member.id != "323212867757277185") {
-            message.channel.send({embed:noPermsEmbed})
-        } else {
-            let inferiorMan = message.mentions.users.first();
-            if(!inferiorMan) {
-                message.reply('Respond with someone to superior nerd')
-            } else {
-                const args = message.content.split(' ').slice(1)
-                message.reply(' you are superior to ' + args[0] + '!')
-            }
-        }
-    }
-})
-
-client.on('message', function(message) {
-    if(message.content.startsWith('y!guess')) {
-        if(message.author.bot) return;
-        const args = message.content.split(' ').slice(1)
+    if(command === "guess") {
         if(!args[0]) {
             message.channel.send('Please supply a number 1-10! Ex: y!guess 4')
         } else {
@@ -769,10 +610,7 @@ client.on('message', function(message) {
             }
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!ping') {
-        if(message.author.bot) return;
+    if(command === "ping") {
         const botping = new Date() - message.createdAt;
         const pingEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
@@ -782,14 +620,7 @@ client.on('message', function(message) {
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:pingEmbed})
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!fight')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
-        if(message.author.bot) return;
+    if(command === "fight") {
         let enemy = message.mentions.users.first()
         if(!enemy) {
             message.reply('Please supply someone to fight!')
@@ -850,13 +681,7 @@ client.on('message', function(message) {
             }
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!log')) {
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this feature in Direct Messages!')
-            return
-        }
+    if(command === "log") {
         if(message.author.id != "315173627232518147") {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -882,13 +707,9 @@ Log Status: Successful!
     Logged By: ${message.author.tag}`)
                 }
             }
-        }   
+        }  
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!content')) {
-        if(message.channel.type == "dm") return;
-        if(message.author.bot) return;
+    if(command === "content") {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -902,11 +723,8 @@ client.on('message', function(message) {
             message.channel.send({embed:contentHelpMenu})
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!twitch')) {
-        if(message.channel.type == "dm") return;
-        if(message.author.bot) return;  
+
+    if(command === "twitch") {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -935,11 +753,7 @@ client.on('message', function(message) {
             }
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content.startsWith('y!youtube')) {
-        if(message.channel.type == "dm") return;
-        if(message.author.bot) return;  
+    if(command === "youtube") {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -972,26 +786,18 @@ client.on('message', function(message) {
             }
         }
     }
-})
-client.on('message', function(message) {
-    if(message.content == 'y!animals') {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return
+    if(command === "animals") {
         const animalHelpEmbed = new Discord.MessageEmbed()
-         .setColor('0dff00')
-         .setTitle('WhyBot Animal Commands')
-         .setDescription('Here are some wholesome commands!')
-         .addField('**y!cat**', 'Get an image of a cat!', true)
-         .addField('**y!dog**', 'Get an image of a dog.', true)
-         .addField('**y!fox**', 'Get an image of a fox!', true)
-         .setFooter('API developed by misterdepth')
-        message.channel.send({embed:animalHelpEmbed})
+        .setColor('0dff00')
+        .setTitle('WhyBot Animal Commands')
+        .setDescription('Here are some wholesome commands!')
+        .addField('**y!cat**', 'Get an image of a cat!', true)
+        .addField('**y!dog**', 'Get an image of a dog.', true)
+        .addField('**y!fox**', 'Get an image of a fox!', true)
+        .setFooter('API developed by misterdepth')
+       message.channel.send({embed:animalHelpEmbed})
     }
-})
-client.on('message', async function(message) {
-    if(message.content == 'y!cat') {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return
+    if(command === "cat") {
         const obj = await fetch("https://api.thecatapi.com/v1/images/search").then(x => x.json())
         const catURL = obj[0]
         const catEmbed = new Discord.MessageEmbed()
@@ -1001,11 +807,7 @@ client.on('message', async function(message) {
          .setFooter('Images provided by thecatapi.com')
         message.channel.send({embed:catEmbed})
     }
-})
-client.on('message', async function(message) {
-    if(message.content == 'y!dog') {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return
+    if(command === "dog") {
         const obj = await fetch("https://api.thedogapi.com/v1/images/search").then(x => x.json())
         const dogURL = obj[0]
         const dogEmbed = new Discord.MessageEmbed()
@@ -1015,11 +817,7 @@ client.on('message', async function(message) {
          .setFooter('Images provided by thedogapi.com')
         message.channel.send({embed:dogEmbed})
     }
-})
-client.on('message', async function(message) {
-    if(message.content == 'y!fox') {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return
+    if(command === "fox") {
         const obj = await fetch("https://randomfox.ca/floof/").then(x => x.json())
         const foxEmbed = new Discord.MessageEmbed()
          .setColor('0dff00')
@@ -1028,12 +826,7 @@ client.on('message', async function(message) {
          .setFooter('Images provided by randomfox.ca')
         message.channel.send({embed:foxEmbed})
     }
-})
-client.on('message', async function(message) {
-    if(message.content.startsWith('y!mcinfo')) {
-        if(message.author.bot) return;
-        if(message.channel.type == "dm") return
-        const args = message.content.split(' ').slice(1)
+    if(command === "mcinfo") {
         if(!args[0]) {
             message.reply('You must provide a name!')
         } else if(!isNaN(args[0])) {
@@ -1063,13 +856,8 @@ client.on('message', async function(message) {
 
         }
     }
-})
-client.on('message', async function(message) {
-    if(message.content.startsWith('y!mail')) {
-        if(message.author.bot) return
-        if(message.channel.type == "dm") {
-            message.channel.send('You cannot use this in DMs!')
-        } else if(!message.member.hasPermission('ADMINISTRATOR')) {
+    if(command === "mail") {
+        if(!message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
         const args = message.content.split(' ').slice(1)
@@ -1106,5 +894,48 @@ client.on('message', async function(message) {
         }
     }
 })
+client.on('messageDelete', async function(messageDelete) {
+    if(messageDelete.channel.type == "dm") return;
+        if(messageDelete.content.startsWith('y!poll')) return;
+        if(messageDelete.content.startsWith('y!feedback')) return;
+        try {
+        const serverGuild = messageDelete.guild
+                const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");
+                if(!channel) return  
+                if(messageDelete.author.bot) return;
+                const deleteEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setAuthor(`${messageDelete.author.tag}`, messageDelete.author.displayAvatarURL())
+                 .setThumbnail(messageDelete.author.displayAvatarURL())
+                 .setTitle('A Message was Deleted!')
+                 .setDescription(`A Message was Deleted By ${messageDelete.author} in ${messageDelete.channel}!`)
+                 .addField('**Content:**', `${messageDelete.content}`)
+                await channel.send({embed:deleteEmbed})
+        } catch (err) {
+            return
+        }
+})
+
+client.on("messageUpdate", async function(oldMessage, newMessage){
+    if(newMessage.channel.type == "dm") return;
+    if(oldMessage.author.bot) return;
+    if(oldMessage.content == newMessage.content) return;
+    try {
+    const serverGuild = newMessage.guild
+    const channel = serverGuild.channels.cache.find(x => x.name === "message-logs");  
+    if(!channel) return
+    const editEmbed = new Discord.MessageEmbed()
+     .setColor('0dff00')
+     .setAuthor(`${newMessage.author.tag}`, newMessage.author.displayAvatarURL())
+     .setThumbnail(newMessage.author.displayAvatarURL())
+     .setTitle('A Message was Updated!')
+     .setDescription(`A Message was Edited by ${newMessage.author} in ${newMessage.channel}!`)
+     .addField('**Old Content:**', `${oldMessage.content}`)
+     .addField('**New Content:**', `${newMessage.content}`)
+    await channel.send({embed:editEmbed})
+    } catch (err) {
+        return
+    }
+   });
 
 client.login(process.env.token)
