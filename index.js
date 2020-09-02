@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
 const talkedRecently = new Set()
-const process = require('./process.json')
+//const process = require('./process.json')
 const prefix = 'y!'
 const misterDisc = 689661065872670767
 const JaruCom = 728775383943610438
@@ -17,7 +17,12 @@ const noPermsEmbed = new Discord.MessageEmbed()
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
 })
-
+function clean(text) {
+    if (typeof(text) === "string")
+      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+    else
+        return text;
+  }
 client.on('message', async function(message) {
     if(message.author.bot || !message.content.startsWith(prefix)) return
     if(message.channel.type == "dm") return message.reply('You can\'t use WhyBot in dms!')
@@ -892,6 +897,20 @@ Log Status: Successful!
         }
         }
         }
+    }
+    if(command === "eval") {
+        if(message.author.id !== "315173627232518147") return;
+    try {
+      const code = args.join(" ");
+      let evaled = eval(code);
+ 
+      if (typeof evaled !== "string")
+        evaled = require("util").inspect(evaled);
+ 
+      await message.channel.send(clean(evaled), {code:"xl"});
+    } catch (err) {
+      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+    }
     }
 })
 client.on('messageDelete', async function(messageDelete) {
