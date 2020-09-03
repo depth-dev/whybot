@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fetch = require('node-fetch')
+const axios = require('axios')
 const talkedRecently = new Set()
 //const process = require('./process.json')
 const prefix = 'y!'
@@ -56,9 +57,9 @@ client.on('message', async function(message) {
     if(command === "purge") {
         const guild = message.guild
         if(!message.channel.permissionsFor(guild.me).has('MANAGE_MESSAGES')) {
-            msg.channel.send('Woops! I can\'t use this command here! Please give the manage messages permission for this channel!')
+            message.channel.send('Woops! I can\'t use this command here! Please give the manage messages permission for this channel!')
         } else {
-        if(!message.channel.permissionsFor(msg.author).has('MANAGE_MESSAGES')) {
+        if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
             try {
@@ -66,7 +67,7 @@ client.on('message', async function(message) {
             if (!amount) return message.reply('You haven\'t given an amount of messages which should be deleted!')
             if (isNaN(amount)) return message.reply('The amount parameter isn`t a number!')
             if (amount > 100) return message.reply('You can`t delete more than 100 messages at once!')
-            if (amount < 1) return MessageChannel.reply('You have to delete at least 1 message!')
+            if (amount < 1) return message.reply('You have to delete at least 1 message!')
             await message.channel.messages.fetch({ limit: amount }).then(async messages => { // Fetches the messages
                 await message.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
             )});
@@ -913,6 +914,80 @@ Log Status: Successful!
     }
     }
 })
+
+client.on('message', async function(message) {
+    if(message.guild.id != "732374933283274862") return;
+
+    if(message.channel.id == "750851953793302581") {
+
+        if(message.author.bot) return;
+
+        try {
+
+            const userinfoIGN = await fetch(`https://api.mojang.com/users/profiles/minecraft/${message.content}`).then(x => x.json())
+
+            const uuid = userinfoIGN.id 
+            if(!uuid) return message.reply("Invalid IGN/API is down").then((sentMsg) => {
+                setTimeout(() => {
+                    message.delete()
+                    sentMsg.delete()
+                }, 6000)
+            })
+
+            const hypixelData = await fetch(`https://api.hypixel.net/player?key=41a82fa1-b52f-41d5-8eb3-87d03e2a3ec7&name=${message.content}`).then(x => x.json())
+            const player = hypixelData.player
+            const discord = player.socialMedia.links.DISCORD 
+            if(!player.socialMedia.links || !player.socialMedia || !discord) return message.reply("You have not linked your discord!").then((sentMsg) => {
+                setTimeout(() => {
+                    message.delete()
+                    sentMsg.delete()
+                }, 6000)
+            })
+
+            const userDiscord = message.author.tag 
+            if(userDiscord != discord) return message.reply("The linked discord is not yours!").then((sentMsg) => {
+                setTimeout(() => {
+                    message.delete()
+                    sentMsg.delete()
+                }, 6000)
+            })
+
+            if(message.member.roles.cache.get("750857969649975349")) return message.reply("You are already verified!").then((sentMsg) => {
+                setTimeout(() => {
+                    message.delete()
+                    sentMsg.delete()
+                }, 6000)
+            })
+            try {
+                await message.member.roles.add('750857969649975349')
+                await message.member.setNickname(message.content)
+                 message.channel.send(`You are now verified as ${message.content}!`).then((sentMsg) => {
+                     setTimeout(() => {
+                         message.delete()
+                         sentMsg.delete()
+                     }, 6000)
+                 })
+            } catch (err) {
+                message.reply("Looks like I cannot verify you for some reason!").then((sentMsg) => {
+                    setTimeout(() => {
+                        message.delete()
+                        sentMsg.delete()
+                    }, 6000)
+                })
+            }
+
+
+        } catch (err) {
+            message.reply("Invalid IGN/API is down!").then((sentMsg) => {
+                setTimeout(() => {
+                    message.delete()
+                    sentMsg.delete()
+                }, 6000)
+            })
+        }
+    }
+})
+
 client.on('messageDelete', async function(messageDelete) {
     if(messageDelete.channel.type == "dm") return;
         if(messageDelete.content.startsWith('y!poll')) return;
