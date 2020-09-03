@@ -941,7 +941,7 @@ client.on('message', async function(message) {
             const hypixelData = await fetch(`https://api.hypixel.net/player?key=41a82fa1-b52f-41d5-8eb3-87d03e2a3ec7&name=${message.content}`).then(x => x.json())
             const player = hypixelData.player
             const discord = player.socialMedia.links.DISCORD 
-            if(!player.socialMedia.links || !player.socialMedia || !discord) return message.reply("You have not linked your discord!").then((sentMsg) => {
+            if(!player || !player.socialMedia || !player.socialMedia.links || !discord) return message.reply("You have not linked your discord!").then((sentMsg) => {
                 
                 setTimeout(async () => {
                     try {
@@ -1016,7 +1016,6 @@ client.on('message', async function(message) {
 
         } catch (err) {
 
-           console.log(err)
             message.reply("Something went wrong while trying to verify you!").then((sentMsg) => {
                 
                 setTimeout(async () => {
