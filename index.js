@@ -434,18 +434,18 @@ client.on('message', async function(message) {
         if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-        const args = message.content.split('/').slice(1)
-        if(!args[0] || !args[1] || !args[2]) {
+        const args2 = message.content.split('/').slice(1)
+        if(!args2[0] || !args2[1] || !args2[2]) {
             message.channel.send(`Please use the format:
 y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
         } else {
-            if(!args[3]) {
+            if(!args2[3]) {
             const pollEmbed = new Discord.MessageEmbed()
              .setColor('0dff00')
              .setTitle('Poll Time!')
              .setDescription('Poll by ' + message.author.tag + '!')
-             .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}`)
+             .addField(`${args2[0]}`, `1. ${args2[1]}
+2. ${args2[2]}`)
             .addField('Vote Now!', 'Vote by reacting with the emojis!')
             .setFooter('API developed by misterdepth')
             message.delete()
@@ -454,14 +454,14 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
                 sentEmbed.react("2️⃣")
         })
     } else {
-        if(!args[4]) {
+        if(!args2[4]) {
             const pollEmbed = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('Poll Time!')
             .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}
-3. ${args[3]}`)
+            .addField(`${args2[0]}`, `1. ${args2[1]}
+2. ${args2[2]}
+3. ${args2[3]}`)
            .addField('Vote Now!', 'Vote by reacting with the emojis!')
            .setFooter('API developed by misterdepth')
            message.delete()
@@ -475,10 +475,10 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
             .setColor('0dff00')
             .setTitle('Poll Time!')
             .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}
-3. ${args[3]}
-4. ${args[4]}`)
+            .addField(`${args2[0]}`, `1. ${args2[1]}
+2. ${args2[2]}
+3. ${args2[3]}
+4. ${args2[4]}`)
            .addField('Vote Now!', 'Vote by reacting with the emojis!')
            .setFooter('API developed by misterdepth')
            message.delete()
