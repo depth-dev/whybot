@@ -929,8 +929,8 @@ client.on('message', async function(message) {
             const uuid = userinfoIGN.id 
             if(!uuid) return message.reply("Invalid IGN/API is down").then((sentMsg) => {
                 setTimeout(() => {
-                    message.delete()
-                    sentMsg.delete()
+                    await message.delete()
+                    await sentMsg.delete()
                 }, 6000)
             })
 
@@ -939,23 +939,23 @@ client.on('message', async function(message) {
             const discord = player.socialMedia.links.DISCORD 
             if(!player.socialMedia.links || !player.socialMedia || !discord) return message.reply("You have not linked your discord!").then((sentMsg) => {
                 setTimeout(() => {
-                    message.delete()
-                    sentMsg.delete()
+                    await message.delete()
+                    await sentMsg.delete()
                 }, 6000)
             })
 
             const userDiscord = message.author.tag 
             if(userDiscord != discord) return message.reply("The linked discord is not yours!").then((sentMsg) => {
                 setTimeout(() => {
-                    message.delete()
-                    sentMsg.delete()
+                    await message.delete()
+                    await sentMsg.delete()
                 }, 6000)
             })
 
             if(message.member.roles.cache.get("750857969649975349")) return message.reply("You are already verified!").then((sentMsg) => {
                 setTimeout(() => {
-                    message.delete()
-                    sentMsg.delete()
+                    await message.delete()
+                    await sentMsg.delete()
                 }, 6000)
             })
             try {
@@ -963,25 +963,25 @@ client.on('message', async function(message) {
                 await message.member.setNickname(message.content)
                  message.channel.send(`You are now verified as ${message.content}!`).then((sentMsg) => {
                      setTimeout(() => {
-                         message.delete()
-                         sentMsg.delete()
+                        await message.delete()
+                        await sentMsg.delete()
                      }, 6000)
                  })
             } catch (err) {
                 message.reply("Looks like I cannot verify you for some reason!").then((sentMsg) => {
                     setTimeout(() => {
-                        message.delete()
-                        sentMsg.delete()
+                        await message.delete()
+                        await sentMsg.delete()
                     }, 6000)
                 })
             }
 
 
         } catch (err) {
-            message.reply("Invalid IGN/API is down!").then((sentMsg) => {
+            message.reply("Something went wrong while trying to verify you!").then((sentMsg) => {
                 setTimeout(() => {
-                    message.delete()
-                    sentMsg.delete()
+                    await message.delete()
+                    await sentMsg.delete()
                 }, 6000)
             })
         }
