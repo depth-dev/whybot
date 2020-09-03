@@ -1016,7 +1016,7 @@ client.on('message', async function(message) {
 
         } catch (err) {
 
-           
+           console.log(err)
             message.reply("Something went wrong while trying to verify you!").then((sentMsg) => {
                 
                 setTimeout(async () => {
