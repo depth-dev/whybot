@@ -928,11 +928,13 @@ client.on('message', async function(message) {
 
             const uuid = userinfoIGN.id 
             if(!uuid) return message.reply("Invalid IGN/API is down").then((sentMsg) => {
+                
                 setTimeout(async () => {
                     try {
                     await message.delete()
                     await sentMsg.delete()
                     } catch (err) { return }
+                
                 }, 6000)
             })
 
@@ -940,62 +942,89 @@ client.on('message', async function(message) {
             const player = hypixelData.player
             const discord = player.socialMedia.links.DISCORD 
             if(!player.socialMedia.links || !player.socialMedia || !discord) return message.reply("You have not linked your discord!").then((sentMsg) => {
+                
                 setTimeout(async () => {
                     try {
                     await message.delete()
                     await sentMsg.delete()
                     } catch (err) { return }
+                
                 }, 6000)
             })
 
             const userDiscord = message.author.tag 
             if(userDiscord != discord) return message.reply("The linked discord is not yours!").then((sentMsg) => {
+                
                 setTimeout(async () => {
                     try {
                     await message.delete()
                     await sentMsg.delete()
                     } catch (err) { return }
+                
                 }, 6000)
             })
 
             if(message.member.roles.cache.get("750857969649975349")) return message.reply("You are already verified!").then((sentMsg) => {
+                
                 setTimeout(async () => {
                     try {
                     await message.delete()
                     await sentMsg.delete()
                     } catch (err) { return }
+                
                 }, 6000)
             })
             try {
                 await message.member.roles.add('750857969649975349')
                 await message.member.setNickname(message.content)
+
+                let verifyLogs = client.channels.cache.get('750865962814931045')
+                if(!verifyLogs) return
+
+                const verifiedEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setTitle("NEW USER VERIFIED")
+                 .setDescription(`New User Verified:\nDiscord User: ${message.author}\nMinecraft Username: ${message.content}`)
+                 .setTimestamp()
+                verifyLogs.send({embed:verifiedEmbed})
+
                  message.channel.send(`You are now verified as ${message.content}!`).then((sentMsg) => {
-                     setTimeout(async () => {
-                        try {
-                        await message.delete()
-                        await sentMsg.delete()
-                        } catch (err) { return }
-                     }, 6000)
-                 })
-            } catch (err) {
-                message.reply("Looks like I cannot verify you for some reason!").then((sentMsg) => {
+                     
                     setTimeout(async () => {
                         try {
                         await message.delete()
                         await sentMsg.delete()
                         } catch (err) { return }
+                     
+                    }, 6000)
+                 })
+
+            } catch (err) {
+
+                message.reply("Looks like I cannot verify you for some reason!").then((sentMsg) => {
+                    
+                    setTimeout(async () => {
+                        try {
+                        await message.delete()
+                        await sentMsg.delete()
+                        } catch (err) { return }
+                        
                     }, 6000)
                 })
             }
 
 
         } catch (err) {
+
+           
             message.reply("Something went wrong while trying to verify you!").then((sentMsg) => {
+                
                 setTimeout(async () => {
                     try {
                     await message.delete()
                     await sentMsg.delete()
                     } catch (err) { return }
+                
                 }, 6000)
             })
         }
