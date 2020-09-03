@@ -913,16 +913,6 @@ Log Status: Successful!
       message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
     }
-
-    if(command === "embed") {
-        const theEmbed = args.slice(0).join(' ')
-        if(!theEmbed) return message.reply("Missing an embed!")
-        try {
-            await message.channel.send({embed:{theEmbed}})
-        } catch (err) {
-            message.channel.send("ERROR:\n" + err)
-        }
-    }
 })
 
 client.on('message', async function(message) {
