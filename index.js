@@ -440,7 +440,7 @@ client.on('message', async function(message) {
         } else {
             switch(args.length) {
                 case 3:
-                    const pollEmbed = new Discord.MessageEmbed()
+                    let pollEmbed = new Discord.MessageEmbed()
                      .setColor('0dff00')
                      .setTitle('Poll Time!')
                      .setDescription('Poll by ' + message.author.tag + '!')
@@ -454,7 +454,7 @@ client.on('message', async function(message) {
                     })
                 break
             case 4:
-                const pollEmbed = new Discord.MessageEmbed()
+                let pollEmbed = new Discord.MessageEmbed()
                  .setColor('0dff00')
                  .setTitle('Poll Time!')
                  .setDescription('Poll by ' + message.author.tag + '!')
@@ -469,7 +469,7 @@ client.on('message', async function(message) {
             })
                 break
             default:
-                const pollEmbed = new Discord.MessageEmbed()
+                let pollEmbed = new Discord.MessageEmbed()
                 .setColor('0dff00')
                 .setTitle('Poll Time!')
                 .setDescription('Poll by ' + message.author.tag + '!')
