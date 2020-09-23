@@ -440,7 +440,7 @@ client.on('message', async function(message) {
         } else {
             switch(args.length) {
                 case 3:
-                    let pollEmbed = new Discord.MessageEmbed()
+                    const pollEmbed3 = new Discord.MessageEmbed()
                      .setColor('0dff00')
                      .setTitle('Poll Time!')
                      .setDescription('Poll by ' + message.author.tag + '!')
@@ -448,13 +448,13 @@ client.on('message', async function(message) {
                      .addField('Vote Now!', 'Vote by reacting with the emojis!')
                      .setFooter('API developed by misterdepth')
                     message.delete()
-                    message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+                    message.channel.send({embed:pollEmbed3}).then(sentEmbed => {
                         sentEmbed.react("1️⃣")
                         sentEmbed.react("2️⃣")
                     })
                 break
             case 4:
-                let pollEmbed = new Discord.MessageEmbed()
+                const pollEmbed4 = new Discord.MessageEmbed()
                  .setColor('0dff00')
                  .setTitle('Poll Time!')
                  .setDescription('Poll by ' + message.author.tag + '!')
@@ -462,14 +462,14 @@ client.on('message', async function(message) {
                  .addField('Vote Now!', 'Vote by reacting with the emojis!')
                  .setFooter('API developed by misterdepth')
                 message.delete()
-                message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+                message.channel.send({embed:pollEmbed4}).then(sentEmbed => {
                     sentEmbed.react("1️⃣")
                     sentEmbed.react("2️⃣")
                     sentEmbed.react("3️⃣")
             })
                 break
             default:
-                let pollEmbed = new Discord.MessageEmbed()
+                const pollEmbedo = new Discord.MessageEmbed()
                 .setColor('0dff00')
                 .setTitle('Poll Time!')
                 .setDescription('Poll by ' + message.author.tag + '!')
@@ -477,7 +477,7 @@ client.on('message', async function(message) {
                 .addField('Vote Now!', 'Vote by reacting with the emojis!')
                 .setFooter('API developed by misterdepth')
                message.delete()
-               message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+               message.channel.send({embed:pollEmbedo}).then(sentEmbed => {
                    sentEmbed.react("1️⃣")
                    sentEmbed.react("2️⃣")
                    sentEmbed.react("3️⃣")
