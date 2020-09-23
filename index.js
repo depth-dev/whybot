@@ -429,70 +429,65 @@ client.on('message', async function(message) {
             .setFooter('API developed by misterdepth')
         message.channel.send({embed:otherUserInfo})
         }
-    }
+}
     if(command === "poll") {
         if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-        const args2 = message.content.split('/').slice(1)
-        if(!args2[0] || !args2[1] || !args2[2]) {
-            message.channel.send(`Please use the format:
-y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
+        const polls = message.content.split('/').slice(1)
+        if(!polls[0] || !polls[1] || !polls[2]) {
+            message.channel.send(`Please use the format:\ny!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
         } else {
-            if(!args2[3]) {
-            const pollEmbed = new Discord.MessageEmbed()
-             .setColor('0dff00')
-             .setTitle('Poll Time!')
-             .setDescription('Poll by ' + message.author.tag + '!')
-             .addField(`${args2[0]}`, `1. ${args2[1]}
-2. ${args2[2]}`)
-            .addField('Vote Now!', 'Vote by reacting with the emojis!')
-            .setFooter('API developed by misterdepth')
-            message.delete()
-            message.channel.send({embed:pollEmbed}).then(sentEmbed => {
-                sentEmbed.react("1️⃣")
-                sentEmbed.react("2️⃣")
-        })
-    } else {
-        if(!args2[4]) {
-            const pollEmbed = new Discord.MessageEmbed()
-            .setColor('0dff00')
-            .setTitle('Poll Time!')
-            .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args2[0]}`, `1. ${args2[1]}
-2. ${args2[2]}
-3. ${args2[3]}`)
-           .addField('Vote Now!', 'Vote by reacting with the emojis!')
-           .setFooter('API developed by misterdepth')
-           message.delete()
-           message.channel.send({embed:pollEmbed}).then(sentEmbed => {
-               sentEmbed.react("1️⃣")
-               sentEmbed.react("2️⃣")
-               sentEmbed.react("3️⃣")
-       })
-        } else {
-            const pollEmbed = new Discord.MessageEmbed()
-            .setColor('0dff00')
-            .setTitle('Poll Time!')
-            .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args2[0]}`, `1. ${args2[1]}
-2. ${args2[2]}
-3. ${args2[3]}
-4. ${args2[4]}`)
-           .addField('Vote Now!', 'Vote by reacting with the emojis!')
-           .setFooter('API developed by misterdepth')
-           message.delete()
-           message.channel.send({embed:pollEmbed}).then(sentEmbed => {
-               sentEmbed.react("1️⃣")
-               sentEmbed.react("2️⃣")
-               sentEmbed.react("3️⃣")
-               sentEmbed.react("4️⃣")
-       })
-        }
+            switch(args.length) {
+                case 3:
+                    const pollEmbed = new Discord.MessageEmbed()
+                     .setColor('0dff00')
+                     .setTitle('Poll Time!')
+                     .setDescription('Poll by ' + message.author.tag + '!')
+                     .addField(`${polls[0]}`, `1. ${polls[1]}\n2. ${polls[2]}`)
+                     .addField('Vote Now!', 'Vote by reacting with the emojis!')
+                     .setFooter('API developed by misterdepth')
+                    message.delete()
+                    message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+                        sentEmbed.react("1️⃣")
+                        sentEmbed.react("2️⃣")
+                    })
+                break
+            case 4:
+                const pollEmbed = new Discord.MessageEmbed()
+                 .setColor('0dff00')
+                 .setTitle('Poll Time!')
+                 .setDescription('Poll by ' + message.author.tag + '!')
+                 .addField(`${polls[0]}`, `1. ${polls[1]}\n2. ${polls[2]}\n3. ${polls[3]}`)
+                 .addField('Vote Now!', 'Vote by reacting with the emojis!')
+                 .setFooter('API developed by misterdepth')
+                message.delete()
+                message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+                    sentEmbed.react("1️⃣")
+                    sentEmbed.react("2️⃣")
+                    sentEmbed.react("3️⃣")
+            })
+                break
+            default:
+                const pollEmbed = new Discord.MessageEmbed()
+                .setColor('0dff00')
+                .setTitle('Poll Time!')
+                .setDescription('Poll by ' + message.author.tag + '!')
+                .addField(`${polls[0]}`, `1. ${polls[1]}\n2. ${polls[2]}\n3. ${polls[3]}\n4. ${polls[4]}`)
+                .addField('Vote Now!', 'Vote by reacting with the emojis!')
+                .setFooter('API developed by misterdepth')
+               message.delete()
+               message.channel.send({embed:pollEmbed}).then(sentEmbed => {
+                   sentEmbed.react("1️⃣")
+                   sentEmbed.react("2️⃣")
+                   sentEmbed.react("3️⃣")
+                   sentEmbed.react("4️⃣")
+               })
+                break
+            }
     }
-    }
-    }
-    }
+}
+}
     if(command === "betterbotlogs") {
         if(!args[0]) {
             const BotLogEmbed = new Discord.MessageEmbed()
