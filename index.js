@@ -17,6 +17,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
+    client.user.setActivity("what is a pog champ", { type: "PLAYING" })
 })
 function clean(text) {
     if (typeof(text) === "string")
@@ -35,8 +36,6 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Commands and Help Menu')
          .setDescription('WhyBot is a bot used for moderation and other events.')
-         .addField('**y!quote**', 'Get a  quote from the dev.', true)
-         .addField('**y!meme**', 'Memes.', true)
          .addField('**y!feedback**', 'Give us feedback!', true)
          .addField('**y!modhelp**', 'For administrators.', true)
          .addField('**y!info**', 'Check out some information on the bot.', true)
@@ -83,10 +82,8 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.2.6: Revamped Code
-    - Fixed some bugs
-    - Added better command handlers
-    - Looked into adding a few other things :)`)
+         .addField('Changelog:', `1.3.0: Revamping Time
+         - Removed some Commands so they can be revamped`)
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -103,122 +100,6 @@ client.on('message', async function(message) {
         .addField('How many servers does this bot have?', `WhyBot is in ${client.guilds.cache.size} servers, and is watching over ${client.users.cache.size} users!`)
         .setFooter('API developed by misterdepth')
         message.channel.send({embed:infoEmbed})
-    }
-    if(command === "quote") {
-        let randomQuote = Math.floor(Math.random()*15+1)
-        switch(randomQuote) {
-            case 1:
-                message.channel.send('What was the point of a channel about building houses?')
-                break
-            case 2:
-                message.channel.send('This bot had to go through 2 different name changes! I am very bad at making deciscions.')
-                break
-            case 3:
-                message.channel.send('Originally, this was an if/then set of statements, but I made it a switch/case!')
-                break
-            case 4:
-                message.channel.send('Giga pudding! What the hell is that ad?')
-                break
-            case 5:
-                message.channel.send('I\'m struggling to make all these quotes.')
-                break
-            case 6:
-                message.channel.send('The original purpose of this bot was to moderate a single server. Now it is in maybe 10!')
-                break 
-            case 7:
-                message.channel.send('MEE6 is a bad bot. So is Carlbot. YAGPDB is a decent one tho.')
-                break 
-            case 8:
-                message.channel.send('The more difficult aspect of coding a discord bot: Motivation.')
-                break 
-            case 9:
-                message.channel.send('Hi! If you\'re seeing this, then my number generator rolled a 9!')
-                break 
-            case 10:
-                message.channel.send('Send food. I have gone 19 days without food. Send help')
-                break
-            case 11:
-                message.channel.send('There are over 800 lines of code in this file and growing!')
-                break 
-            case 12:
-                message.channel.send('Shoutout to Lieutenant Chicken for supporting this bot!')
-                break 
-            case 13:
-                message.channel.send('Why is "lol" said how it looks in our brains, but "wtf" isn\'t?')
-                break 
-            case 14:
-                message.channel.send("Node Error: Loud != Funny")
-                break 
-            case 15:
-                message.channel.send('Did you know that Terraria and Minecraft both support each other? You most likely did')
-                break          
-            }
-    }
-    if(command === "meme") {
-        const randomMeme = Math.floor(Math.random()*20+1)
-       switch(randomMeme) {
-           case 1:
-               message.channel.send({files:['https://cdn.discordapp.com/attachments/708460664380719154/732083027877822524/received_3439646952754765.jpg']})
-               break
-            case 2:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/565628173425967115/736373324354945175/image0.png']})
-                break
-            case 3:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/494415269796511745/736304432324542604/image0-4.png']})
-                break
-            case 4:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/736260431177580608/image0.jpg']})
-                break
-            case 5:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/735951324411330570/322fec8efe2abb619c32fff0b1010628.jpg']})
-                break
-            case 6:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736881903713517628/Screenshot_20200726-114201_Reddit.jpg']})
-                break 
-            case 7:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736980450660188180/meme-man-8.png']})
-                break 
-            case 8:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/662724233578676284/736981016920719520/Screenshot_20190809-172917.jpg']})
-                break 
-            case 9:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/385837258768515083/736991164141404271/Screenshot_20200725-235257.png']})
-                break 
-            case 10:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/736738559184338974/image0.jpg']})
-                break
-            case 11:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533868964511774/no1.PNG']})
-                break 
-            case 12:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533989525585930/furries_be_stronk.PNG']})
-                break
-            case 13:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534005019475968/so_true.png']})
-                break
-            case 14:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534035037978704/funnibone.PNG']})
-                break
-            case 15:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534232174723102/fitnes.PNG']})
-                break
-            case 16:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534040041914418/villan.PNG']})
-                break 
-            case 17:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533999319416852/cananda.PNG']})
-                break 
-            case 18:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739534219172249691/chessbord.PNG']})
-                break 
-            case 19:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/708997379264610374/740946643620462592/20200806_155555.jpg']})
-                break 
-            case 20:
-                message.channel.send({files:['https://cdn.discordapp.com/attachments/709248440797757511/739533915152449607/tetris.png']})
-                break 
-
-       }
     }
     if(command === "feedback") {
         let args = message.content.split('y!feedback ').slice(1)
