@@ -315,7 +315,7 @@ client.on('message', async function(message) {
         if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
-        const polls = message.content.split('/').slice(1)
+        const polls = args.join(" ").split("/")
         if(!polls[0] || !polls[1] || !polls[2]) {
             message.channel.send(`Please use the format:\ny!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
         } else {
