@@ -50,7 +50,7 @@ client.on('message', async function(message) {
          .addField('**y!animals**', 'Animal command help menu!', true)
          .addField('**y!mcinfo**', 'See the minecraft information for a user!', true)
          .addField('', '')
-         .addField('Check out my Website!', '[Click here](https://misterdepth.github.io)')
+         .addField('Check out WhyBot\'s Website!', '[Click here](https://misterdepth.github.io/whybot)')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
