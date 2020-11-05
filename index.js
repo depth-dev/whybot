@@ -17,7 +17,7 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    function setStatus() {
+    async function setStatus() {
         const obj = await fetch('https://misterdepth.github.io/api/whybot.json').then(x => x.json())
         let newStatus = obj.displayStatus
         client.user.setActivity(newStatus, { type: "PLAYING" })
