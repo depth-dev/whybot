@@ -49,6 +49,8 @@ client.on('message', async function(message) {
          .addField('**y!content**', 'The help menu for content!', true)
          .addField('**y!animals**', 'Animal command help menu!', true)
          .addField('**y!mcinfo**', 'See the minecraft information for a user!', true)
+         .addField('', '')
+         .addField('Check out my Website!', '[Click here](https://misterdepth.github.io)')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:youelpEmbed})
     }
@@ -64,8 +66,8 @@ client.on('message', async function(message) {
             try {
             const amount = args.join(' ')
             if (!amount) return message.reply('You haven\'t given an amount of messages which should be deleted!')
-            if (isNaN(amount)) return message.reply('The amount parameter isn`t a number!')
-            if (amount > 100) return message.reply('You can`t delete more than 100 messages at once!')
+            if (isNaN(amount)) return message.reply('The amount parameter isn\'t a number!')
+            if (amount > 100) return message.reply('You can\'t delete more than 100 messages at once!')
             if (amount < 1) return message.reply('You have to delete at least 1 message!')
             await message.channel.messages.fetch({ limit: amount }).then(async messages => { // Fetches the messages
                 await message.channel.bulkDelete(messages // Bulk deletes all messages that have been fetched and are not older than 14 days (due to the Discord API)
@@ -82,8 +84,10 @@ client.on('message', async function(message) {
          .setColor('0dff00')
          .setTitle('WhyBot Changelog')
          .setDescription('Check out all of the new features in WhyBot updates.')
-         .addField('Changelog:', `1.3.0: Revamping Time
-         - Removed some Commands so they can be revamped`)
+         .addField('Changelog:', `1.3.1: Poll Fixed + More\n` +
+         `- Starting Revamping some Commands\n` + 
+         '- Starting Fixing some Lists\n' +
+         '- FIXED THE POLL COMMAND')
          .setFooter('API developed by misterdepth')
         message.channel.send({embed:changelogEmbed})
     }
@@ -137,99 +141,28 @@ client.on('message', async function(message) {
         }
     }
     if(command === "quiz") {
-        let randomQuiz = Math.floor(Math.random()*15+1)
-        switch(randomQuiz) {
-            case 1:
-                message.channel.send('**Question:** Apples or Oranges?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 2:
-                message.channel.send('**Question:** CoronaBot or WhyBot?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 3:
-                message.channel.send('**Question:** YouTube or Twitch?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 4:
-                message.channel.send('**Question:** Inside or Outside?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break 
-            case 5:
-                message.channel.send('**Question:** AC or Mechanical Fans?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break 
-            case 6:
-                message.channel.send('**Question:** Singing or Dancing?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break 
-            case 7:
-                message.channel.send('**Question:** Tacos or Hamburgers?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break 
-            case 8:
-                message.channel.send('**Question:** Teleportation or Flying?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 9:
-                message.channel.send('**Question:** Strawberries or Bananas?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 10:
-                message.channel.send('**Question:** Salted Crackers or Unsalted Crackers?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 11:
-                message.channel.send('**Question:** Anime or Regular Cartoons?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 12:
-                message.channel.send('**Question:** Grapes or Raisins?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 13:
-                message.channel.send('**Question:** Night or Day?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 14:
-                message.channel.send('**Question:** Java or Python?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-            case 15:
-                message.channel.send('**Question:** Harry Potter or Percy Jackson?').then(msg => {
-                    msg.react("🇦")
-                    msg.react("🇧")
-                })
-                break
-        }
+        let questions = [
+            '**Question:** Apples or Oranges?',
+            '**Question:** CoronaBot or WhyBot?',
+            '**Question:** YouTube or Twitch?',
+            '**Question:** Inside or Outside?',
+            '**Question:** AC or Mechanical Fans?',
+            '**Question:** Singing or Dancing?',
+            '**Question:** Tacos or Hamburgers?',
+            '**Question:** Teleportation or Flying?',
+            '**Question:** Strawberries or Bananas?',
+            '**Question:** Salted Crackers or Unsalted Crackers?',
+            '**Question:** Anime or Regular Cartoons?',
+            '**Question:** Grapes or Raisins?',
+            '**Question:** Night or Day?',
+            '**Question:** Java or Python?',
+            '**Question:** Harry Potter or Percy Jackson?'
+        ]
+        let question = Math.floor(Math.random()*questions.length)
+        message.channel.send(questions[question]).then(msg => {
+            msg.react("🇦")
+            msg.react("🇧")
+        })
     }
     if(command === "invite") {
         const inviteEmbed = new Discord.MessageEmbed()
@@ -318,10 +251,7 @@ client.on('message', async function(message) {
             .setTitle('BetterBotLogs Information:')
             .setImage('https://cdn.discordapp.com/attachments/715386760317894757/742803112875786330/unknown.png')
             .setDescription('BetterBotLogs is a way of logging actions in the server, being precise and careful.')
-            .addField('Features: ', `- Seeing Deleted Messages
-   - Seeing Edited Messages
-   
-   More to come! This bot is still in development!`)
+            .addField('Features: ', `- Seeing Deleted Messages\n- Seeing Edited Messages\n\nMore to come! This bot is still in development!`)
             .addField('How Can I Get BetterBotLogs?', 'Create a channel called `message-logs` and the logging will appear there!')
             .setFooter('API developed by misterdepth')
            message.channel.send({embed:BotLogEmbed})
@@ -345,7 +275,7 @@ client.on('message', async function(message) {
             if(!message.channel.permissionsFor(guild.me).has('MANAGE_CHANNELS')) {
                 message.reply('I don\'t have permissions! Make sure I have permission to edit this channel!')
             } else {
-            switch(args[0]) {
+            switch(args[0].toLowerCase()) {
                 case "visible":
                     if(message.channel.permissionsFor(message.guild.roles.everyone).has('VIEW_CHANNEL')) {
                         message.reply('This channel is already visible!')
@@ -401,14 +331,13 @@ client.on('message', async function(message) {
                     message.channel.send('You can no longer send images in this channel!')
                     break 
                 default:
-                    message.channel.send(`Please supply a valid option! Options:
-    - Visible (allows members to see)
-    - Invisible (disallows members to see)
-    - Open (allows members to send messages)
-    - Close (disallows members to send messages)
-    - Images (allows members to send images)
-    - Text (disallows members to send images)
-All lowercase!`)
+                    message.channel.send(`Please supply a valid option! Options:\n` +
+                    '- Visible (allows members to see)\n' +
+                    '- Invisible (disallows members to see)\n' +
+                    '- Open (allows members to send messages)\n' +
+                    '- Close (disallows members to send messages)\n' +
+                    '- Images (allows members to send images)\n' +
+                    '- Text (disallows members to send images)')
             }
         }
         }
@@ -906,16 +835,14 @@ client.on('message', function(message) {
         } else {
         const args = message.content.split('/').slice(1)
         if(!args[0] || !args[1] || !args[2]) {
-            message.channel.send(`Please use the format:
-y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
+            message.channel.send(`Please use the format:\ny!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
         } else {
             if(!args[3]) {
             const pollEmbed = new Discord.MessageEmbed()
              .setColor('0dff00')
              .setTitle('Poll Time!')
              .setDescription('Poll by ' + message.author.tag + '!')
-             .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}`)
+             .addField(`${args[0]}`, `1. ${args[1]}\n2. ${args[2]}`)
             .addField('Vote Now!', 'Vote by reacting with the emojis!')
             .setFooter('API developed by misterdepth')
             message.delete()
@@ -923,15 +850,12 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
                 sentEmbed.react("1️⃣")
                 sentEmbed.react("2️⃣")
         })
-    } else {
-        if(!args[4]) {
+    } else if(!args[4]) {
             const pollEmbed = new Discord.MessageEmbed()
             .setColor('0dff00')
             .setTitle('Poll Time!')
             .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}
-3. ${args[3]}`)
+            .addField(`${args[0]}`, `1. ${args[1]}\n2. ${args[2]}\n3. ${args[3]}`)
            .addField('Vote Now!', 'Vote by reacting with the emojis!')
            .setFooter('API developed by misterdepth')
            message.delete()
@@ -945,10 +869,7 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
             .setColor('0dff00')
             .setTitle('Poll Time!')
             .setDescription('Poll by ' + message.author.tag + '!')
-            .addField(`${args[0]}`, `1. ${args[1]}
-2. ${args[2]}
-3. ${args[3]}
-4. ${args[4]}`)
+            .addField(`${args[0]}`, `1. ${args[1]}\n2. ${args[2]}\n3. ${args[3]}\n4. ${args[4]}`)
            .addField('Vote Now!', 'Vote by reacting with the emojis!')
            .setFooter('API developed by misterdepth')
            message.delete()
@@ -959,7 +880,6 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
                sentEmbed.react("4️⃣")
        })
         }
-    }
     }
     }
 
