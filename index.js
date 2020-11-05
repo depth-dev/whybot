@@ -901,7 +901,6 @@ client.on('message', function(message) {
             return
         }
         if(message.author.bot) return;
-    if(command === "poll") {
         if(!message.channel.permissionsFor(message.author).has('MANAGE_MESSAGES')) {
             message.channel.send({embed:noPermsEmbed})
         } else {
@@ -964,5 +963,4 @@ y!poll/question/answer1/answer2/OPTIONALanswer3/OPTIONALanswer4`)
     }
     }
 
-    }
 }})
