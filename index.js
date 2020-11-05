@@ -22,7 +22,7 @@ client.on('ready', async () => {
         let newStatus = obj.displayStatus
         client.user.setActivity(newStatus, { type: "PLAYING" })
     }
-    setInterval(setStatus(), 20000)
+    setInterval(setStatus, 20000)
 })
 function clean(text) {
     if (typeof(text) === "string")
