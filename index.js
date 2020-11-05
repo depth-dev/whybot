@@ -17,7 +17,12 @@ const noPermsEmbed = new Discord.MessageEmbed()
 
 client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    client.user.setActivity("what is a pog champ", { type: "PLAYING" })
+    function setStatus() {
+        const obj = await fetch('https://misterdepth.github.io/api/whybot.json').then(x => x.json())
+        let newStatus = obj.displayStatus
+        client.user.setActivity(newStatus, { type: "PLAYING" })
+    }
+    setInterval(setStatus(), 20000)
 })
 function clean(text) {
     if (typeof(text) === "string")
