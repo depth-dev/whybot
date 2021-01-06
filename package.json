@@ -5,7 +5,7 @@
     "main": "index.js",
     "author": "misterdepth",
     "dependencies": {
-        "axios": "^0.20.0",
+        "axios": "^0.21.1",
         "discord.io": "^2.5.3",
         "discord.js": "^12.2.0",
         "mongoose": "^5.9.28",
